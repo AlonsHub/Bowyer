@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+enum MoveType { Walk, Run, Step, MidAir};
+
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
@@ -12,18 +15,55 @@ public class PlayerController : MonoBehaviour
     CharacterController cc;
     [SerializeField]
     float walkSpeed;
+    [SerializeField]
+    float runSpeed;
+    [SerializeField]
+    private float stepSpeed;
+        [SerializeField]
+    private float midairSpeed;
+    [Header("Keys")]
+    [SerializeField]
+    KeyCode sprintKey;
+    [SerializeField]
+    KeyCode jumpKey;
+
+    float _currentSpeed()
+    {
+        switch (_currentMoveType)
+        {
+            case MoveType.Walk:
+                return walkSpeed;
+                break;
+            case MoveType.Run:
+                return runSpeed;
+                break;
+            case MoveType.Step:
+                return stepSpeed;
+                break;
+                case MoveType.MidAir:
+                return midairSpeed;
+                break;
+            default:
+                return 0f;
+                break;
+        }
+    }
+
+MoveType _currentMoveType;
 
     Vector3 _inputVector;
+
     // Start is called before the first frame update
     void Awake()
     {
+        _currentMoveType = MoveType.Walk;
         if (!cc)
         {
             cc = GetComponent<CharacterController>(); //this actually must exist, since it is a required component
         }    
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         _inputVector = Vector3.zero;
@@ -33,8 +73,10 @@ public class PlayerController : MonoBehaviour
         if (_inputVector.magnitude > 1)
             _inputVector.Normalize();
 
+
+        HandleMoveStates();
         //temp!
-        _inputVector *= walkSpeed;
+        _inputVector *= _currentSpeed();
 
         if (!cc.isGrounded)
             _inputVector += Physics.gravity;
@@ -46,5 +88,13 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         cc.Move(_inputVector);
+    }
+
+    void HandleMoveStates()
+    {
+        if(Input.GetKeyDown())
+        {
+
+        }
     }
 }
