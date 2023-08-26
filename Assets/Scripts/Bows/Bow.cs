@@ -28,10 +28,12 @@ public class Bow : MonoBehaviour
     [SerializeField]
     float TEMP_armStrength;
     [SerializeField]
-    float maxPullForceAmount;
+    float TEMP_perfectShotBonus;
 
     float _currentPull;
 
+    [SerializeField]
+    AnimationCurve pullCurve;
     private void Awake()
     {
         _currentBowState = BowState.Empty;
@@ -61,7 +63,7 @@ public class Bow : MonoBehaviour
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + (Vector3.back * _currentPull*Time.deltaTime);
-                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * (Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull/_bowStats.MaxPull_Tension));
+                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull/_bowStats.MaxPull_Tension));
                 }
                 else //assuing now what the KeyUp - since it must be at first, this wont happen again afterwards
                 {
@@ -79,7 +81,6 @@ public class Bow : MonoBehaviour
     void LoadArrow()
     {
         _currentBowState = BowState.Loaded;
-        //_loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform.position, arrowNotchTransform.rotation);
         _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
     }
 
@@ -90,6 +91,13 @@ public class Bow : MonoBehaviour
 
     void Release()
     {
+        if(_bowStats.IsPerfect(_currentPull))
+        {
+            Debug.Log("PERFECT SHOT!");
+            _currentPull += TEMP_perfectShotBonus;
+            //perfect shot sound and vfx
+        }
+
         _loadedArrow.transform.SetParent(null);
         _loadedArrow.GetComponent<Arrow>().ForceMeFWD(_currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
