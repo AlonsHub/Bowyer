@@ -23,13 +23,15 @@ public class Bow : MonoBehaviour
     BowState _currentBowState;
 
     [SerializeField]
-    float pullForceSpeed;
+    BowStats _bowStats;
+
+    [SerializeField]
+    float TEMP_armStrength;
     [SerializeField]
     float maxPullForceAmount;
 
     float _currentPull;
-    [SerializeField]
-    float pullFactor;
+
     private void Awake()
     {
         _currentBowState = BowState.Empty;
@@ -55,12 +57,11 @@ public class Bow : MonoBehaviour
             case BowState.Pulling:
                 if(Input.GetMouseButton(0))
                 {
-                    _currentPull += pullForceSpeed * Time.deltaTime;
-                    _currentPull = Mathf.Clamp(_currentPull, 0, maxPullForceAmount);
+                    _currentPull += TEMP_armStrength/_bowStats.PullResistence * Time.deltaTime;
+                    _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
-                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + (Vector3.back * _currentPull*Time.deltaTime);
-
-                    //_loadedArrow.transform.position = arrowNotchTransform.position + (arrowNotchTransform.forward * -1f * _currentPull*Time.deltaTime);
+                    //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + (Vector3.back * _currentPull*Time.deltaTime);
+                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * (Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull/_bowStats.MaxPull_Tension));
                 }
                 else //assuing now what the KeyUp - since it must be at first, this wont happen again afterwards
                 {
@@ -90,7 +91,7 @@ public class Bow : MonoBehaviour
     void Release()
     {
         _loadedArrow.transform.SetParent(null);
-        _loadedArrow.GetComponent<Arrow>().ForceMeFWD(_currentPull * pullFactor);
+        _loadedArrow.GetComponent<Arrow>().ForceMeFWD(_currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
     }
 }
