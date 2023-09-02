@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1779.8245, g: 1939.7913, b: 2705.547, a: 1}
+  m_IndirectSpecularColor: {r: 1779.2268, g: 1939.3889, b: 2851.2893, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -124,7 +124,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: e4927ab6ee05b154cb696d3db4c777fd, type: 2}
 --- !u!1 &40385797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,6 +2806,34 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271905829}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1306549136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7504042317785320225, guid: 026adc85523103d469760aeac4f55f3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6840450232542281720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1306549138
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306549136}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.14
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1313436249
 GameObject:
   m_ObjectHideFlags: 0
@@ -4379,5 +4407,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7504042317785320225, guid: 026adc85523103d469760aeac4f55f3c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1306549138}
   m_SourcePrefab: {fileID: 100100000, guid: 026adc85523103d469760aeac4f55f3c, type: 3}
