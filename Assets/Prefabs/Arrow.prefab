@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 6406886548937883936}
   - component: {fileID: 5263808136552898757}
   - component: {fileID: 7077980757352873208}
+  - component: {fileID: 2633866924701697717}
   m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
@@ -291,9 +292,9 @@ Rigidbody:
   m_GameObject: {fileID: 5682505232231446610}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.01
   m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 1}
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -301,8 +302,8 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
+    m_Bits: 512
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
@@ -322,8 +323,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5263808136552898757}
-  arrowLerp: 0.2
+  arrowStickInAmount: 0.2
   gfx: {fileID: 7179991460281330796}
+--- !u!114 &2633866924701697717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5682505232231446610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2351ff08d6c0fe74e8a92f782bebc5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityTracker:
+    ts: []
+  toTrack: {fileID: 5263808136552898757}
 --- !u!1 &7738290417285510003
 GameObject:
   m_ObjectHideFlags: 0

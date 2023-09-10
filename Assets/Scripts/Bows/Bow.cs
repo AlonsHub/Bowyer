@@ -99,7 +99,8 @@ public class Bow : MonoBehaviour
         }
 
         _loadedArrow.transform.SetParent(null);
-        _loadedArrow.GetComponent<Arrow>().ForceMeFWD(_currentPull * _bowStats.PullFactor);
+        //_loadedArrow.GetComponent<Arrow>().ForceMeFWD(_currentPull * _bowStats.PullFactor);
+        _loadedArrow.GetComponent<Arrow>().ForceMe(arrowNotchTransform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
     }
 }
