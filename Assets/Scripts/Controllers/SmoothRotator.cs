@@ -58,7 +58,8 @@ public class SmoothRotator : MonoBehaviour
         }
         else
         {
-            _targetTargetRotVector = new Vector3(rotAxis.x * delta * rotSpeed , rotAxis.y * delta * rotSpeed , rotAxis.z * delta * rotSpeed);
+            //_targetTargetRotVector = new Vector3(rotAxis.x * delta * rotSpeed , rotAxis.y * delta * rotSpeed , rotAxis.z * delta * rotSpeed);
+            _targetTargetRotVector = new Vector3(rotAxis.x == 0 ? _targetRotVector.x : rotAxis.x * delta * rotSpeed , rotAxis.y == 0 ? _targetRotVector.y : rotAxis.y * delta * rotSpeed , rotAxis.z == 0 ? _targetRotVector.z : rotAxis.z * delta * rotSpeed);
             _targetRotVector = Vector3.Lerp(_targetRotVector, _targetTargetRotVector, lerpStep);
         }
         

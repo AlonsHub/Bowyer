@@ -29,7 +29,7 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!rb.isKinematic && rb.velocity.magnitude >= 2)
+        if (!rb.isKinematic && rb.velocity.magnitude >= 20)
             //gfx.transform.LookAt(transform.position + rb.velocity );
             gfx.forward = rb.velocity;
     }
@@ -40,6 +40,9 @@ public class Arrow : MonoBehaviour
         {
             gfx.Translate(Vector3.forward* arrowLerp);
             rb.isKinematic = true;
+            transform.SetParent(collision.transform);
+
+            //Some sort of Destroy with a delay
         }
     }
 }

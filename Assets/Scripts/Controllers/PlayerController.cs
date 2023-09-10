@@ -70,7 +70,9 @@ MoveType _currentMoveType;
         if (!cc)
         {
             cc = GetComponent<CharacterController>(); //this actually must exist, since it is a required component
-        }    
+        }
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     

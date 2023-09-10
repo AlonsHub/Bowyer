@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4066264196296625514}
   - component: {fileID: 5342939464239601137}
   - component: {fileID: 7082108965819407177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX_Head
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1598532137821308708}
   - component: {fileID: 8368344371845537681}
   - component: {fileID: 1839852742277152731}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX_Ear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 4334564737241409216}
   - component: {fileID: 7900496809425995813}
   - component: {fileID: 4503667439280103876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX_Ear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 3344918833144474812}
   - component: {fileID: 5132996106502437348}
   - component: {fileID: 3509080975742918779}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX_Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,9 +435,9 @@ GameObject:
   - component: {fileID: 12644365028012292}
   - component: {fileID: 7028057249706770624}
   - component: {fileID: 7635589306028972337}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tail
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,9 +542,9 @@ GameObject:
   - component: {fileID: 2409514108493522754}
   - component: {fileID: 634305347569167235}
   - component: {fileID: 321516560909146877}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX_Body
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -647,9 +647,9 @@ GameObject:
   - component: {fileID: 2393782751297841754}
   - component: {fileID: 8751909001177271289}
   - component: {fileID: 1371615232112152200}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Wolf
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -663,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 7504042317785320225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 146.25362, y: -31.077152, z: 91.3454}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6042894219870355051}
@@ -744,10 +744,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: GFX_Leg 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
     - target: {fileID: 1631555584102227228, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: delay
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617595246914085735, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334266053289612801, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7306998842416672964, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
@@ -803,6 +828,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008363010066386219, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573063756131730481, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8607312345547177866, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
@@ -839,10 +874,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: GFX_Leg 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
     - target: {fileID: 1631555584102227228, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: delay
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617595246914085735, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334266053289612801, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7306998842416672964, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
@@ -899,6 +959,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8008363010066386219, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573063756131730481, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8607312345547177866, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: m_Enabled
@@ -933,6 +1003,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GFX_Leg
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617595246914085735, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334266053289612801, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7306998842416672964, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
@@ -989,6 +1084,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8008363010066386219, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573063756131730481, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1019,10 +1124,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: GFX_Leg 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022391023551961338, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
     - target: {fileID: 1631555584102227228, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: delay
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617595246914085735, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334266053289612801, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7306998842416672964, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
@@ -1078,6 +1208,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008363010066386219, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573063756131730481, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8607312345547177866, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
