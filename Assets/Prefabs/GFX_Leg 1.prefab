@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7306998842416672964}
   - component: {fileID: 8607312345547177866}
   - component: {fileID: 1631555584102227228}
+  - component: {fileID: 1641192784320587573}
   m_Layer: 0
   m_Name: GFX_Leg 1
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,6 +71,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0
   anim: {fileID: 8607312345547177866}
+--- !u!114 &1641192784320587573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022391023551961338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0928caca8627c4f45bc3ccd2b72983d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livingBody: {fileID: 0}
+  maxHealth: 15
+  agent: {fileID: 0}
+  speedToLose: 2
+  anim: {fileID: 8607312345547177866}
 --- !u!1 &2617595246914085735
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +135,7 @@ GameObject:
   - component: {fileID: 2058875669141999206}
   m_Layer: 0
   m_Name: GFX_Foot
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,7 +240,7 @@ GameObject:
   - component: {fileID: 6757803551391622165}
   m_Layer: 0
   m_Name: GFX_Leg Upper
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,7 +377,7 @@ GameObject:
   - component: {fileID: 1302667117560897597}
   m_Layer: 0
   m_Name: GFX_Leg Lower
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

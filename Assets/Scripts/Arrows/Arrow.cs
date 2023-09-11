@@ -11,6 +11,10 @@ public class Arrow : MonoBehaviour
     [SerializeField]
     Transform gfx;
 
+    [SerializeField]
+    VelocityTrackerComponent vtc;
+    [SerializeField]
+    float damage;
     private void Awake()
     {
         rb.isKinematic = true;
@@ -32,9 +36,7 @@ public class Arrow : MonoBehaviour
     void Update()
     {
         if (!rb.isKinematic && rb.velocity.magnitude >= 6f)
-            //gfx.transform.LookAt(transform.position + rb.velocity );
-            //gfx.forward = rb.velocity;
-            gfx.forward = Vector3.Lerp(gfx.forward, rb.velocity.normalized, .6f);
+            transform.forward = Vector3.Lerp(transform.forward, rb.velocity.normalized, .6f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,10 +44,21 @@ public class Arrow : MonoBehaviour
         if(collision.gameObject.CompareTag("Sticky"))
         {
             //gfx.Translate(Vector3.forward* arrowStickInAmount);
-            transform.position += collision.relativeVelocity.normalized * arrowStickInAmount;
+            transform.position += vtc.AverageVelXFramesDelay(3) * arrowStickInAmount;
             rb.isKinematic = true;
             transform.SetParent(collision.transform);
 
+            BodyPart bp = collision.gameObject.GetComponent<BodyPart>();
+            if (bp)
+            {
+                bp.TakeDamage(damage);
+            }
+            else
+            {
+                bp = collision.gameObject.GetComponentInParent<BodyPart>();
+                if (bp)
+                    bp.TakeDamage(damage);
+            }
             //Some sort of Destroy with a delay
         }
     }

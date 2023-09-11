@@ -33,4 +33,23 @@ public class VelocityTracker : OpenEndedStack<Vector3>
 
         return toReturn / ts.Length;
     }
+    public Vector3 GetAverageVelocityXFramesAgo(int x)
+    {
+        if (x >= ts.Length)
+            return Vector3.zero; 
+
+        Vector3 toReturn = Vector3.zero;
+        for (int i = x; i < ts.Length; i++)
+        {
+            //if(ts[i].magnitude <= 0.01f)
+            //    break;
+
+            toReturn += ts[i];
+        }
+
+        //toReturn /= ts.Length;
+
+        return toReturn / (ts.Length - x);
+    }
+
 }

@@ -17,4 +17,14 @@ public class VelocityTrackerComponent : MonoBehaviour
     {
         velocityTracker.Push(toTrack.velocity);
     }
+
+    public Vector3 AverageVel()
+    {
+        return velocityTracker.GetAverageVelocity();
+    }
+    public Vector3 AverageVelXFramesDelay(int x)
+    {
+        return velocityTracker.GetAverageVelocityXFramesAgo(x);
+    }
+
 }

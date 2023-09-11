@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4066264196296625514}
   - component: {fileID: 5342939464239601137}
   - component: {fileID: 7082108965819407177}
+  - component: {fileID: 6751743288038694476}
   m_Layer: 8
   m_Name: GFX_Head
   m_TagString: Sticky
@@ -108,6 +109,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6751743288038694476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617932807688320700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1939f801251fd9049b627ad73bfad7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livingBody: {fileID: 8084280569233342848}
+  maxHealth: 20
 --- !u!1 &836697234074895229
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +224,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -314,7 +329,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -419,7 +434,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -542,6 +557,7 @@ GameObject:
   - component: {fileID: 2409514108493522754}
   - component: {fileID: 634305347569167235}
   - component: {fileID: 321516560909146877}
+  - component: {fileID: 7392885674209992477}
   m_Layer: 8
   m_Name: GFX_Body
   m_TagString: Sticky
@@ -635,6 +651,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7392885674209992477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345753343886151373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1939f801251fd9049b627ad73bfad7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livingBody: {fileID: 8084280569233342848}
+  maxHealth: 30
 --- !u!1 &7504042317785320225
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,6 +677,7 @@ GameObject:
   - component: {fileID: 2393782751297841754}
   - component: {fileID: 8751909001177271289}
   - component: {fileID: 1371615232112152200}
+  - component: {fileID: 8084280569233342848}
   m_Layer: 8
   m_Name: Enemy_Wolf
   m_TagString: Sticky
@@ -731,6 +762,27 @@ MonoBehaviour:
   agent: {fileID: 2393782751297841754}
   speedSetter: {fileID: 8751909001177271289}
   randomRadius: 15
+--- !u!114 &8084280569233342848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504042317785320225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9c46b294cc9f941846290dad14eb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalHealth: 0
+  _currentHealth: 0
+  bodyParts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 6751743288038694476}
+  - {fileID: 7392885674209992477}
 --- !u!1001 &1771135762754353804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -764,6 +816,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2787828081894675691, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: livingBody
+      value: 
+      objectReference: {fileID: 8084280569233342848}
     - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: m_Layer
@@ -894,6 +951,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2787828081894675691, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: livingBody
+      value: 
+      objectReference: {fileID: 8084280569233342848}
     - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: m_Layer
@@ -1014,11 +1076,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Sticky
       objectReference: {fileID: 0}
+    - target: {fileID: 1641192784320587573, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 2393782751297841754}
+    - target: {fileID: 1641192784320587573, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: livingBody
+      value: 
+      objectReference: {fileID: 8084280569233342848}
     - target: {fileID: 2617595246914085735, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2787828081894675691, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: livingBody
+      value: 
+      objectReference: {fileID: 8084280569233342848}
     - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: m_Layer
@@ -1144,6 +1221,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2787828081894675691, guid: d5292304250823c4e85eb919c4648374,
+        type: 3}
+      propertyPath: livingBody
+      value: 
+      objectReference: {fileID: 8084280569233342848}
     - target: {fileID: 3194514436987791909, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: m_Layer
