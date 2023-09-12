@@ -9,10 +9,21 @@ public class WolfController : MonoBehaviour
     [SerializeField] WalkSpeedSetter speedSetter;
 
     [SerializeField] float randomRadius;
+    [SerializeField] float deathHopHeight;
+    [SerializeField] LivingBody livingBody;
 
     void Start()
     {
         StartCoroutine(nameof(Wander));
+    }
+
+    private void OnEnable()
+    {
+        livingBody.OnDeath += Death;
+    }
+    private void Disable()
+    {
+        livingBody.OnDeath -= Death;
     }
 
     IEnumerator Wander()
@@ -44,5 +55,12 @@ public class WolfController : MonoBehaviour
     {
         speedSetter.SetSpeed(agent.velocity.magnitude);
     }
-
+     void Death()
+    {
+        agent.enabled = false;
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.AddForce(Vector3.up * deathHopHeight, ForceMode.Impulse);
+        StopAllCoroutines();
+        this.enabled = false;
+    }
 }

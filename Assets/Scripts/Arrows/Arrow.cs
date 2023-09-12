@@ -7,6 +7,9 @@ public class Arrow : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
     [SerializeField]
+    Collider col;
+
+    [SerializeField]
     private float arrowStickInAmount;
     [SerializeField]
     Transform gfx;
@@ -15,6 +18,8 @@ public class Arrow : MonoBehaviour
     VelocityTrackerComponent vtc;
     [SerializeField]
     float damage;
+
+    Vector3 _pushDir;
     private void Awake()
     {
         rb.isKinematic = true;
@@ -44,7 +49,8 @@ public class Arrow : MonoBehaviour
         if(collision.gameObject.CompareTag("Sticky"))
         {
             //gfx.Translate(Vector3.forward* arrowStickInAmount);
-            transform.position += vtc.AverageVelXFramesDelay(3) * arrowStickInAmount;
+            _pushDir = vtc.AverageVelXFramesDelay(3) * arrowStickInAmount;
+            transform.position += _pushDir;
             rb.isKinematic = true;
             transform.SetParent(collision.transform);
 
@@ -59,7 +65,21 @@ public class Arrow : MonoBehaviour
                 if (bp)
                     bp.TakeDamage(damage);
             }
+            Destroy(vtc);
+            col.enabled = false;
             //Some sort of Destroy with a delay
+            //StartCoroutine(LatePush());
         }
     }
+
+    //IEnumerator LatePush()
+    //{
+    //    yield return new WaitForSeconds(.02f);
+    //    //rb.isKinematic = false;
+    //    rb.AddForce(vtc.AverageVel(), ForceMode.Impulse);
+    //    yield return new WaitForSeconds(.01f);
+    //    rb.isKinematic = true;
+    //    col.enabled = false;
+
+    //}
 }

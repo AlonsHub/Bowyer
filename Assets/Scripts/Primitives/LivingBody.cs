@@ -15,6 +15,7 @@ public class LivingBody : MonoBehaviour
 
     public System.Action<float> OnAnyDamage;
     public System.Action OnDeath;
+    //public System.Action<DeathData> OnDeath;
 
     protected virtual void Start()
     {
@@ -51,7 +52,11 @@ public class LivingBody : MonoBehaviour
             item.Die();
         }
 
-        gameObject.AddComponent<Rigidbody>();
         OnDeath?.Invoke();
     }
 }
+//[System.Serializable]
+//public class DeathData
+//{
+//    public Vector3 killingBlowVector;
+//}
