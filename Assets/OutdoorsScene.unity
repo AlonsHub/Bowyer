@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1785.9827, g: 1948.4924, b: 2869.1995, a: 1}
+  m_IndirectSpecularColor: {r: 1781.6399, g: 1941.2776, b: 2706.5159, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6320,6 +6320,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086265734952772892, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: _maxT
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086265734952772892, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: rotSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086265734952772892, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: noInputDrag
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411816880749131839, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: _maxT
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411816880749131839, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: lerpStep
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411816880749131839, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: rotSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7819152257878368602, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}

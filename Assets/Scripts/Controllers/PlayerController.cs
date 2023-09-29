@@ -93,7 +93,7 @@ MoveType _currentMoveType;
         _inputVector *= _currentSpeed();
 
         if (!cc.isGrounded)
-            _currentJumpForce += Physics.gravity *Time.deltaTime;
+            _currentJumpForce += Physics.gravity *Time.deltaTime; //This will decay the jump force correctly + it will become negative after peeking, adding to the fall
         else
         {
             _currentJumpForce = Vector3.zero;
@@ -113,7 +113,7 @@ MoveType _currentMoveType;
     {
         Vector3 _moveVector = _inputVector + _currentJumpForce;
         if (_moveVector.magnitude > minMoveMagnitude)
-            cc.Move((_inputVector + _currentJumpForce) * Time.deltaTime);
+            cc.Move((_moveVector + Physics.gravity) * Time.deltaTime);
     }
 
     void HandleMoveStates()
