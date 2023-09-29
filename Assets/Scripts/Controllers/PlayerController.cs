@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
         [SerializeField]
     private float jumpForce;
+        [SerializeField]
+    private float minMoveMagnitude;
+        [SerializeField]
+    private float drag;
 
     Vector3 _currentJumpForce;
 
@@ -78,8 +82,6 @@ MoveType _currentMoveType;
     
     void Update()
     {
-        
-
         _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
         
         if (_inputVector.magnitude > 1)
@@ -94,20 +96,24 @@ MoveType _currentMoveType;
             _currentJumpForce += Physics.gravity *Time.deltaTime;
         else
         {
+            _currentJumpForce = Vector3.zero;
+            //TEMP! jump should be independant since it may not depend only on IsGrounded (double jump is the obvious example)
             if (Input.GetKeyDown(jumpKey))
             {
                 Jump();
             }
         }
 
-        _inputVector *= Time.deltaTime;
+        //_inputVector *= Time.deltaTime;
         Move();
 
     }
 
     void Move()
     {
-        cc.Move(_inputVector + _currentJumpForce * Time.deltaTime);
+        Vector3 _moveVector = _inputVector + _currentJumpForce;
+        if (_moveVector.magnitude > minMoveMagnitude)
+            cc.Move((_inputVector + _currentJumpForce) * Time.deltaTime);
     }
 
     void HandleMoveStates()
