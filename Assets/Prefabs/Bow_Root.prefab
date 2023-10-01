@@ -56,16 +56,16 @@ MonoBehaviour:
   _bowStats:
     stringStats:
       breakingPoint: 0
-      elasticity: 1
+      elasticity: 0.8
       stringLength: 1
       noisePerUnitOfForce: 0
     armStats:
       breakingPoint: 0
-      maxTension: 100
+      maxTension: 150
       perfectTension:
-        x: 71
-        y: 80
-      minTension: 30
+        x: 130
+        y: 145
+      minTension: 100
       resistence: 3
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 1
     - serializedVersion: 3
-      time: 0.29556084
-      value: 0.8406478
+      time: 0.48306084
+      value: 0.8595153
       inSlope: 0.6032359
       outSlope: 0.6032359
       tangentMode: 0
@@ -102,6 +102,40 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  cancleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.034570195
+      value: -0.007929429
+      inSlope: 0.10517395
+      outSlope: 0.10517395
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.48631054
+    - serializedVersion: 3
+      time: 0.5881323
+      value: 0.17407921
+      inSlope: 0.63252056
+      outSlope: 0.63252056
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.301317
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.19876
+      outSlope: 2.19876
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.086002946
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _cancleShotSpeed: 100
 --- !u!1 &1107618319048237277
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-enum BowState { Empty, Loaded, Pulling}
+enum BowState { Empty, Loaded, Pulling, CancelShot}
 public class Bow : MonoBehaviour
 {
     [SerializeField]
@@ -34,6 +34,12 @@ public class Bow : MonoBehaviour
 
     [SerializeField]
     AnimationCurve pullCurve;
+    [SerializeField]
+    AnimationCurve cancleCurve;
+
+    Vector3 _canclePosition;
+    [SerializeField]
+    float _cancleShotSpeed;
     private void Awake()
     {
         _currentBowState = BowState.Empty;
@@ -57,20 +63,42 @@ public class Bow : MonoBehaviour
                 }
                 break;
             case BowState.Pulling:
-                if(Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0))
                 {
-                    _currentPull += TEMP_armStrength/_bowStats.PullResistence * Time.deltaTime;
+                    _currentPull += TEMP_armStrength / _bowStats.PullResistence * Time.deltaTime;
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + (Vector3.back * _currentPull*Time.deltaTime);
-                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull/_bowStats.MaxPull_Tension));
+                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
                 }
                 else //assuing now what the KeyUp - since it must be at first, this wont happen again afterwards
                 {
-                    _currentBowState = BowState.Empty; //Just fired
-                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
-                    Release();
+                    if (_currentPull <= _bowStats.MinPull_Tension)
+                    {
+                        _currentBowState = BowState.CancelShot;
+                        _canclePosition = arrowNotchTransform.localPosition;
+                    }
+                    else
+                    {
+                        _currentBowState = BowState.Empty; //Just fired
+                        arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
+                        Release();
+                    }
                     //_loadedArrow -- shoot!
+                }
+                break;
+            case BowState.CancelShot:
+                {
+                    //Penalty zone! can't do anything until arrow returns
+                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
+                    //arrowNotchTransform.localPosition = Vector3.Lerp( ogArrowNotchLocalPos, _canclePosition, pullCurve.Evaluate(_currentPull/_bowStats.MaxPull_Tension)); //may need to flip this curve
+                    _currentPull -= _cancleShotSpeed * Time.deltaTime;
+
+                    if(_currentPull <= 0)
+                    {
+                        arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
+                        _currentBowState = BowState.Loaded;
+                    }
                 }
                 break;
             default:
@@ -91,6 +119,7 @@ public class Bow : MonoBehaviour
 
     void Release()
     {
+       
         if(_bowStats.IsPerfect(_currentPull))
         {
             Debug.Log("PERFECT SHOT!");
