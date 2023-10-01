@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livingBody: {fileID: 8084280569233342848}
-  maxHealth: 30
+  maxHealth: 150
 --- !u!1 &7504042317785320225
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +705,7 @@ Transform:
   - {fileID: 3820518920319359930}
   - {fileID: 3454049124372251880}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &2393782751297841754
 NavMeshAgent:
@@ -1141,7 +1141,7 @@ PrefabInstance:
     - target: {fileID: 1641192784320587573, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: maxHealth
-      value: 5
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1641192784320587573, guid: d5292304250823c4e85eb919c4648374,
         type: 3}

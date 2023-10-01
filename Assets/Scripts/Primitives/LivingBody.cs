@@ -13,6 +13,8 @@ public class LivingBody : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
 
+    public bool IsDead => _currentHealth <= 0;
+
     public System.Action<float> OnAnyDamage;
     public System.Action OnDeath;
     //public System.Action<DeathData> OnDeath;
@@ -33,7 +35,7 @@ public class LivingBody : MonoBehaviour
         _currentHealth -= damage;
         OnAnyDamage?.Invoke(damage);
 
-        if (_currentHealth <= 0)
+        if (IsDead)
         {
             Die();
         }
@@ -44,13 +46,13 @@ public class LivingBody : MonoBehaviour
         Debug.Log($"{name} is dead");
         //rb.isKinematic = false;
 
-        foreach (var item in bodyParts)
-        {
-            if (item.IsDead)
-                continue;
+        //foreach (var item in bodyParts)
+        //{
+        //    if (item.IsDead)
+        //        continue;
 
-            item.Die();
-        }
+        //    item.Die();
+        //}
 
         OnDeath?.Invoke();
     }

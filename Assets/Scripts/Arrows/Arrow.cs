@@ -20,15 +20,23 @@ public class Arrow : MonoBehaviour
     float damage;
 
     Vector3 _pushDir;
+
+    bool _hasHit = false; 
     private void Awake()
     {
         rb.isKinematic = true;
     }
 
+    //public void Init(Vector3 force, float forceBasedDamageMod)
+    //{
+
+    //}
+
     public void ForceMe(Vector3 force)
     {
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
+
     }
     public void ForceMeFWD(float force)
     {
@@ -46,15 +54,23 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (_hasHit)
+            return;
+
         if(collision.gameObject.CompareTag("Sticky"))
         {
+            _hasHit = true;
             //gfx.Translate(Vector3.forward* arrowStickInAmount);
-            _pushDir = vtc.AverageVelXFramesDelay(3) * arrowStickInAmount;
+            _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
             transform.position += _pushDir;
             rb.isKinematic = true;
             transform.SetParent(collision.transform);
 
             BodyPart bp = collision.gameObject.GetComponent<BodyPart>();
+
+            damage += vtc.AverageVel().magnitude * rb.mass;
+
+            Debug.Log(damage);
             if (bp)
             {
                 bp.TakeDamage(damage);
@@ -65,8 +81,10 @@ public class Arrow : MonoBehaviour
                 if (bp)
                     bp.TakeDamage(damage);
             }
-            Destroy(vtc);
+            Destroy(vtc, .3f);
             col.enabled = false;
+
+            this.enabled = false;
             //Some sort of Destroy with a delay
             //StartCoroutine(LatePush());
         }

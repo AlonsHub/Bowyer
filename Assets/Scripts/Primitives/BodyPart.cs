@@ -18,9 +18,20 @@ public class BodyPart : MonoBehaviour
     {
         _currentHealth = maxHealth;
     }
+    private void OnEnable()
+    {
+        livingBody.OnDeath += Stop;
+    }
+    private void OnDisable()
+    {
+        livingBody.OnDeath -= Stop;
+    }
 
     public virtual void TakeDamage(float damage)
     {
+        if(livingBody.IsDead)
+            return;
+        
         _currentHealth -= damage;
         livingBody.ProcessDamage(damage);
         if (_currentHealth <= 0)
@@ -29,6 +40,12 @@ public class BodyPart : MonoBehaviour
 
     public virtual void Die()
     {
+        Stop();
         Debug.Log($"{name} is dead");
+    }
+
+    public virtual void Stop()
+    {
+
     }
 }
