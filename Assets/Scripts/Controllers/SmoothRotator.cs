@@ -15,7 +15,7 @@ public class SmoothRotator : MonoBehaviour
                 return "Mouse Y";
                 break;
             case AxisDirection.Y:
-                return "Mouse X ";
+                return "Mouse X";
                 break;
             case AxisDirection.Z:
                 return "The Fuck?";
@@ -26,8 +26,6 @@ public class SmoothRotator : MonoBehaviour
         return "again, the fuck?";
     }
 
-    
-
     [SerializeField]
     float rotSpeed;
 
@@ -37,21 +35,15 @@ public class SmoothRotator : MonoBehaviour
     float minRot;
     [SerializeField]
     float maxRot;
-    
-    [SerializeField]
-    bool doMomentum;
+
 
     [SerializeField]
-    float momentumDrag;
-    [SerializeField]
-    float minMomentum;
-    [SerializeField]
-    float factorMomentum;
-    [SerializeField]
-    float _currentMomentum;
+    MouseInputSettings mouseInputSettings;
 
     [SerializeField]
     float _currentRot;
+
+    float _currentInput;
   
 
     Vector3 _targetRotVector;
@@ -72,21 +64,13 @@ public class SmoothRotator : MonoBehaviour
             default:
                 break;
         }
-
-        _currentMomentum = 0;
+        _currentInput = 0;
     }
 
     public void GetInput(float delta)
     {
-        _currentRot += delta * rotSpeed * Time.deltaTime;
+        _currentRot += delta * rotSpeed;
 
-        if(doMomentum)
-        {
-            _currentMomentum += delta * rotSpeed * Time.deltaTime;
-
-            _currentRot += _currentMomentum * factorMomentum;
-
-        }
 
         if (doLimit)
             _currentRot = Mathf.Clamp(_currentRot, minRot, maxRot);
@@ -113,28 +97,43 @@ public class SmoothRotator : MonoBehaviour
     //TEMP INPUT
     private void Update()
     {
-        if (Input.GetAxis(inputAxis()) != 0)
+        float rawinput = Input.GetAxisRaw(inputAxis());
+        if (rawinput != 0)
         {
-            GetInput(Input.GetAxis(inputAxis()));
+            if (SpeedsAndSensitivities.CurrentMouseInputSettings.sensitivity == 0)
+            {
+                _currentInput = rawinput;
+            }
+            else
+            {
+                _currentInput += rawinput * Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.sensitivity;
+            }
+            //GetInput(_currentInput);
         }
         else
         {
-            if (doMomentum)
+            if (Mathf.Abs(_currentInput) > SpeedsAndSensitivities.CurrentMouseInputSettings.dead)
             {
-                GetInput(_currentMomentum);
+                if (SpeedsAndSensitivities.CurrentMouseInputSettings.gravity == 0)
+                {
+                    _currentInput = 0f; // same as rawInput;
+                }
+                else
+                {
+                    if (_currentInput > 0f)
+                        _currentInput -= Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.gravity;
+                    else
+                        _currentInput += Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.gravity;
+                }
+            }
+            else
+            {
+                _currentInput = 0f;
             }
         }
-    }
+        _currentInput = Mathf.Clamp(_currentInput, -1f, 1f);
 
-    private void FixedUpdate()
-    {
-        if (doMomentum &&  Mathf.Abs(_currentMomentum) > minMomentum)
-        {
-            if(_currentMomentum > 0)
-            _currentMomentum -= momentumDrag *Time.fixedDeltaTime;
-            else
-            _currentMomentum += momentumDrag * Time.fixedDeltaTime;
-        }
+        //if(_currentInput !=0)
+        GetInput(_currentInput);
     }
-
 }

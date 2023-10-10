@@ -46,6 +46,15 @@ public class Bow : MonoBehaviour
         ogArrowNotchLocalPos = arrowNotchTransform.localPosition;
     }
 
+    private void OnEnable()
+    {
+        SpeedsAndSensitivities.SetBowWeight(_bowStats.Weight);
+    }
+    private void OnDisable()
+    {
+        SpeedsAndSensitivities.SetBowWeightToDefault();
+    }
+
     // Update is called once per frame
     void Update()
     {

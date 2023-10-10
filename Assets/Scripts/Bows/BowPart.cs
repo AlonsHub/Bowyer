@@ -11,6 +11,6 @@ public class BowPart
     /// In units of force, the "tension" at which this part would break?
     /// </summary>
     public float breakingPoint;
-    
+    public float weight;
 
 }
