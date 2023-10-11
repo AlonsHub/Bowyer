@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum MoveType { Walk, Run, Step, MidAir};
+enum MoveType { Walk, Run, Step, MidAir, Crouch};
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -12,11 +12,24 @@ public class PlayerController : MonoBehaviour
     //the player interacts with the bow as an interface - and that can recat however it would like
     //
     [SerializeField]
+    Transform xRotator;
+    [SerializeField]
+    Transform crouchPos;
+    [SerializeField]
+    Transform standPos;
+    [SerializeField]
+    Transform gfxScaler;
+
+
+    [SerializeField]
     CharacterController cc;
     [SerializeField]
     float walkSpeed;
     [SerializeField]
     float runSpeed;
+    [SerializeField]
+    float crouchSpeed;
+
     [SerializeField]
     private float stepSpeed;
         [SerializeField]
@@ -36,6 +49,8 @@ public class PlayerController : MonoBehaviour
     KeyCode sprintKey;
     [SerializeField]
     KeyCode stepKey;
+    [SerializeField]
+    KeyCode crouchKey;
 
     [SerializeField]
     KeyCode jumpKey;
@@ -55,6 +70,9 @@ public class PlayerController : MonoBehaviour
                 break;
                 case MoveType.MidAir:
                 return midairSpeed;
+                break;
+            case MoveType.Crouch:
+                return crouchSpeed;
                 break;
             default:
                 return 0f;
@@ -120,18 +138,41 @@ MoveType _currentMoveType;
     {
         if (!cc.isGrounded)
         {
+            xRotator.localPosition = standPos.localPosition; //perhaps slightly higher?
+
             _currentMoveType = MoveType.MidAir;
         }
         else if (Input.GetKey(sprintKey))
         {
+            xRotator.localPosition = standPos.localPosition; //Lower this by half the sinus wave length of the bob!
+
             _currentMoveType = MoveType.Run;
         }
         else if (Input.GetKey(stepKey))
         {
+            xRotator.localPosition = standPos.localPosition;
+
             _currentMoveType = MoveType.Step;
         }
+        else if (Input.GetKey(crouchKey))
+        {
+            _currentMoveType = MoveType.Crouch;
+
+            xRotator.localPosition = crouchPos.localPosition;
+            gfxScaler.localScale = new Vector3(1, .6f, 1);
+        }
         else
+        {
+            xRotator.localPosition = standPos.localPosition;
+
             _currentMoveType = MoveType.Walk;
+        }
+
+        if (Input.GetKeyUp(crouchKey))
+        {
+            xRotator.localPosition = standPos.localPosition;
+            gfxScaler.localScale = Vector3.one;
+        }
     }
 
     void Jump()

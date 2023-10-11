@@ -26,7 +26,7 @@ public class SmoothRotator : MonoBehaviour
         return "again, the fuck?";
     }
 
-    [SerializeField]
+    [SerializeField, Tooltip("No need to use Minus on X axis, code sorts that out!")]
     float rotSpeed;
 
     [SerializeField]
@@ -35,10 +35,6 @@ public class SmoothRotator : MonoBehaviour
     float minRot;
     [SerializeField]
     float maxRot;
-
-
-    [SerializeField]
-    MouseInputSettings mouseInputSettings;
 
     [SerializeField]
     float _currentRot;
@@ -70,7 +66,8 @@ public class SmoothRotator : MonoBehaviour
 
     public void GetInput(float delta)
     {
-        _currentRot += delta * rotSpeed * Time.deltaTime;
+        //_currentRot += delta * rotSpeed * Time.deltaTime;
+        _currentRot += delta * SpeedsAndSensitivities.GetLookSpeed(axisDirection) * Time.deltaTime;
 
 
         if (doLimit)
@@ -80,7 +77,7 @@ public class SmoothRotator : MonoBehaviour
         switch (axisDirection)
         {
             case AxisDirection.X:
-        _targetRotVector = new Vector3(_currentRot, transform.localEulerAngles.y ,transform.localEulerAngles.z);
+        _targetRotVector = new Vector3(-_currentRot, transform.localEulerAngles.y ,transform.localEulerAngles.z);
                 break;
             case AxisDirection.Y:
         _targetRotVector = new Vector3(transform.localEulerAngles.x, _currentRot, transform.localEulerAngles.z);
@@ -98,49 +95,12 @@ public class SmoothRotator : MonoBehaviour
     //TEMP INPUT
     private void Update()
     {
-        float rawinput = Input.GetAxisRaw(inputAxis());
-        if (rawinput != 0)
+        //float rawinput = Input.GetAxis(inputAxis());
+        _currentInput = Input.GetAxis(inputAxis());
+        if (_currentInput != 0)
         {
-            if (SpeedsAndSensitivities.CurrentMouseInputSettings.sensitivity == 0)
-            {
-                _currentInput = rawinput;
-            }
-            else
-            {
-                _currentInput += rawinput * Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.sensitivity;
-            }
-            //GetInput(_currentInput);
+           GetInput(_currentInput);
         }
-        else
-        {
-            if (Mathf.Abs(_currentInput) > SpeedsAndSensitivities.CurrentMouseInputSettings.dead)
-            {
-                if (SpeedsAndSensitivities.CurrentMouseInputSettings.gravity == 0)
-                {
-                    _currentInput = 0f; // same as rawInput;
-                }
-                else
-                {
-                    if (_currentInput > 0f)
-                    { 
-                        _currentInput -= Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.gravity;
-                        _currentInput = Mathf.Clamp(_currentInput, 0f, 1f);
-                    }
-                    else
-                    {
-                        _currentInput += Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.gravity;
-                        _currentInput = Mathf.Clamp(_currentInput, -1f, 0f);
-                    }
-                }
-            }
-            else
-            {
-                _currentInput = 0f;
-            }
-        }
-        _currentInput = Mathf.Clamp(_currentInput, -1f, 1f);
-
-        //if(_currentInput !=0)
-        GetInput(_currentInput);
+       
     }
 }

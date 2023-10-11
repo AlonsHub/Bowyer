@@ -2,36 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class SpeedsAndSensitivities 
+public class SpeedsAndSensitivities : MonoBehaviour
 {
-    //Settings Stats: (user)
+    static SpeedsAndSensitivities Instance;
 
-    //Base Stats: (gamedesign)
-    static MouseInputSettings defaultMouseInputSettings => new MouseInputSettings(0f,.1f, 0.01f);
-    public static MouseInputSettings CurrentMouseInputSettings;
-    //Affectors?
+
+    [SerializeField]
+    Vector2 _baseLookSpeeds;//Should be 90f,90f
+
+    Vector2 _lookSpeeds; 
+    public static float GetLookSpeed(AxisDirection axisDirection) => (axisDirection == AxisDirection.X) ? Instance._lookSpeeds.x : Instance._lookSpeeds.y;
+
+    float _currentBowWeight; // -1f if no bow
+    
+    private void Awake()
+    {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        SetBowWeightToDefault();
+    }
+
+
 
     public static void SetBowWeight(float bowWeight)
     {
-        CurrentMouseInputSettings = new MouseInputSettings(25f/bowWeight,25f/bowWeight, 0.01f);
+        Instance._currentBowWeight = bowWeight;
+
+        Instance._lookSpeeds = Instance._baseLookSpeeds - bowWeight * Vector2.one;
     }
     public static void SetBowWeightToDefault()
     {
-        CurrentMouseInputSettings = defaultMouseInputSettings;
+        Instance._currentBowWeight = -1f;
+        Instance._lookSpeeds = Instance._baseLookSpeeds;
     }
 
 }
 
-public class MouseInputSettings
-{
-    public float gravity;
-    public float sensitivity;
-    public float dead;
+//public class MouseInputSettings
+//{
+//    public float gravity;
+//    public float sensitivity;
+//    public float dead;
 
-    public MouseInputSettings(float g, float s, float d)
-    {
-        gravity = g;
-        sensitivity = s;
-        dead = d;
-    }
-}
+//    public MouseInputSettings(float g, float s, float d)
+//    {
+//        gravity = g;
+//        sensitivity = s;
+//        dead = d;
+//    }
+//}

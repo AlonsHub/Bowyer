@@ -11,6 +11,7 @@ public class BowStats
     public float PullFactor => stringStats.elasticity == 0? 0: 1/stringStats.elasticity;
 
     public float Weight => armStats.weight + stringStats.weight + gripStats.weight;
+    public float PullWeight => Weight/3;
 
     public bool IsPerfect(float force) => force >= armStats.perfectTension.x && force <= armStats.perfectTension.y;
 
