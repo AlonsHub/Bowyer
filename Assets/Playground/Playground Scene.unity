@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9481,33 +9481,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 878218934}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &889762653 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1240841842626530563, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1751839638}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &889762656
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889762653}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7e726a1a5eb0912408a3e93ef82417c6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &903728928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18238,36 +18211,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1240841842626530563, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2063046733241882488, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 889762656}
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.AimAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.ToAimTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.FromAimTime
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4367705567882705005, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: m_Name
@@ -18331,11 +18274,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1240841842626530563, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 889762656}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92fdc7f0a246a494aa89ed2a30cecdb6, type: 3}
 --- !u!1001 &1757688540
 PrefabInstance:
