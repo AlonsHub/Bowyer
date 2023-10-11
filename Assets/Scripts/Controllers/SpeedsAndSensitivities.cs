@@ -13,6 +13,8 @@ public class SpeedsAndSensitivities : MonoBehaviour
     Vector2 _lookSpeeds => _baseLookSpeeds - (_currentBowWeight * Vector2.one + _currentPullWeight * Vector2.one); 
     public static float GetLookSpeed(AxisDirection axisDirection) => (axisDirection == AxisDirection.X) ? Instance._lookSpeeds.x : Instance._lookSpeeds.y;
 
+    public static float BaseCameraFOV = 60f; 
+
     float _currentBowWeight; // 0f if no bow
     float _currentPullWeight; // 0f if no pull
     

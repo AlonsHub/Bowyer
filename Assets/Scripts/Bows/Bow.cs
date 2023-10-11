@@ -5,6 +5,8 @@ enum BowState { Empty, Loaded, Pulling, CancelShot}
 public class Bow : MonoBehaviour
 {
     [SerializeField]
+    Animator anim;
+    [SerializeField]
     GameObject arrowPrefab;
     [SerializeField]
     Transform arrowNotchTransform;
@@ -30,7 +32,9 @@ public class Bow : MonoBehaviour
     [SerializeField]
     float TEMP_perfectShotBonus;
 
+    float _currentPullTime;
     float _currentPull;
+    float _currentZoom;
 
     [SerializeField]
     AnimationCurve pullCurve;
@@ -40,10 +44,17 @@ public class Bow : MonoBehaviour
     Vector3 _canclePosition;
     [SerializeField]
     float _cancleShotSpeed;
+
+    Camera _cam; //TEMP AND BAD!
     private void Awake()
     {
         _currentBowState = BowState.Empty;
         ogArrowNotchLocalPos = arrowNotchTransform.localPosition;
+
+        _cam = Camera.main; //TEMP AND BADDDD
+
+        if (!anim)
+            anim = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -71,17 +82,30 @@ public class Bow : MonoBehaviour
                     //Apply "Pulling-Weight"
                     SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
 
+                    anim.SetTrigger("Aim");
+                    //Set to aiming anim here? pretty sure... also need to do camera stuff, consider something else here
+
                     _currentPull = 0;
+                    _currentPullTime = 0;
+                    _currentZoom = 0;
                 }
                 break;
             case BowState.Pulling:
                 if (Input.GetMouseButton(0))
                 {
-                    _currentPull += TEMP_armStrength / _bowStats.PullResistence * Time.deltaTime;
+                    //_currentPull += TEMP_armStrength / _bowStats.PullResistence * Time.deltaTime;
+                    _currentPull = TEMP_armStrength / _bowStats.PullResistence * _currentPullTime;
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
-                    //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + (Vector3.back * _currentPull*Time.deltaTime);
+                    if (_currentPullTime <= _bowStats.ToAimTime)
+                    {
+                        _currentZoom = Mathf.Lerp(SpeedsAndSensitivities.BaseCameraFOV, _bowStats.AimAmount, _currentPullTime / _bowStats.ToAimTime);
+                        _cam.fieldOfView = _currentZoom;
+                    }
+
                     arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
+
+                    _currentPullTime += Time.deltaTime; //so we start at 0
                 }
                 else //assuing now what the KeyUp - since it must be at first, this wont happen again afterwards
                 {
@@ -95,6 +119,8 @@ public class Bow : MonoBehaviour
                         _currentBowState = BowState.Empty; //Just fired
                         arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         Release();
+                        StartCoroutine(ReleaseAim());
+                        anim.SetTrigger("ToIdle");
                         SpeedsAndSensitivities.SetPullWeight(0f);
                     }
                     //_loadedArrow -- shoot!
@@ -107,16 +133,34 @@ public class Bow : MonoBehaviour
                     //arrowNotchTransform.localPosition = Vector3.Lerp( ogArrowNotchLocalPos, _canclePosition, pullCurve.Evaluate(_currentPull/_bowStats.MaxPull_Tension)); //may need to flip this curve
                     _currentPull -= _cancleShotSpeed * Time.deltaTime;
                     SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f,_bowStats.PullWeight, _currentPull/_bowStats.MaxPull_Tension));
+
+                        _currentZoom = Mathf.Lerp(SpeedsAndSensitivities.BaseCameraFOV, _bowStats.AimAmount, _currentPull / _bowStats.MaxPull_Tension);
+                        _cam.fieldOfView = _currentZoom;
+                    
+
                     if (_currentPull <= 0)
                     {
                         arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         _currentBowState = BowState.Loaded;
                         SpeedsAndSensitivities.SetPullWeight(0f);
+                        anim.SetTrigger("ToIdle");
                     }
                 }
                 break;
             default:
                 break;
+        }
+    }
+
+    IEnumerator ReleaseAim()
+    {
+        float t = 0;
+        while (t <= _bowStats.FromAimTime)
+        {
+            _currentZoom = Mathf.Lerp(SpeedsAndSensitivities.BaseCameraFOV, _bowStats.AimAmount, t / _bowStats.FromAimTime);
+            _cam.fieldOfView = _currentZoom;
+            yield return null;
+            t+= Time.deltaTime; //so we start at 0
         }
     }
 

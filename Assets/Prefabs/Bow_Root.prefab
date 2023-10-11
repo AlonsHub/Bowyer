@@ -56,17 +56,23 @@ MonoBehaviour:
   _bowStats:
     stringStats:
       breakingPoint: 0
+      weight: 10
       elasticity: 0.8
       stringLength: 1
       noisePerUnitOfForce: 0
     armStats:
       breakingPoint: 0
+      weight: 30
       maxTension: 150
       perfectTension:
         x: 130
         y: 145
       minTension: 100
       resistence: 3
+    gripStats:
+      breakingPoint: 0
+      weight: 10
+    bowWeightToPullWeightRatio: 2
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0
   pullCurve:

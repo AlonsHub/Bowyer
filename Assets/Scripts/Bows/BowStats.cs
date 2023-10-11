@@ -22,6 +22,10 @@ public class BowStats
     public BowArmStats armStats;
     public BowGripStats gripStats;
 
+    public float AimAmount; //temp af, this is the FOV for the camera at full zoom
+    public float ToAimTime; //temp af, time from nomral to full zoom in seconds (and back?) - shoulb probably be curve
+    public float FromAimTime; //temp af, time from nomral to full zoom in seconds (and back?) - shoulb probably be curve
+
     [SerializeField, Tooltip("BowWeight divided by this value is the PullWeight")]
     float bowWeightToPullWeightRatio;
 }
