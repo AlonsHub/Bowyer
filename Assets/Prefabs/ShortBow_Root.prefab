@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3419098155271582685}
-  arrowPrefab: {fileID: 5682505232231446610, guid: f1b4476a0afb44649a85575f8740f8d2,
+  arrowPrefab: {fileID: 5682505232231446610, guid: c07da4a41dbd97f49984a387e64e98f5,
     type: 3}
   arrowNotchTransform: {fileID: 2289564022346153080}
   loadArrowKey: 114
@@ -72,9 +72,9 @@ MonoBehaviour:
     gripStats:
       breakingPoint: 0
       weight: 2
-    AimAmount: 50
-    ToAimTime: 10
-    FromAimTime: 10
+    AimAmount: 53
+    ToAimTime: 15
+    FromAimTime: 15
     bowWeightToPullWeightRatio: 0.5
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0

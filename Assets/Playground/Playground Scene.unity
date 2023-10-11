@@ -18417,27 +18417,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8437651416670180977, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 5682505232231446610, guid: c07da4a41dbd97f49984a387e64e98f5,
-        type: 3}
-    - target: {fileID: 8437651416670180977, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.AimAmount
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437651416670180977, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.ToAimTime
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437651416670180977, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.FromAimTime
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

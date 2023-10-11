@@ -74,9 +74,9 @@ MonoBehaviour:
     gripStats:
       breakingPoint: 0
       weight: 10
-    AimAmount: 50
-    ToAimTime: 10
-    FromAimTime: 10
+    AimAmount: 49
+    ToAimTime: 20
+    FromAimTime: 20
     bowWeightToPullWeightRatio: 2
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0

@@ -34,6 +34,8 @@ public class Bow : MonoBehaviour
 
     float _currentPullTime;
     float _currentPull;
+
+
     float _currentZoom;
     float _targetZoom;
 
@@ -78,6 +80,20 @@ public class Bow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //RIGHT CLICK TO ZOOM!
+        if(Input.GetMouseButton(1))
+        {
+            _targetZoom = _bowStats.AimAmount;
+        }    
+        else
+        {
+            _targetZoom = SpeedsAndSensitivities.BaseCameraFOV;
+        }
+
+
+        //RIGHT CLICK TO ZOOM!
+
+
         if(Mathf.Abs(_currentZoom - _targetZoom) >= .1f)
         {
             float delta = Time.deltaTime*_bowStats.ToAimTime;
@@ -100,34 +116,12 @@ public class Bow : MonoBehaviour
                     _currentBowState = BowState.Pulling;
                     //Apply "Pulling-Weight"
                     SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
-                    //if(_releaseCoro != null)
-                    //{
-                    //    StopCoroutine(_releaseCoro);
-                    //    _releaseCoro = null;
-                    //    if(_currentZoom != SpeedsAndSensitivities.BaseCameraFOV)
-                    //    {
-                    //        _tempZoom = _currentZoom;
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    _tempZoom = SpeedsAndSensitivities.BaseCameraFOV;
-                    //}
+                  
                     anim.SetTrigger("Aim");
-                    _targetZoom = _bowStats.AimAmount;
-                    //if (_takeCoro != null)
-                    //{
-                    //    StopCoroutine(_takeCoro);
-                    //    _takeCoro = null;
-                    //}
-                    //if(_releaseCoro!= null)
-                    //{
-                    //    StopCoroutine(_releaseCoro);
-                    //    _releaseCoro = null;
-                    //}
-                    //_takeCoro = StartCoroutine(TakeAim());
-                    //Set to aiming anim here? pretty sure... also need to do camera stuff, consider something else here
 
+                    //ZOOM BY SHOOTING!
+                    //_targetZoom = _bowStats.AimAmount;
+                   
                     _currentPull = 0;
                     _currentPullTime = 0;
                 }
@@ -138,13 +132,6 @@ public class Bow : MonoBehaviour
                     //_currentPull += TEMP_armStrength / _bowStats.PullResistence * Time.deltaTime;
                     _currentPull = TEMP_armStrength / _bowStats.PullResistence * _currentPullTime;
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
-
-                    //if (_currentPullTime <= _bowStats.ToAimTime)
-                    //{
-                    //    //_currentZoom = Mathf.Lerp(SpeedsAndSensitivities.BaseCameraFOV, _bowStats.AimAmount, _currentPullTime / _bowStats.ToAimTime);
-                    //    _currentZoom = Mathf.Lerp(_tempZoom, _bowStats.AimAmount, _currentPullTime / _bowStats.ToAimTime);
-                    //    _cam.fieldOfView = _currentZoom;
-                    //}
 
                     arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
 
@@ -165,22 +152,12 @@ public class Bow : MonoBehaviour
                         _currentBowState = BowState.Empty; //Just fired
                         arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         Release();
-                        //if (_takeCoro != null)
-                        //{
-                        //    StopCoroutine(_takeCoro);
-                        //    _takeCoro = null;
-                        //}
-                        //if (_releaseCoro != null)
-                        //{
-                        //    StopCoroutine(_releaseCoro);
-                        //    _releaseCoro = null;
-                        //}
-                        //_releaseCoro = StartCoroutine(ReleaseAim());
                         
                         anim.SetTrigger("ToIdle");
                         SpeedsAndSensitivities.SetPullWeight(0f);
                     }
-                    _targetZoom = SpeedsAndSensitivities.BaseCameraFOV;
+                    //ZOOM BY SHOOTING!
+                    //_targetZoom = SpeedsAndSensitivities.BaseCameraFOV;
 
                     //_loadedArrow -- shoot!
                 }
@@ -189,15 +166,10 @@ public class Bow : MonoBehaviour
                 {
                     //Penalty zone! can't do anything until arrow returns
                     arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
-                    //arrowNotchTransform.localPosition = Vector3.Lerp( ogArrowNotchLocalPos, _canclePosition, pullCurve.Evaluate(_currentPull/_bowStats.MaxPull_Tension)); //may need to flip this curve
+                    
                     _currentPull -= _cancleShotSpeed * Time.deltaTime;
                     SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f,_bowStats.PullWeight, _currentPull/_bowStats.MaxPull_Tension));
 
-
-                        ////_currentZoom = Mathf.Lerp(SpeedsAndSensitivities.BaseCameraFOV, _bowStats.AimAmount, _currentPull / _bowStats.MaxPull_Tension);
-                        //_currentZoom = Mathf.Lerp(SpeedsAndSensitivities.BaseCameraFOV, _tempZoom, _currentPull / _bowStats.MaxPull_Tension);
-                        //_cam.fieldOfView = _currentZoom;
-                    
 
                     if (_currentPull <= 0)
                     {
@@ -212,33 +184,6 @@ public class Bow : MonoBehaviour
                 break;
         }
     }
-
-    //IEnumerator ReleaseAim()
-    //{
-    //    float t = 0;
-    //    _tempZoom = _currentZoom;
-    //    t = (SpeedsAndSensitivities.BaseCameraFOV-_tempZoom) / ( SpeedsAndSensitivities.BaseCameraFOV - _bowStats.AimAmount);
-    //    while (t <= _bowStats.FromAimTime)
-    //    {
-    //        _currentZoom = Mathf.Lerp(_tempZoom, SpeedsAndSensitivities.BaseCameraFOV, t / _bowStats.FromAimTime);
-    //        _cam.fieldOfView = _currentZoom;
-    //        yield return null;
-    //        t+= Time.deltaTime; //so we start at 0
-    //    }
-    //}
-    //IEnumerator TakeAim()
-    //{
-    //    float t = 0;
-    //    //_tempZoom = _currentZoom;
-    //    t = (SpeedsAndSensitivities.BaseCameraFOV - _tempZoom) / (SpeedsAndSensitivities.BaseCameraFOV - _bowStats.AimAmount);
-    //    while (t <= _bowStats.FromAimTime)
-    //    {
-    //        _currentZoom = Mathf.Lerp(_tempZoom, _bowStats.AimAmount, t / _bowStats.FromAimTime);
-    //        _cam.fieldOfView = _currentZoom;
-    //        yield return null;
-    //        t+= Time.deltaTime; //so we start at 0
-    //    }
-    //}
 
 
     void LoadArrow()
@@ -263,7 +208,6 @@ public class Bow : MonoBehaviour
         }
 
         _loadedArrow.transform.SetParent(null);
-        //_loadedArrow.GetComponent<Arrow>().ForceMeFWD(_currentPull * _bowStats.PullFactor);
         _loadedArrow.GetComponent<Arrow>().ForceMe(arrowNotchTransform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
     }
