@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7847607129272498496
 Transform:
   m_ObjectHideFlags: 0
@@ -72,9 +72,9 @@ MonoBehaviour:
     gripStats:
       breakingPoint: 0
       weight: 2
-    AimAmount: 0
-    ToAimTime: 0
-    FromAimTime: 0
+    AimAmount: 50
+    ToAimTime: 10
+    FromAimTime: 10
     bowWeightToPullWeightRatio: 0.5
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0

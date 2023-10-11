@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7847607129272498496}
   - component: {fileID: 3689932455724876254}
+  - component: {fileID: 6054401460690690047}
   m_Layer: 10
   m_Name: Bow_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7847607129272498496
 Transform:
   m_ObjectHideFlags: 0
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb523fdca9fc3fa43adbbf5b02d7320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 6054401460690690047}
   arrowPrefab: {fileID: 5682505232231446610, guid: f1b4476a0afb44649a85575f8740f8d2,
     type: 3}
   arrowNotchTransform: {fileID: 2289564022346153080}
@@ -72,6 +74,9 @@ MonoBehaviour:
     gripStats:
       breakingPoint: 0
       weight: 10
+    AimAmount: 50
+    ToAimTime: 10
+    FromAimTime: 10
     bowWeightToPullWeightRatio: 2
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0
@@ -142,6 +147,27 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _cancleShotSpeed: 100
+--- !u!95 &6054401460690690047
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663286960423985383}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e726a1a5eb0912408a3e93ef82417c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1107618319048237277
 GameObject:
   m_ObjectHideFlags: 0
