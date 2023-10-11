@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8348920369580057396}
   m_Layer: 0
   m_Name: Tree01
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,11 +30,11 @@ Transform:
   m_Children:
   - {fileID: 2629077781248407406}
   - {fileID: 5838913043505689276}
-  - {fileID: 6369891999951976486}
+  - {fileID: 4752565121531440645}
   - {fileID: 3042099261040513828}
-  - {fileID: 6692279083688867117}
+  - {fileID: 4993691080772461324}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3721471802467927300
 PrefabInstance:
@@ -119,6 +119,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyli_3_5 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2501778926119290871, guid: a000770f85f4bab4986b8f91eff2598f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -197,6 +202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cyli_3_5 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501778926119290871, guid: a000770f85f4bab4986b8f91eff2598f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -292,6 +302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyli_3_5 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2501778926119290871, guid: a000770f85f4bab4986b8f91eff2598f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -386,12 +401,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyli_3_5 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2501778926119290871, guid: a000770f85f4bab4986b8f91eff2598f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a000770f85f4bab4986b8f91eff2598f, type: 3}
---- !u!4 &6369891999951976486 stripped
+--- !u!4 &4752565121531440645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1842790052761409056, guid: a000770f85f4bab4986b8f91eff2598f,
     type: 3}
@@ -480,12 +500,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cyli_3_5 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2501778926119290871, guid: a000770f85f4bab4986b8f91eff2598f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sticky
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a000770f85f4bab4986b8f91eff2598f, type: 3}
---- !u!4 &6692279083688867117 stripped
+--- !u!4 &4993691080772461324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1842790052761409056, guid: a000770f85f4bab4986b8f91eff2598f,
     type: 3}
