@@ -64,7 +64,7 @@ public class Arrow : MonoBehaviour
             _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
             transform.position += _pushDir;
             rb.isKinematic = true;
-            transform.SetParent(collision.transform);
+            transform.SetParent(collision.transform, true);
 
             BodyPart bp = collision.gameObject.GetComponent<BodyPart>();
 
