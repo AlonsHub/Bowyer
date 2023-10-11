@@ -43,6 +43,7 @@ public class SmoothRotator : MonoBehaviour
     [SerializeField]
     float _currentRot;
 
+    [SerializeField]
     float _currentInput;
   
 
@@ -69,7 +70,7 @@ public class SmoothRotator : MonoBehaviour
 
     public void GetInput(float delta)
     {
-        _currentRot += delta * rotSpeed;
+        _currentRot += delta * rotSpeed * Time.deltaTime;
 
 
         if (doLimit)
@@ -121,9 +122,15 @@ public class SmoothRotator : MonoBehaviour
                 else
                 {
                     if (_currentInput > 0f)
+                    { 
                         _currentInput -= Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.gravity;
+                        _currentInput = Mathf.Clamp(_currentInput, 0f, 1f);
+                    }
                     else
+                    {
                         _currentInput += Time.deltaTime * SpeedsAndSensitivities.CurrentMouseInputSettings.gravity;
+                        _currentInput = Mathf.Clamp(_currentInput, -1f, 0f);
+                    }
                 }
             }
             else

@@ -13,7 +13,7 @@ public static class SpeedsAndSensitivities
 
     public static void SetBowWeight(float bowWeight)
     {
-        CurrentMouseInputSettings = new MouseInputSettings(1f,bowWeight/5f, 0.01f);
+        CurrentMouseInputSettings = new MouseInputSettings(25f/bowWeight,25f/bowWeight, 0.01f);
     }
     public static void SetBowWeightToDefault()
     {

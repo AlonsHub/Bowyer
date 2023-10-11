@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1779.8616, g: 1939.8147, b: 2851.5745, a: 1}
+  m_IndirectSpecularColor: {r: 1779.8616, g: 1939.8303, b: 2851.6096, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6349,7 +6349,7 @@ PrefabInstance:
     - target: {fileID: 6086265734952772892, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: rotSpeed
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6086265734952772892, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
@@ -6384,7 +6384,7 @@ PrefabInstance:
     - target: {fileID: 7411816880749131839, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: rotSpeed
-      value: -30
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 7411816880749131839, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
@@ -6465,6 +6465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _bowStats.gripStats.weight
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437651416670180977, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: _bowStats.stringStats.weight
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
