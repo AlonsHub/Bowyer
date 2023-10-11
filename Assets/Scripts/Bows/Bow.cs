@@ -52,7 +52,7 @@ public class Bow : MonoBehaviour
     }
     private void OnDisable()
     {
-        SpeedsAndSensitivities.SetBowWeightToDefault();
+        SpeedsAndSensitivities.SetBowWeight(0);
     }
 
     // Update is called once per frame
@@ -68,6 +68,9 @@ public class Bow : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     _currentBowState = BowState.Pulling;
+                    //Apply "Pulling-Weight"
+                    SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
+
                     _currentPull = 0;
                 }
                 break;
@@ -92,6 +95,7 @@ public class Bow : MonoBehaviour
                         _currentBowState = BowState.Empty; //Just fired
                         arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         Release();
+                        SpeedsAndSensitivities.SetPullWeight(0f);
                     }
                     //_loadedArrow -- shoot!
                 }
@@ -102,11 +106,12 @@ public class Bow : MonoBehaviour
                     arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
                     //arrowNotchTransform.localPosition = Vector3.Lerp( ogArrowNotchLocalPos, _canclePosition, pullCurve.Evaluate(_currentPull/_bowStats.MaxPull_Tension)); //may need to flip this curve
                     _currentPull -= _cancleShotSpeed * Time.deltaTime;
-
-                    if(_currentPull <= 0)
+                    SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f,_bowStats.PullWeight, _currentPull/_bowStats.MaxPull_Tension));
+                    if (_currentPull <= 0)
                     {
                         arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         _currentBowState = BowState.Loaded;
+                        SpeedsAndSensitivities.SetPullWeight(0f);
                     }
                 }
                 break;

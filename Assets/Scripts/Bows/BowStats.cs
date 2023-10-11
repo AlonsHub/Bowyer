@@ -11,7 +11,7 @@ public class BowStats
     public float PullFactor => stringStats.elasticity == 0? 0: 1/stringStats.elasticity;
 
     public float Weight => armStats.weight + stringStats.weight + gripStats.weight;
-    public float PullWeight => Weight/3;
+    public float PullWeight => Weight/ bowWeightToPullWeightRatio;
 
     public bool IsPerfect(float force) => force >= armStats.perfectTension.x && force <= armStats.perfectTension.y;
 
@@ -21,4 +21,7 @@ public class BowStats
     public BowStringStats stringStats;
     public BowArmStats armStats;
     public BowGripStats gripStats;
+
+    [SerializeField, Tooltip("BowWeight divided by this value is the PullWeight")]
+    float bowWeightToPullWeightRatio;
 }

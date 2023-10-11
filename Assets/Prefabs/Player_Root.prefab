@@ -1075,6 +1075,11 @@ PrefabInstance:
       propertyPath: _bowStats.stringStats.weight
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: _bowStats.bowWeightToPullWeightRatio
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7847607129272498496, guid: eb002b9416f72904eaf4f85e9d5c5e31,
         type: 3}
       propertyPath: m_RootOrder
@@ -1267,6 +1272,11 @@ PrefabInstance:
     - target: {fileID: 3689932455724876254, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
       propertyPath: cancleCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689932455724876254, guid: 6a10e247403244e408299201c1d6d893,
+        type: 3}
+      propertyPath: _bowStats.bowWeightToPullWeightRatio
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3689932455724876254, guid: 6a10e247403244e408299201c1d6d893,
