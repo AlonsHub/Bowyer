@@ -64,7 +64,7 @@ public class Arrow : MonoBehaviour
             _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
             transform.position += _pushDir;
             rb.isKinematic = true;
-            transform.SetParent(collision.transform, true);
+            //transform.SetParent(collision.transform);
 
             BodyPart bp = collision.gameObject.GetComponent<BodyPart>();
 
@@ -74,12 +74,16 @@ public class Arrow : MonoBehaviour
             if (bp)
             {
                 bp.TakeDamage(damage);
+                transform.SetParent(bp.transform);
             }
             else
             {
                 bp = collision.gameObject.GetComponentInParent<BodyPart>();
                 if (bp)
+                {
                     bp.TakeDamage(damage);
+                    transform.SetParent(bp.transform);
+                }
             }
             Destroy(vtc, .3f);
             col.enabled = false;

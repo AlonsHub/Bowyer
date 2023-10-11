@@ -198,7 +198,7 @@ Transform:
   - {fileID: 5985128076181253275}
   - {fileID: 8927867676750391360}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6086265734952772892
 MonoBehaviour:
@@ -257,14 +257,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85444e99b6530734b947e559eb3f7d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRotator: {fileID: 8927867676750391360}
-  crouchPos: {fileID: 923372368854988836}
-  standPos: {fileID: 5892403088335417479}
   gfxScaler: {fileID: 5985128076181253275}
   cc: {fileID: 5011215102624839930}
   walkSpeed: 8
   runSpeed: 16
   crouchSpeed: 3
+  proneSpeed: 2
   stepSpeed: 3
   midairSpeed: 7
   jumpForce: 28
@@ -274,6 +272,9 @@ MonoBehaviour:
   stepKey: 308
   crouchKey: 306
   jumpKey: 32
+  proneKey: 122
+  crouchYValue: 0.6
+  proneYValue: 0.3
 --- !u!114 &6595648563270342899
 MonoBehaviour:
   m_ObjectHideFlags: 0

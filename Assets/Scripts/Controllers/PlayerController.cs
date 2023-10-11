@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum MoveType { Walk, Run, Step, MidAir, Crouch};
+enum MoveType { Walk, Run, Step, MidAir, Crouch, Prone};
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
     //controls the player character, NOT THE BOW!
     //the player interacts with the bow as an interface - and that can recat however it would like
     //
-    [SerializeField]
-    Transform xRotator;
-    [SerializeField]
-    Transform crouchPos;
-    [SerializeField]
-    Transform standPos;
+    //[SerializeField]
+    //Transform xRotator;
+    //[SerializeField]
+    //Transform crouchPos;
+    //[SerializeField]
+    //Transform standPos;
     [SerializeField]
     Transform gfxScaler;
 
@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     float runSpeed;
     [SerializeField]
     float crouchSpeed;
+    [SerializeField]
+    float proneSpeed;
 
     [SerializeField]
     private float stepSpeed;
@@ -44,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     Vector3 _currentJumpForce;
 
+    float _originalHeight = 4.635122f;
+
     [Header("Keys")]
     [SerializeField]
     KeyCode sprintKey;
@@ -54,6 +58,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     KeyCode jumpKey;
+    [SerializeField]
+    KeyCode proneKey;
 
     float _currentSpeed()
     {
@@ -74,6 +80,10 @@ public class PlayerController : MonoBehaviour
             case MoveType.Crouch:
                 return crouchSpeed;
                 break;
+                case MoveType.Prone: 
+                return proneSpeed;
+                break;
+
             default:
                 return 0f;
                 break;
@@ -83,6 +93,10 @@ public class PlayerController : MonoBehaviour
 MoveType _currentMoveType;
 
     Vector3 _inputVector;
+    [SerializeField]
+    private float crouchYValue;
+    [SerializeField]
+    private float proneYValue;
 
     // Start is called before the first frame update
     void Awake()
@@ -137,41 +151,45 @@ MoveType _currentMoveType;
     void HandleMoveStates()
     {
         if (!cc.isGrounded)
-        {
-            xRotator.localPosition = standPos.localPosition; //perhaps slightly higher?
-
+        {   
             _currentMoveType = MoveType.MidAir;
         }
         else if (Input.GetKey(sprintKey))
         {
-            xRotator.localPosition = standPos.localPosition; //Lower this by half the sinus wave length of the bob!
-
             _currentMoveType = MoveType.Run;
         }
         else if (Input.GetKey(stepKey))
         {
-            xRotator.localPosition = standPos.localPosition;
-
             _currentMoveType = MoveType.Step;
         }
         else if (Input.GetKey(crouchKey))
         {
             _currentMoveType = MoveType.Crouch;
 
-            xRotator.localPosition = crouchPos.localPosition;
-            gfxScaler.localScale = new Vector3(1, .6f, 1);
+            //xRotator.localPosition = crouchPos.localPosition;
+            //gfxScaler.localScale = new Vector3(1, crouchYValue, 1);
+            cc.height = _originalHeight * crouchYValue;
+        }
+        else if (Input.GetKey(proneKey))
+        {
+            _currentMoveType = MoveType.Prone;
+
+            //xRotator.localPosition = crouchPos.localPosition;
+            //gfxScaler.localScale = new Vector3(1, crouchYValue, 1);
+            cc.height = _originalHeight * proneYValue;
         }
         else
         {
-            xRotator.localPosition = standPos.localPosition;
-
+            //xRotator.localPosition = standPos.localPosition;
+            cc.height = _originalHeight;
             _currentMoveType = MoveType.Walk;
         }
 
         if (Input.GetKeyUp(crouchKey))
         {
-            xRotator.localPosition = standPos.localPosition;
-            gfxScaler.localScale = Vector3.one;
+            //xRotator.localPosition = standPos.localPosition;
+            //gfxScaler.localScale = Vector3.one;
+            cc.height = _originalHeight;
         }
     }
 
