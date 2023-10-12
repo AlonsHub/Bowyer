@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum MoveType { Walk, Run, Step, MidAir, Crouch, Prone};
+public enum MoveType { Walk, Run, Step, MidAir, Crouch, Prone};
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -61,9 +61,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     KeyCode proneKey;
 
+public MoveType CurrentMoveType;
     float _currentSpeed()
     {
-        switch (_currentMoveType)
+        switch (CurrentMoveType)
         {
             case MoveType.Walk:
                 return walkSpeed;
@@ -90,7 +91,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-MoveType _currentMoveType;
 
     Vector3 _inputVector;
     [SerializeField]
@@ -101,7 +101,7 @@ MoveType _currentMoveType;
     // Start is called before the first frame update
     void Awake()
     {
-        _currentMoveType = MoveType.Walk;
+        CurrentMoveType = MoveType.Walk;
         _currentJumpForce = Vector3.zero;
         if (!cc)
         {
@@ -152,19 +152,19 @@ MoveType _currentMoveType;
     {
         if (!cc.isGrounded)
         {   
-            _currentMoveType = MoveType.MidAir;
+            CurrentMoveType = MoveType.MidAir;
         }
         else if (Input.GetKey(sprintKey))
         {
-            _currentMoveType = MoveType.Run;
+            CurrentMoveType = MoveType.Run;
         }
         else if (Input.GetKey(stepKey))
         {
-            _currentMoveType = MoveType.Step;
+            CurrentMoveType = MoveType.Step;
         }
         else if (Input.GetKey(crouchKey))
         {
-            _currentMoveType = MoveType.Crouch;
+            CurrentMoveType = MoveType.Crouch;
 
             //xRotator.localPosition = crouchPos.localPosition;
             //gfxScaler.localScale = new Vector3(1, crouchYValue, 1);
@@ -172,7 +172,7 @@ MoveType _currentMoveType;
         }
         else if (Input.GetKey(proneKey))
         {
-            _currentMoveType = MoveType.Prone;
+            CurrentMoveType = MoveType.Prone;
 
             //xRotator.localPosition = crouchPos.localPosition;
             //gfxScaler.localScale = new Vector3(1, crouchYValue, 1);
@@ -182,7 +182,7 @@ MoveType _currentMoveType;
         {
             //xRotator.localPosition = standPos.localPosition;
             cc.height = _originalHeight;
-            _currentMoveType = MoveType.Walk;
+            CurrentMoveType = MoveType.Walk;
         }
 
         if (Input.GetKeyUp(crouchKey))

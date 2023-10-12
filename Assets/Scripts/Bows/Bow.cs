@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 enum BowState { Empty, Loaded, Pulling, CancelShot}
 public class Bow : MonoBehaviour
 {
+    [SerializeField]
+    PlayerController pc;
+
     [SerializeField]
     Animator anim;
     [SerializeField]
@@ -47,7 +51,8 @@ public class Bow : MonoBehaviour
     Vector3 _canclePosition;
     [SerializeField]
     float _cancleShotSpeed;
-
+    [SerializeField]
+    MoveType[] disablingMoveTypes;
    
     Camera _cam; //TEMP AND BAD!
     private void Awake()
@@ -80,6 +85,13 @@ public class Bow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(disablingMoveTypes.Length > 0 && disablingMoveTypes.Contains(pc.CurrentMoveType))
+        {
+            if(pc.CurrentMoveType == MoveType.Run)
+            {
+                anim.SetTrigger("Run");
+            }
+        }
         //RIGHT CLICK TO ZOOM!
         if(Input.GetMouseButton(1))
         {

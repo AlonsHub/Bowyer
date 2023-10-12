@@ -198,7 +198,7 @@ Transform:
   - {fileID: 5985128076181253275}
   - {fileID: 8927867676750391360}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6086265734952772892
 MonoBehaviour:
@@ -273,6 +273,7 @@ MonoBehaviour:
   crouchKey: 306
   jumpKey: 32
   proneKey: 122
+  CurrentMoveType: 0
   crouchYValue: 0.6
   proneYValue: 0.3
 --- !u!114 &6595648563270342899
@@ -1088,6 +1089,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bow_Root
       objectReference: {fileID: 0}
+    - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: pc
+      value: 
+      objectReference: {fileID: 4096420977489433102}
     - target: {fileID: 7847607129272498496, guid: eb002b9416f72904eaf4f85e9d5c5e31,
         type: 3}
       propertyPath: m_RootOrder
@@ -1252,6 +1258,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShortBow_Root
       objectReference: {fileID: 0}
+    - target: {fileID: 3689932455724876254, guid: 6a10e247403244e408299201c1d6d893,
+        type: 3}
+      propertyPath: pc
+      value: 
+      objectReference: {fileID: 4096420977489433102}
     - target: {fileID: 7847607129272498496, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
       propertyPath: m_RootOrder

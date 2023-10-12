@@ -97,8 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 2fa554c47c9ceca4f9673322972fd86a,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 2c164f31fbc09df419cad4dc85213a23,
     type: 2}
 --- !u!196 &4
@@ -5195,6 +5194,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sun
+      objectReference: {fileID: 0}
+    - target: {fileID: 829623610526660627, guid: 24a395cf7e760e34ea32eeeb0cc1fed8,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 68676.484
+      objectReference: {fileID: 0}
+    - target: {fileID: 829623610526660627, guid: 24a395cf7e760e34ea32eeeb0cc1fed8,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 829623610526660627, guid: 24a395cf7e760e34ea32eeeb0cc1fed8,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073888700653790395, guid: 24a395cf7e760e34ea32eeeb0cc1fed8,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 68676.484
       objectReference: {fileID: 0}
     - target: {fileID: 3258455675468305849, guid: 24a395cf7e760e34ea32eeeb0cc1fed8,
         type: 3}
@@ -11866,7 +11885,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: dab923a2156e1de4db30066a9f67d72f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18407,6 +18426,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1240841842626530563, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4367705567882705005, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: m_Name
