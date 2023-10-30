@@ -10,13 +10,7 @@ public class PlayerController : MonoBehaviour
     //handles input grab and processing
     //controls the player character, NOT THE BOW!
     //the player interacts with the bow as an interface - and that can recat however it would like
-    //
-    //[SerializeField]
-    //Transform xRotator;
-    //[SerializeField]
-    //Transform crouchPos;
-    //[SerializeField]
-    //Transform standPos;
+  
     [SerializeField]
     Transform gfxScaler;
 
@@ -171,39 +165,25 @@ public MoveType CurrentMoveType;
         else if (Input.GetKey(crouchKey))
         {
             CurrentMoveType = MoveType.Crouch;
-
-            //xRotator.localPosition = crouchPos.localPosition;
-            //gfxScaler.localScale = new Vector3(1, crouchYValue, 1);
             cc.height = _originalHeight * crouchYValue;
         }
         else if (Input.GetKey(proneKey))
         {
             CurrentMoveType = MoveType.Prone;
 
-            //xRotator.localPosition = crouchPos.localPosition;
-            //gfxScaler.localScale = new Vector3(1, crouchYValue, 1);
             cc.height = _originalHeight * proneYValue;
         }
         else
         {
-            //xRotator.localPosition = standPos.localPosition;
             cc.height = _originalHeight;
             CurrentMoveType = MoveType.Run;
         }
 
         if (Input.GetKeyUp(crouchKey))
         {
-            //xRotator.localPosition = standPos.localPosition;
-            //gfxScaler.localScale = Vector3.one;
+     
             cc.height = _originalHeight;
         }
-        //if (Input.GetKeyUp(sprintKey))
-        //{
-        //    //xRotator.localPosition = standPos.localPosition;
-        //    //gfxScaler.localScale = Vector3.one;
-        //    cc.height = _originalHeight;
-        //}
-
     }
 
     void Jump()
