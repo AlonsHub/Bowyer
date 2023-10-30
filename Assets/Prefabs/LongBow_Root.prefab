@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3689932455724876254}
   - component: {fileID: 6054401460690690047}
   m_Layer: 10
-  m_Name: Bow_Root
+  m_Name: LongBow_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 7497233010592562279}
   - {fileID: 2289564022346153080}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3689932455724876254
 MonoBehaviour:
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb523fdca9fc3fa43adbbf5b02d7320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pc: {fileID: 0}
   anim: {fileID: 6054401460690690047}
   arrowPrefab: {fileID: 5682505232231446610, guid: f1b4476a0afb44649a85575f8740f8d2,
     type: 3}
@@ -147,6 +148,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _cancleShotSpeed: 100
+  disablingMoveTypes: 
 --- !u!95 &6054401460690690047
 Animator:
   serializedVersion: 5

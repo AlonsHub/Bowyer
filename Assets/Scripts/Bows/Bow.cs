@@ -55,6 +55,8 @@ public class Bow : MonoBehaviour
     MoveType[] disablingMoveTypes;
    
     Camera _cam; //TEMP AND BAD!
+
+    MoveType _currentMoveAnimation;
     private void Awake()
     {
         _currentBowState = BowState.Empty;
@@ -62,12 +64,21 @@ public class Bow : MonoBehaviour
 
         _cam = Camera.main; //TEMP AND BADDDD
 
+        //_currentMoveAnimation = MoveType.Walk;
+
+
         if (!anim)
             anim = GetComponent<Animator>();
 
         _targetZoom = SpeedsAndSensitivities.BaseCameraFOV;
         SetFov(SpeedsAndSensitivities.BaseCameraFOV);
     }
+
+    private void Start()
+    {
+        MovementAnimation();
+    }
+
     void SetFov(float zoom)
     {
         _currentZoom = zoom;
@@ -87,7 +98,7 @@ public class Bow : MonoBehaviour
     {
         if(disablingMoveTypes.Length > 0 && disablingMoveTypes.Contains(pc.CurrentMoveType))
         {
-            if(pc.CurrentMoveType == MoveType.Run)
+            if(pc.CurrentMoveType == MoveType.Sprint)
             {
                 anim.SetTrigger("Run");
             }
@@ -121,6 +132,11 @@ public class Bow : MonoBehaviour
             case BowState.Empty:
                 if (Input.GetKeyDown(loadArrowKey))
                     LoadArrow();
+                else
+                {
+                    MovementAnimation();
+                }
+
                 break;
             case BowState.Loaded:
                 if (Input.GetMouseButtonDown(0))
@@ -197,6 +213,44 @@ public class Bow : MonoBehaviour
         }
     }
 
+    private void MovementAnimation()
+    {
+        if (_currentMoveAnimation != pc.CurrentMoveType)
+        {
+            switch (pc.CurrentMoveType)
+            {
+                case MoveType.Run:
+                    //temp - walk will have it's own animation.
+                    anim.SetTrigger("Run");
+                    break;
+                //temp - walk will have it's own animation.
+                case MoveType.Sprint:
+                    anim.SetTrigger("Sprint");
+                    break;
+                //temp - walk will have it's own animation.
+                case MoveType.Step:
+                    anim.SetTrigger("ToIdle");
+                    break;
+                //temp - walk will have it's own animation.
+                case MoveType.MidAir:
+                    anim.SetTrigger("ToIdle");
+                    break;
+                //temp - walk will have it's own animation.
+                case MoveType.Crouch:
+                    anim.SetTrigger("ToIdle");
+                    break;
+                //temp - walk will have it's own animation.
+                case MoveType.Prone:
+                    //temp - walk will have it's own animation.
+                    anim.SetTrigger("ToIdle");
+
+                    break;
+                default:
+                    break;
+            }
+            _currentMoveAnimation = pc.CurrentMoveType;
+        }
+    }
 
     void LoadArrow()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MoveType { Walk, Run, Step, MidAir, Crouch, Prone};
+public enum MoveType { Run, Sprint, Step, MidAir, Crouch, Prone};
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     CharacterController cc;
+    [SerializeField]
+    Bow bow;
+
     [SerializeField]
     float walkSpeed;
     [SerializeField]
@@ -61,15 +64,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     KeyCode proneKey;
 
+    MoveType _previousMoveType;
+
 public MoveType CurrentMoveType;
     float _currentSpeed()
     {
         switch (CurrentMoveType)
         {
-            case MoveType.Walk:
+            case MoveType.Run:
                 return walkSpeed;
                 break;
-            case MoveType.Run:
+            case MoveType.Sprint:
                 return runSpeed;
                 break;
             case MoveType.Step:
@@ -101,7 +106,8 @@ public MoveType CurrentMoveType;
     // Start is called before the first frame update
     void Awake()
     {
-        CurrentMoveType = MoveType.Walk;
+        _previousMoveType = MoveType.Run;
+        CurrentMoveType = MoveType.Run;
         _currentJumpForce = Vector3.zero;
         if (!cc)
         {
@@ -156,7 +162,7 @@ public MoveType CurrentMoveType;
         }
         else if (Input.GetKey(sprintKey))
         {
-            CurrentMoveType = MoveType.Run;
+            CurrentMoveType = MoveType.Sprint;
         }
         else if (Input.GetKey(stepKey))
         {
@@ -182,7 +188,7 @@ public MoveType CurrentMoveType;
         {
             //xRotator.localPosition = standPos.localPosition;
             cc.height = _originalHeight;
-            CurrentMoveType = MoveType.Walk;
+            CurrentMoveType = MoveType.Run;
         }
 
         if (Input.GetKeyUp(crouchKey))
@@ -191,6 +197,13 @@ public MoveType CurrentMoveType;
             //gfxScaler.localScale = Vector3.one;
             cc.height = _originalHeight;
         }
+        //if (Input.GetKeyUp(sprintKey))
+        //{
+        //    //xRotator.localPosition = standPos.localPosition;
+        //    //gfxScaler.localScale = Vector3.one;
+        //    cc.height = _originalHeight;
+        //}
+
     }
 
     void Jump()

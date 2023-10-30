@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3769043569851158680}
   - {fileID: 2289564022346153080}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3689932455724876254
 MonoBehaviour:
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb523fdca9fc3fa43adbbf5b02d7320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pc: {fileID: 0}
   anim: {fileID: 3419098155271582685}
   arrowPrefab: {fileID: 5682505232231446610, guid: c07da4a41dbd97f49984a387e64e98f5,
     type: 3}
@@ -136,6 +137,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _cancleShotSpeed: 150
+  disablingMoveTypes: 
 --- !u!95 &3419098155271582685
 Animator:
   serializedVersion: 5

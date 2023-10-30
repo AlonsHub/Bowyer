@@ -170,8 +170,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7819152257878368602}
   - component: {fileID: 6086265734952772892}
-  - component: {fileID: 5011215102624839930}
   - component: {fileID: 4096420977489433102}
+  - component: {fileID: 5011215102624839930}
   - component: {fileID: 6595648563270342899}
   - component: {fileID: 2160226068559842129}
   m_Layer: 9
@@ -219,32 +219,6 @@ MonoBehaviour:
   maxRot: 0
   _currentRot: 0
   _currentInput: 0
---- !u!143 &5011215102624839930
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4367705567882705005}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 4.6351223
-  m_Radius: 0.7872045
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &4096420977489433102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +250,32 @@ MonoBehaviour:
   CurrentMoveType: 0
   crouchYValue: 0.6
   proneYValue: 0.3
+--- !u!143 &5011215102624839930
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4367705567882705005}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 4.6351223
+  m_Radius: 0.7872045
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &6595648563270342899
 MonoBehaviour:
   m_ObjectHideFlags: 0
