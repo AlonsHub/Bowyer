@@ -66,10 +66,9 @@ public class Arrow : MonoBehaviour
             //gfx.Translate(Vector3.forward* arrowStickInAmount);
             _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
             transform.position += _pushDir;
-            //rb.isKinematic = true;
-            //transform.SetParent(collision.transform);
+            rb.isKinematic = true;
 
-            if(collision.transform.localScale.x == collision.transform.localScale.y && collision.transform.localScale.x == collision.transform.localScale.z)
+            if (collision.transform.localScale.x == collision.transform.localScale.y && collision.transform.localScale.x == collision.transform.localScale.z)
                 transform.SetParent(collision.transform);
 
 
@@ -93,14 +92,17 @@ public class Arrow : MonoBehaviour
                     //transform.SetParent(bp.transform);
                 }
             }
-            Destroy(vtc, .3f);
+            //Destroy(vtc, .3f);
             //collider.enabled = false;
+            rb.isKinematic = true;
 
             //this.enabled = false;
             //Some sort of Destroy with a delay
-            //StartCoroutine(LatePush());
+            StartCoroutine(LateStop());
         }
     }
+
+
 
     //IEnumerator LatePush()
     //{
@@ -112,4 +114,13 @@ public class Arrow : MonoBehaviour
     //    col.enabled = false;
 
     //}
+    IEnumerator LateStop()
+    {
+        yield return new WaitForSeconds(.02f);
+        collider.enabled = false;
+        Destroy(vtc);
+
+        //this.enabled = false;
+
+    }
 }
