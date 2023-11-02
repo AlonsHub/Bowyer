@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RingedTarget : MonoBehaviour
 {
+    public UnityEvent OnHit;
+
     TargetHitReport _bestTargetHitReport;
 
     Coroutine waiter;
@@ -27,9 +30,12 @@ public class RingedTarget : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         _bestTargetHitReport.relatedRenderer.material.color = Color.red;
-        _bestTargetHitReport.relatedRenderer.material.SetColor("_EmissiveColor", Color.red *3f);
+        _bestTargetHitReport.relatedRenderer.material.SetColor("_EmissiveColor", Color.red *300f);
 
         Debug.LogWarning($"{_bestTargetHitReport.points} points recieved!");
+        yield return new WaitForSeconds(2f);
+
+        OnHit.Invoke();
     }
 }
 

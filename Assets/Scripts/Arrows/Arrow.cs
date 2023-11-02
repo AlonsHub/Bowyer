@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
     [SerializeField]
-    Collider col;
+    Collider collider;
 
     [SerializeField]
     private float arrowStickInAmount;
@@ -55,7 +55,10 @@ public class Arrow : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (_hasHit)
+        {
+
             return;
+        }
 
         if(collision.gameObject.CompareTag("Sticky"))
         {
@@ -63,18 +66,23 @@ public class Arrow : MonoBehaviour
             //gfx.Translate(Vector3.forward* arrowStickInAmount);
             _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
             transform.position += _pushDir;
-            rb.isKinematic = true;
+            //rb.isKinematic = true;
             //transform.SetParent(collision.transform);
+
+            if(collision.transform.localScale.x == collision.transform.localScale.y && collision.transform.localScale.x == collision.transform.localScale.z)
+                transform.SetParent(collision.transform);
+
 
             BodyPart bp = collision.gameObject.GetComponent<BodyPart>();
 
             damage += vtc.AverageVel().magnitude * rb.mass;
 
+
             Debug.Log(damage);
             if (bp)
             {
                 bp.TakeDamage(damage);
-                transform.SetParent(bp.transform);
+                //transform.SetParent(bp.transform);
             }
             else
             {
@@ -82,13 +90,13 @@ public class Arrow : MonoBehaviour
                 if (bp)
                 {
                     bp.TakeDamage(damage);
-                    transform.SetParent(bp.transform);
+                    //transform.SetParent(bp.transform);
                 }
             }
             Destroy(vtc, .3f);
-            col.enabled = false;
+            //collider.enabled = false;
 
-            this.enabled = false;
+            //this.enabled = false;
             //Some sort of Destroy with a delay
             //StartCoroutine(LatePush());
         }

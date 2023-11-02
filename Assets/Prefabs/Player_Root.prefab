@@ -198,7 +198,7 @@ Transform:
   - {fileID: 5985128076181253275}
   - {fileID: 8927867676750391360}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6086265734952772892
 MonoBehaviour:
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gfxScaler: {fileID: 5985128076181253275}
   cc: {fileID: 5011215102624839930}
+  bow: {fileID: 0}
   walkSpeed: 8
   runSpeed: 16
   crouchSpeed: 3
