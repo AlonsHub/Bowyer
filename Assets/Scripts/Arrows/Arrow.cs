@@ -38,7 +38,7 @@ public class Arrow : MonoBehaviour
     void Update()
     {
         if (!rb.isKinematic && rb.velocity.magnitude >= 6f)
-            transform.forward = Vector3.Lerp(transform.forward, rb.velocity.normalized, .6f);
+            transform.forward = Vector3.Lerp(transform.forward, rb.velocity.normalized, .9f);
     }
 
     private void OnCollisionEnter(Collision collision)
