@@ -76,7 +76,7 @@ public class Bow : MonoBehaviour
 
     private void Start()
     {
-        MovementAnimation();
+        //MovementAnimation();
     }
 
     void SetFov(float zoom)
@@ -96,7 +96,9 @@ public class Bow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(disablingMoveTypes.Length > 0 && disablingMoveTypes.Contains(pc.CurrentMoveType))
+        MovementAnimation();
+
+        if (disablingMoveTypes.Length > 0 && disablingMoveTypes.Contains(pc.CurrentMoveType))
         {
             if(pc.CurrentMoveType == MoveType.Sprint)
             {
@@ -132,10 +134,8 @@ public class Bow : MonoBehaviour
             case BowState.Empty:
                 if (Input.GetKeyDown(loadArrowKey))
                     LoadArrow();
-                else
-                {
-                    MovementAnimation();
-                }
+               
+                
 
                 break;
             case BowState.Loaded:
@@ -144,8 +144,9 @@ public class Bow : MonoBehaviour
                     _currentBowState = BowState.Pulling;
                     //Apply "Pulling-Weight"
                     SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
-                  
-                    anim.SetTrigger("Aim");
+
+                    //anim.SetTrigger("Aim");
+                    anim.SetBool("IsAim", true);
 
                     //ZOOM BY SHOOTING!
                     //_targetZoom = _bowStats.AimAmount;
@@ -180,8 +181,9 @@ public class Bow : MonoBehaviour
                         _currentBowState = BowState.Empty; //Just fired
                         arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         Release();
-                        
-                        anim.SetTrigger("ToIdle");
+
+                        //anim.SetTrigger("ToIdle");
+                        anim.SetBool("IsAim", false);
                         SpeedsAndSensitivities.SetPullWeight(0f);
                     }
                     //ZOOM BY SHOOTING!
@@ -204,7 +206,9 @@ public class Bow : MonoBehaviour
                         arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         _currentBowState = BowState.Loaded;
                         SpeedsAndSensitivities.SetPullWeight(0f);
-                        anim.SetTrigger("ToIdle");
+                        //anim.SetTrigger("ToIdle");
+                        anim.SetBool("IsAim", false);
+
                     }
                 }
                 break;
@@ -215,41 +219,47 @@ public class Bow : MonoBehaviour
 
     private void MovementAnimation()
     {
-        if (_currentMoveAnimation != pc.CurrentMoveType)
-        {
-            switch (pc.CurrentMoveType)
-            {
-                case MoveType.Run:
-                    //temp - walk will have it's own animation.
-                    anim.SetTrigger("Run");
-                    break;
-                //temp - walk will have it's own animation.
-                case MoveType.Sprint:
-                    anim.SetTrigger("Sprint");
-                    break;
-                //temp - walk will have it's own animation.
-                case MoveType.Step:
-                    anim.SetTrigger("ToIdle");
-                    break;
-                //temp - walk will have it's own animation.
-                case MoveType.MidAir:
-                    anim.SetTrigger("ToIdle");
-                    break;
-                //temp - walk will have it's own animation.
-                case MoveType.Crouch:
-                    anim.SetTrigger("ToIdle");
-                    break;
-                //temp - walk will have it's own animation.
-                case MoveType.Prone:
-                    //temp - walk will have it's own animation.
-                    anim.SetTrigger("ToIdle");
+        Vector3 noFallVel = pc.GetVelocity;
+        noFallVel.y = 0;
+            anim.SetFloat("MoveSpeed", noFallVel.magnitude/10f);
+        //else
+        //    anim.SetTrigger("Aim");
 
-                    break;
-                default:
-                    break;
-            }
-            _currentMoveAnimation = pc.CurrentMoveType;
-        }
+        //if (_currentMoveAnimation != pc.CurrentMoveType)
+        //{
+        //    switch (pc.CurrentMoveType)
+        //    {
+        //        case MoveType.Run:
+        //            //temp - walk will have it's own animation.
+        //            anim.SetTrigger("Run");
+        //            break;
+        //        //temp - walk will have it's own animation.
+        //        case MoveType.Sprint:
+        //            anim.SetTrigger("Sprint");
+        //            break;
+        //        //temp - walk will have it's own animation.
+        //        case MoveType.Step:
+        //            anim.SetTrigger("ToIdle");
+        //            break;
+        //        //temp - walk will have it's own animation.
+        //        case MoveType.MidAir:
+        //            anim.SetTrigger("ToIdle");
+        //            break;
+        //        //temp - walk will have it's own animation.
+        //        case MoveType.Crouch:
+        //            anim.SetTrigger("ToIdle");
+        //            break;
+        //        //temp - walk will have it's own animation.
+        //        case MoveType.Prone:
+        //            //temp - walk will have it's own animation.
+        //            anim.SetTrigger("ToIdle");
+
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    _currentMoveAnimation = pc.CurrentMoveType;
+        //}
     }
 
     void LoadArrow()

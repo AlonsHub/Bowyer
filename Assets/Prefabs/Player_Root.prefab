@@ -198,7 +198,7 @@ Transform:
   - {fileID: 5985128076181253275}
   - {fileID: 8927867676750391360}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6086265734952772892
 MonoBehaviour:
@@ -1095,6 +1095,26 @@ PrefabInstance:
       propertyPath: pc
       value: 
       objectReference: {fileID: 4096420977489433102}
+    - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: _bowStats.armStats.maxTension
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: _bowStats.armStats.minTension
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: _bowStats.armStats.perfectTension.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: _bowStats.armStats.perfectTension.y
+      value: 130
+      objectReference: {fileID: 0}
     - target: {fileID: 7847607129272498496, guid: eb002b9416f72904eaf4f85e9d5c5e31,
         type: 3}
       propertyPath: m_RootOrder

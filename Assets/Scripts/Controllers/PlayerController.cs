@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
 
     MoveType _previousMoveType;
 
+    public Vector3 GetVelocity => cc.velocity;
+
 public MoveType CurrentMoveType;
     float _currentSpeed()
     {
