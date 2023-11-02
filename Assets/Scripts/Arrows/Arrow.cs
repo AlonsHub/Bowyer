@@ -27,23 +27,12 @@ public class Arrow : MonoBehaviour
         rb.isKinematic = true;
     }
 
-    //public void Init(Vector3 force, float forceBasedDamageMod)
-    //{
-
-    //}
-
     public void ForceMe(Vector3 force)
     {
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
 
     }
-    public void ForceMeFWD(float force)
-    {
-        rb.isKinematic = false;
-        rb.AddForce(force * transform.forward, ForceMode.Impulse);
-    }
-
 
     // Update is called once per frame
     void Update()
@@ -89,20 +78,12 @@ public class Arrow : MonoBehaviour
                 if (bp)
                 {
                     bp.TakeDamage(damage);
-                    //transform.SetParent(bp.transform);
+
                 }
             }
-            //Destroy(vtc, .3f);
-            //collider.enabled = false;
-            rb.isKinematic = true;
-
-            //this.enabled = false;
-            //Some sort of Destroy with a delay
             StartCoroutine(LateStop());
         }
     }
-
-
 
     //IEnumerator LatePush()
     //{
@@ -111,8 +92,7 @@ public class Arrow : MonoBehaviour
     //    rb.AddForce(vtc.AverageVel(), ForceMode.Impulse);
     //    yield return new WaitForSeconds(.01f);
     //    rb.isKinematic = true;
-    //    col.enabled = false;
-
+    //    col.enabled = false
     //}
     IEnumerator LateStop()
     {

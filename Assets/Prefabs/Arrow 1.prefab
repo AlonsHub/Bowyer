@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5263808136552898757}
-  col: {fileID: 8468092021133610454}
+  collider: {fileID: 0}
   arrowStickInAmount: 0.01
   gfx: {fileID: 0}
   vtc: {fileID: 2633866924701697717}
@@ -111,12 +111,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}
@@ -176,7 +176,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}
