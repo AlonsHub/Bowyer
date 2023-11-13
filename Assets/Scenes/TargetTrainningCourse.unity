@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2175.5012, g: 2293.4436, b: 3365.7036, a: 1}
+  m_IndirectSpecularColor: {r: 2161.4631, g: 2266.3264, b: 3290.192, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4424,26 +4424,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.maxTension
-      value: 145
-      objectReference: {fileID: 0}
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.minTension
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.perfectTension.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.perfectTension.y
-      value: 130
-      objectReference: {fileID: 0}
     - target: {fileID: 4367705567882705005, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: m_Name

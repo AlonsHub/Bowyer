@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private float drag;
 
     Vector3 _currentJumpForce;
+    //Vector3 _jumpTime;
 
     float _originalHeight = 4.635122f;
 
@@ -126,8 +127,19 @@ public MoveType CurrentMoveType;
         //temp!
         _inputVector *= _currentSpeed();
 
+        //jump should be timed better, perhaps using a "regular/normalized jump time" will permit the use of an acceleration curve
+
         if (!cc.isGrounded)
-            _currentJumpForce += Physics.gravity *Time.deltaTime; //This will decay the jump force correctly + it will become negative after peeking, adding to the fall
+        {
+            if (cc.velocity.y > 0f)
+            {
+                _currentJumpForce += Physics.gravity * Time.deltaTime; 
+            }
+            else
+            {
+                _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
+            }
+        }
         else
         {
             _currentJumpForce = Vector3.zero;
@@ -156,7 +168,7 @@ public MoveType CurrentMoveType;
         {   
             CurrentMoveType = MoveType.MidAir;
         }
-        else if (Input.GetKey(sprintKey))
+        else if (Input.GetKey(sprintKey) && ((int)CurrentMoveType <= 2))
         {
             CurrentMoveType = MoveType.Sprint;
         }
@@ -181,15 +193,14 @@ public MoveType CurrentMoveType;
             CurrentMoveType = MoveType.Run;
         }
 
-        if (Input.GetKeyUp(crouchKey))
+        if (Input.GetKeyUp(crouchKey)) //this may be a problem
         {
-     
             cc.height = _originalHeight;
         }
     }
 
     void Jump()
     {
-        _currentJumpForce = Vector3.up * jumpForce + cc.velocity/5f;
+        _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
     }
 }

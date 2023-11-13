@@ -26,8 +26,8 @@ public class SmoothRotator : MonoBehaviour
         return "again, the fuck?";
     }
 
-    [SerializeField, Tooltip("No need to use Minus on X axis, code sorts that out!")]
-    float rotSpeed;
+    //[SerializeField, Tooltip("No need to use Minus on X axis, code sorts that out!")]
+    //float rotSpeed;
 
     [SerializeField]
     bool doLimit;

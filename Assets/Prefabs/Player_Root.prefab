@@ -213,7 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisDirection: 1
-  rotSpeed: 60
   doLimit: 0
   minRot: 0
   maxRot: 0
@@ -234,15 +233,15 @@ MonoBehaviour:
   gfxScaler: {fileID: 5985128076181253275}
   cc: {fileID: 5011215102624839930}
   bow: {fileID: 0}
-  walkSpeed: 8
-  runSpeed: 16
-  crouchSpeed: 3
+  walkSpeed: 10
+  runSpeed: 20
+  crouchSpeed: 4
   proneSpeed: 2
   stepSpeed: 3
-  midairSpeed: 7
-  jumpForce: 28
+  midairSpeed: 10
+  jumpForce: 30
   minMoveMagnitude: 0.1
-  drag: 0
+  drag: 0.1
   sprintKey: 304
   stepKey: 308
   crouchKey: 306
@@ -932,10 +931,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisDirection: 0
-  rotSpeed: -60
   doLimit: 1
-  minRot: -90
-  maxRot: 90
+  minRot: -45
+  maxRot: 45
   _currentRot: 0
   _currentInput: 0
 --- !u!1 &7127586550157893246
@@ -1282,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: 2289564022346153080, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2289564022346153080, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
@@ -1297,12 +1295,12 @@ PrefabInstance:
     - target: {fileID: 2289564022346153080, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2289564022346153080, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3689932455724876254, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
