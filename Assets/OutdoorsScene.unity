@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1781.9504, g: 1941.6174, b: 2852.7776, a: 1}
+  m_IndirectSpecularColor: {r: 1781.175, g: 1940.9182, b: 2852.5002, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1949,6 +1949,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 730900296}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &812013481 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6562655508372775589, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 591700589468049388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &815744897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2483,6 +2489,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 944819431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &991883002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991883004}
+  - component: {fileID: 991883003}
+  m_Layer: 9
+  m_Name: Storage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &991883003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991883002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91605b2be4eecb34287a6fb6540861e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotPrefab: {fileID: 3871080146384220329, guid: cda8268b32017dc4bb327740396b33a0,
+    type: 3}
+  capacity: 3
+--- !u!4 &991883004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991883002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1012498541}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &995475708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2698,6 +2751,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1008116699}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1012498535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4367705567882705005, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 591700589468049388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1012498541 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7819152257878368602, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 591700589468049388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1012498543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012498535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39ace1501404b44ba8fb2f3ae0373ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 812013481}
+  playerInv: {fileID: 991883003}
+  collectRange: 4
 --- !u!1 &1032642159
 GameObject:
   m_ObjectHideFlags: 0
@@ -6088,8 +6168,16 @@ PrefabInstance:
       objectReference: {fileID: 485441807}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7819152257878368602, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 991883004}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4367705567882705005, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1012498543}
   m_SourcePrefab: {fileID: 100100000, guid: 92fdc7f0a246a494aa89ed2a30cecdb6, type: 3}
 --- !u!1001 &931787330539056438
 PrefabInstance:

@@ -177,3 +177,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: b45eddb7a48c794458c205fb115c190c, type: 2}
+  _stack: 1

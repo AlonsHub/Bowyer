@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ecef17a5c557449a3ee76ef9f2a81f, type: 3}
   m_Name: Black Cube
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 2576039009494548298, guid: b26c368999c262f4c8563ace8685e7e4,
+  _type: 0
+  _name: Black Cube
+  _id: bc00
+  _itemPrefab: {fileID: 2576039009494548298, guid: b26c368999c262f4c8563ace8685e7e4,
     type: 3}
+  _icon: {fileID: 0}
+  _isStackable: 0
+  _stackMax: 5
