@@ -19,4 +19,4 @@ MonoBehaviour:
     type: 3}
   _icon: {fileID: 0}
   _isStackable: 0
-  _stackMax: 5
+  _stackMax: 3

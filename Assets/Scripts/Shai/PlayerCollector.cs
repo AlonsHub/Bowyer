@@ -7,7 +7,7 @@ public class PlayerCollector : MonoBehaviour
     [SerializeField] private Transform mainCam;
     [SerializeField] private BaseInventory playerInv;
     [SerializeField] private float collectRange;
-    private ItemHolderData item;
+    private ItemHolderData tmpItemHolder;
 
     private void Update()
     {
@@ -21,18 +21,22 @@ public class PlayerCollector : MonoBehaviour
     {
         if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, collectRange))
         {
-            if (hit.transform.TryGetComponent(out item))
+            if (hit.transform.TryGetComponent(out tmpItemHolder))
             {
-                int remainingItems = playerInv.AddItem(item);
-                if (remainingItems < item.Stack)//checks if items were collected from the holder
+                int remainingItems = playerInv.AddItem(tmpItemHolder);
+                if (remainingItems < tmpItemHolder.Stack)//checks if items were collected from the holder
                 {
-                    int subItems = item.Stack - remainingItems;//number of items that were collected from holder
-                    Debug.Log(subItems.ToString() + " " + item.gameObject + " collected");
-                    item.RemoveAmount(subItems);
-                    if (item.Stack <= 0)//if collected holder stack reaches 0, destroy holder
+                    int subItems = tmpItemHolder.Stack - remainingItems;//number of items that were collected from holder
+                    Debug.Log(subItems.ToString() + " " + tmpItemHolder.gameObject + " collected");
+                    tmpItemHolder.RemoveAmount(subItems);
+                    if (tmpItemHolder.Stack <= 0)//if collected holder stack reaches 0, destroy holder
                     {
-                        Destroy(item.gameObject);
+                        Destroy(tmpItemHolder.gameObject);
                     }
+                }
+                else
+                {
+                    Debug.Log("Can't collect " + tmpItemHolder.gameObject);
                 }
             }
         }
