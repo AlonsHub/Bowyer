@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseInventory : MonoBehaviour
 {
+    public List<InventorySlot> slots;
+    public UnityEvent OnInventoryChanged;
     [SerializeField] private GameObject slotPrefab;
+    [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private int capacity;
-    private List<InventorySlot> slots;
+
+
 
 
 
@@ -15,7 +20,7 @@ public class BaseInventory : MonoBehaviour
         slots = new List<InventorySlot>();
         for (int i = 0; i < capacity; i++)
         {
-            GameObject slotGO = Instantiate(slotPrefab, transform);
+            GameObject slotGO = Instantiate(slotPrefab, inventoryUI.slotGrid);
             InventorySlot newSlot = null;
             if (slotGO.TryGetComponent<InventorySlot>(out newSlot))
             {
@@ -28,11 +33,12 @@ public class BaseInventory : MonoBehaviour
     {
         int itemsNum = item.Stack;
         InventorySlot slot = GetAvailableSlot(item);
-        while (itemsNum > 0 && slot != null)
+        while (itemsNum > 0 && slot != null)//keep adding items until stack reaches 0
         {
             itemsNum = slot.AddItem(item);
             slot = GetAvailableSlot(item);
         }
+        OnInventoryChanged.Invoke();
         return itemsNum;
     }
 
@@ -41,7 +47,10 @@ public class BaseInventory : MonoBehaviour
         //try to find a slot with the same item
         foreach (var slot in slots)
         {
-            if (slot.Item.ReturnItemSO() != null && slot.Item.ReturnItemSO().ID == item.ReturnItemSO().ID && slot.Item.ReturnItemSO().StackMax > slot.Item.Stack)
+            if (slot.Item.ReturnItemSO() != null 
+                && slot.Item.ReturnItemSO().ID == item.ReturnItemSO().ID 
+                && slot.Item.ReturnItemSO().StackMax > slot.Item.Stack 
+                && slot.Item.ReturnItemSO().IsStackable)
             {
                 return slot;
             }

@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class InventorySlot : MonoBehaviour
 {
-    [SerializeField] private ItemHolderData item;
+    [SerializeField] private ItemHolderData _item;
+    [SerializeField] private InventorySlotUI _ui;
+    public ItemHolderData Item { get { return _item; } }
 
-    public ItemHolderData Item { get { return item; } }
 
 
     /// <summary>
@@ -16,15 +17,15 @@ public class InventorySlot : MonoBehaviour
     public int AddItem(ItemHolderData _item)
     {
         int leftOver = 0;
-        if (item.ReturnItemSO() == null)
+        if (this._item.ReturnItemSO() == null)
         {
-            item.AssignItemSO(_item.ReturnItemSO());
-            item.AddAmount(_item.Stack);
+            this._item.AssignItemSO(_item.ReturnItemSO());
+            this._item.AddAmount(_item.Stack);
             Debug.Log("new " + _item.Stack.ToString() + _item.ReturnItemSO().Name + " added to slot");
         }
-        else if (item.ReturnItemSO().ID == _item.ReturnItemSO().ID)
+        else if (this._item.ReturnItemSO().ID == _item.ReturnItemSO().ID)
         {
-            leftOver = item.AddAmount(_item.Stack);
+            leftOver = this._item.AddAmount(_item.Stack);
             Debug.Log(_item.Stack.ToString() + _item.ReturnItemSO().Name + " added to slot");
         }
         else
@@ -38,8 +39,8 @@ public class InventorySlot : MonoBehaviour
 
     public ItemHolderData RemoveItem()
     {
-        ItemHolderData tmpItem = item;
-        item = null;
+        ItemHolderData tmpItem = _item;
+        _item.RemoveAmount(_item.Stack);
         return tmpItem;
     }
 
@@ -50,22 +51,36 @@ public class InventorySlot : MonoBehaviour
     /// </summary>
     public void TransferItem(InventorySlot slot)
     {
-        if (item.ReturnItemSO().ID == slot.Item.ReturnItemSO().ID)
+        if (_item.ReturnItemSO().ID == slot.Item.ReturnItemSO().ID)
         {
-            int leftOver = slot.AddItem(item);
-            item.RemoveAmount(item.Stack);
-            item.AddAmount(leftOver);
-            if (item.Stack == 0)
+            int leftOver = slot.AddItem(_item);
+            _item.RemoveAmount(_item.Stack);
+            _item.AddAmount(leftOver);
+            if (_item.Stack == 0)
             {
                 //Destroy(item);
-                item = null;
+                _item = null;
             }
         }
         else //not sure about this part (switch part)
         {
-            ItemHolderData tmpItem = item;
+            ItemHolderData tmpItem = _item;
 
         }
 
     }
+
+    public void UpdateUI()
+    {
+        if (Item.ReturnItemSO() != null)
+        {
+            _ui.SetItemIcon(_item.ReturnItemSO().Icon);
+            _ui.SetStackText(_item.ReturnItemSO().IsStackable, _item.Stack, _item.ReturnItemSO().StackMax);
+        }
+        else
+        {
+            _ui.SetItemIcon(null);
+        }
+    }
+
 }

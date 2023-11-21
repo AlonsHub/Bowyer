@@ -59,11 +59,20 @@ public class ItemHolderData : MonoBehaviour
             _stack -= amountToremove;
         }
 
+        if (_stack == 0)
+        {
+            itemSO = null;
+        }
+
         return removedAmount;
     }
 
     public void SetStack(int newStack)
     {
         _stack = newStack;
+        if (_stack == 0)
+        {
+            itemSO = null;
+        }
     }
 }
