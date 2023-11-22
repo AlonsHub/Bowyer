@@ -15,7 +15,8 @@ MonoBehaviour:
   _type: 0
   _name: Green Cube
   _id: gc00
-  _itemPrefab: {fileID: 0}
+  _itemPrefab: {fileID: 2576039009494548298, guid: 4a1001e4d03c73744bc608a75752d9ce,
+    type: 3}
   _icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   _isStackable: 1
   _stackMax: 2

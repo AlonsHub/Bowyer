@@ -26,17 +26,17 @@ public class CursorFollowIcon : MonoBehaviour
         transform.position = Input.mousePosition + offSet;
     }
 
-    public void SetDisplay(ItemHolderData item)
+    public void SetDisplay(InventorySlotUI slotUI)
     {
-        if (item.ReturnItemSO() != null)
+        if (slotUI != null)
         {
             icon.gameObject.SetActive(true);
 
-            icon.sprite = item.ReturnItemSO().Icon;
-            if (item.ReturnItemSO().IsStackable)
+            icon.sprite = slotUI.Slot.Item.ReturnItemSO().Icon;
+            if (slotUI.Slot.Item.ReturnItemSO().IsStackable)
             {
                 amountTxt.gameObject.SetActive(true);
-                amountTxt.text = item.Stack.ToString();
+                amountTxt.text = slotUI.Slot.Item.Stack.ToString();
             }
             else
             {
