@@ -10,6 +10,8 @@ public class HeadBobber : MonoBehaviour
     Vector2 amplitudes;
     [SerializeField]
     float smooth;
+    [SerializeField]
+    float returnSmooth;
 
     Vector3 _startPos;
 
@@ -41,7 +43,7 @@ public class HeadBobber : MonoBehaviour
         if (transform.localPosition == _startPos) 
             return;
 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, _startPos, Time.deltaTime);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, _startPos, returnSmooth * Time.deltaTime);
 
     }
 

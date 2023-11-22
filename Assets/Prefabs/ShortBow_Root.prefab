@@ -138,6 +138,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   _cancleShotSpeed: 150
   disablingMoveTypes: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!95 &3419098155271582685
 Animator:
   serializedVersion: 5
