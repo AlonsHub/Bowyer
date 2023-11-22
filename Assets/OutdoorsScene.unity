@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1781.0793, g: 1940.7659, b: 2852.3909, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5982,28 +5982,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2015680302}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2104849258 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 314902237639369073, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-    type: 3}
-  m_PrefabInstance: {fileID: 591700589468049388}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2104849263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104849258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7cd87ca0702d9f489b50f429cadc44d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  freq: 10
-  amplitudes: {x: 0.01, y: 0.02}
-  smooth: 10
-  returnSmooth: 10
 --- !u!1001 &591700589468049388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6012,10 +5990,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3114638169427995706, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    - target: {fileID: 1391072009813001822, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
-      propertyPath: layerMask.m_Bits
+      propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304817502373424313, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304817502373424313, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: amplitudes.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304817502373424313, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: amplitudes.y
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 4367705567882705005, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
@@ -6077,19 +6070,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8437651416670180977, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 314902237639369073, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2104849263}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92fdc7f0a246a494aa89ed2a30cecdb6, type: 3}
 --- !u!1001 &931787330539056438
 PrefabInstance:

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8873416478435123386}
   - component: {fileID: 4623309992848324853}
   - component: {fileID: 3237240897973007526}
+  - component: {fileID: 4304817502373424313}
   m_Layer: 9
   m_Name: BowCam
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8927867676750391360}
+  m_Father: {fileID: 1987671452699511334}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8873416478435123386
@@ -222,6 +223,22 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &4304817502373424313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314902237639369073}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7cd87ca0702d9f489b50f429cadc44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freq: 10
+  amplitudes: {x: 0.01, y: 0.02}
+  smooth: 10
+  returnSmooth: 10
 --- !u!1 &1810177941065260152
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +825,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8927867676750391360}
+  m_Father: {fileID: 1987671452699511334}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2063046733241882488
@@ -1133,8 +1150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6562655508372775589}
-  - {fileID: 7541185494240420877}
+  - {fileID: 1987671452699511334}
   - {fileID: 8484596622789685988}
   - {fileID: 2144912019633624495}
   - {fileID: 1541282362867292059}
@@ -1159,6 +1175,56 @@ MonoBehaviour:
   maxRot: 45
   _currentRot: 0
   _currentInput: 0
+--- !u!1 &7060502873252950652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1987671452699511334}
+  - component: {fileID: 1391072009813001822}
+  m_Layer: 9
+  m_Name: Cameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1987671452699511334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7060502873252950652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6562655508372775589}
+  - {fileID: 7541185494240420877}
+  m_Father: {fileID: 8927867676750391360}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1391072009813001822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7060502873252950652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7cd87ca0702d9f489b50f429cadc44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freq: 10
+  amplitudes: {x: 0.2, y: 0.4}
+  smooth: 10
+  returnSmooth: 1
 --- !u!1 &7127586550157893246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1382,11 @@ PrefabInstance:
       propertyPath: pc
       value: 
       objectReference: {fileID: 4096420977489433102}
+    - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
         type: 3}
       propertyPath: _bowStats.armStats.maxTension
@@ -1530,6 +1601,11 @@ PrefabInstance:
       propertyPath: pc
       value: 
       objectReference: {fileID: 4096420977489433102}
+    - target: {fileID: 3689932455724876254, guid: 6a10e247403244e408299201c1d6d893,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7847607129272498496, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
       propertyPath: m_RootOrder
