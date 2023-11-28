@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 324462d010532a84b9592f42d4b51f91
+guid: 10b37188de0aaf5488066538c04b73ca
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -12,7 +12,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 1
+    resampleCurves: 0
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
@@ -77,7 +77,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - 989f9c9f98d3f764c892c42abe2244fc
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
