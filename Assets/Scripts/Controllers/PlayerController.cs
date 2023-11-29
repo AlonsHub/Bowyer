@@ -84,26 +84,19 @@ public class PlayerController : MonoBehaviour
         {
             case MoveType.Run:
                 return walkSpeed;
-                break;
             case MoveType.Sprint:
                 return runSpeed;
-                break;
             case MoveType.Step:
                 return stepSpeed;
-                break;
                 case MoveType.MidAir:
                 return midairSpeed;
-                break;
             case MoveType.Crouch:
                 return crouchSpeed;
-                break;
                 case MoveType.Prone: 
                 return proneSpeed;
-                break;
 
             default:
                 return 0f;
-                break;
         }
     }
 

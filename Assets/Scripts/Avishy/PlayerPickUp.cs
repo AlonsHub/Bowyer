@@ -40,8 +40,7 @@ public class PlayerPickUp : MonoBehaviour
                 {
                     if (hit.transform.TryGetComponent(out pickableItem))
                     {
-                        pickableItem.PlaySound();
-                        Destroy(pickableItem.ReturnConnectedGO());
+                        pickableItem.DestroyItem();
                     }
                 }
             }

@@ -13,10 +13,17 @@ public class FMODEvents : MonoBehaviour
     //if you have public get and private set then it doesn't show in inspector unless you add the "field:" syntax
     [field: Header("Pickup SFX")]
     [field: SerializeField] public EventReference itemCollected { get; private set; }
+    [field: SerializeField] public EventReference itemIdle { get; private set; }
 
     [field: Header("Player SFX")]
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
     [field: SerializeField] public EventReference playerFootstepsSprint { get; private set; }
+
+    [field: Header("Ambient")]
+    [field: SerializeField] public EventReference monsterHunterAmbience { get; private set; }
+    
+    [field: Header("Music")]
+    [field: SerializeField] public EventReference worldMusic { get; private set; }
 
     private void Awake()
     {

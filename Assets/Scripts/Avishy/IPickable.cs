@@ -6,6 +6,6 @@ public interface IPickable
 {
     abstract void PickUp(Transform pickUpPoint);
     abstract void Drop();
-    abstract GameObject ReturnConnectedGO();
+    abstract void DestroyItem();
     abstract void PlaySound();
 }

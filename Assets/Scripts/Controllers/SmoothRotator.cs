@@ -13,13 +13,10 @@ public class SmoothRotator : MonoBehaviour
         {
             case AxisDirection.X:
                 return "Mouse Y";
-                break;
             case AxisDirection.Y:
                 return "Mouse X";
-                break;
             case AxisDirection.Z:
                 return "The Fuck?";
-                break;
             default:
                 break;
         }
