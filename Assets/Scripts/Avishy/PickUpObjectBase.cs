@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class PickUpObjectBase :MonoBehaviour, IPickable
 {
@@ -32,4 +33,13 @@ public class PickUpObjectBase :MonoBehaviour, IPickable
         }
     }
 
+    public GameObject ReturnConnectedGO()
+    {
+        return gameObject;
+    }
+
+    public void PlaySound()
+    {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.itemCollected, transform.position);
+    }
 }

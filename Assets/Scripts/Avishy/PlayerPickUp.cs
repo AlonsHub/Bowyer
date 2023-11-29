@@ -31,5 +31,20 @@ public class PlayerPickUp : MonoBehaviour
                 pickableItem = null;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if(pickableItem == null)
+            {
+                if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, pickUpDistance, pickUpLayer))
+                {
+                    if (hit.transform.TryGetComponent(out pickableItem))
+                    {
+                        pickableItem.PlaySound();
+                        Destroy(pickableItem.ReturnConnectedGO());
+                    }
+                }
+            }
+        }
     }
 }

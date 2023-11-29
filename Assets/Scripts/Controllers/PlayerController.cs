@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +64,20 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 GetVelocity => cc.velocity;
 
-public MoveType CurrentMoveType;
+    //EventInstance allows us to start and stop events of sound as needed.
+    //requires using FMOD.Studio;
+
+    private EventInstance playerFootsteps;
+    private EventInstance playerFootstepsSprint;
+
+    private void Start()
+    {
+        //Creating the instances here in order to allow us full control of when the sound will activate and stop.
+        playerFootsteps = AudioManager.Instance.CreateEventIsntace(FMODEvents.Instance.playerFootsteps);
+        playerFootstepsSprint = AudioManager.Instance.CreateEventIsntace(FMODEvents.Instance.playerFootstepsSprint);
+    }
+
+    public MoveType CurrentMoveType;
     float _currentSpeed()
     {
         switch (CurrentMoveType)
@@ -153,6 +167,10 @@ public MoveType CurrentMoveType;
         //_inputVector *= Time.deltaTime;
         Move();
 
+
+
+        UpdateSound();
+
     }
 
     void Move()
@@ -202,5 +220,49 @@ public MoveType CurrentMoveType;
     void Jump()
     {
         _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
+    }
+
+    private void UpdateSound()
+    {
+        Vector3 _moveVector = _inputVector + _currentJumpForce;
+        if (_moveVector.magnitude > minMoveMagnitude && cc.isGrounded)
+        {
+            //PLAYBACK_STATE returns the state that the sound is currently in.
+            //the options are PLAYING, SUSTAINING, STOPPED, STARTING, STOPPING
+
+            PLAYBACK_STATE playbackState;
+
+            if(CurrentMoveType == MoveType.Sprint)
+            {
+                playerFootsteps.stop(STOP_MODE.IMMEDIATE);
+
+                //This is how we get the PLAYBACK_STATE
+                playerFootstepsSprint.getPlaybackState(out playbackState);
+
+                //This is how we check what the PLAYBACK_STATE is
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    playerFootstepsSprint.start();
+                }
+            }
+            else
+            {
+                playerFootstepsSprint.stop(STOP_MODE.IMMEDIATE);
+
+                playerFootsteps.getPlaybackState(out playbackState);
+
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    playerFootsteps.start();
+                }
+            }
+        }
+        else
+        {
+            //When we stop we can eitehr stop with allowing Fadeout for the sound
+            //Or we can stop immediately 
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            playerFootstepsSprint.stop(STOP_MODE.ALLOWFADEOUT);
+        }
     }
 }
