@@ -22,7 +22,7 @@ public class HeadBobber : MonoBehaviour
 
     private void Update()
     {
-        if(new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")).magnitude > 0)
+        if(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).magnitude > 0)
         {
             AddHeadBob();
         }
