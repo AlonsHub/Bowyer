@@ -111,7 +111,7 @@ MonoBehaviour:
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
   antialiasing: 0
   SMAAQuality: 2
@@ -437,7 +437,7 @@ Transform:
   - {fileID: 5985128076181253275}
   - {fileID: 8927867676750391360}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6086265734952772892
 MonoBehaviour:
@@ -1377,6 +1377,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bow_Root
       objectReference: {fileID: 0}
+    - target: {fileID: 663286960423985383, guid: eb002b9416f72904eaf4f85e9d5c5e31,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3689932455724876254, guid: eb002b9416f72904eaf4f85e9d5c5e31,
         type: 3}
       propertyPath: pc
@@ -1570,6 +1575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShortBow_Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 663286960423985383, guid: 6a10e247403244e408299201c1d6d893,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2289564022346153080, guid: 6a10e247403244e408299201c1d6d893,
         type: 3}
