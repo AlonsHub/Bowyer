@@ -216,32 +216,24 @@ BlendTree:
     m_DirectBlendParameter: shit
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 08ed5200041974e419f5ba9db57fb1c7, type: 2}
-    m_Threshold: 0.2
-    m_Position: {x: 0, y: 0.5}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: shit
-    m_Mirror: 0
-  - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 5e7f0704a4119104fa8b1f9a6b53e7f1, type: 2}
-    m_Threshold: 0.4
-    m_Position: {x: 0, y: 1}
+    m_Threshold: 0.25
+    m_Position: {x: 0, y: 0.6}
     m_TimeScale: 0.6
     m_CycleOffset: 0
     m_DirectBlendParameter: shit
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 5e7f0704a4119104fa8b1f9a6b53e7f1, type: 2}
-    m_Threshold: 0.6
-    m_Position: {x: 0, y: 2}
+    m_Threshold: 0.5
+    m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: shit
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 98a4dc5ccf8315f41b6cedbee001957f, type: 2}
-    m_Threshold: 0.8
+    m_Threshold: 0.75
     m_Position: {x: 0, y: -2}
     m_TimeScale: 1
     m_CycleOffset: 0

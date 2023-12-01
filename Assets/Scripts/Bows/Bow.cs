@@ -227,7 +227,7 @@ public class Bow : MonoBehaviour
             Vector3 noFallVel = pc.GetVelocity;
             noFallVel.y = 0;
             float current = anim.GetFloat("MoveSpeed");
-            float smoothed = Mathf.Lerp(current, noFallVel.magnitude / 10f, .04f);
+            float smoothed = Mathf.Lerp(current, noFallVel.magnitude / 5f, .05f);
             anim.SetFloat("MoveSpeed", smoothed);
         }
         else
@@ -236,12 +236,12 @@ public class Bow : MonoBehaviour
             float current = anim.GetFloat("MoveSpeed");
             if (pc.GetVelocity.y > 0)
             {
-                float smoothed = Mathf.Lerp(current, -1, .04f);
+                float smoothed = Mathf.Lerp(current, -1, .08f);
                 anim.SetFloat("MoveSpeed", smoothed);
             }
             else
             {
-                float smoothed = Mathf.Lerp(current, -2, .02f);
+                float smoothed = Mathf.Lerp(current, -2, .04f);
                 anim.SetFloat("MoveSpeed", smoothed);
             }
         }
