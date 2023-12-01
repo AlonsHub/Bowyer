@@ -203,4 +203,6 @@ public MoveType CurrentMoveType;
     {
         _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
     }
+
+    public bool IsGrounded => cc.isGrounded;
 }

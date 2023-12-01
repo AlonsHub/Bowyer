@@ -222,9 +222,29 @@ public class Bow : MonoBehaviour
 
     private void MovementAnimation()
     {
-        Vector3 noFallVel = pc.GetVelocity;
-        noFallVel.y = 0;
-            anim.SetFloat("MoveSpeed", noFallVel.magnitude/10f);
+        if (pc.IsGrounded)
+        {
+            Vector3 noFallVel = pc.GetVelocity;
+            noFallVel.y = 0;
+            float current = anim.GetFloat("MoveSpeed");
+            float smoothed = Mathf.Lerp(current, noFallVel.magnitude / 10f, .03f);
+            anim.SetFloat("MoveSpeed", smoothed);
+        }
+        else
+        {
+            //anim set fall speed?
+            float current = anim.GetFloat("MoveSpeed");
+            if (pc.GetVelocity.y > 0)
+            {
+                float smoothed = Mathf.Lerp(current, -1, .04f);
+                anim.SetFloat("MoveSpeed", smoothed);
+            }
+            else
+            {
+                float smoothed = Mathf.Lerp(current, -2, .02f);
+                anim.SetFloat("MoveSpeed", smoothed);
+            }
+        }
         //else
         //    anim.SetTrigger("Aim");
 
