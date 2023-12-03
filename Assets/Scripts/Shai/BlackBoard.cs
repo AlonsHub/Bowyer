@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BlackBoard : MonoBehaviour
 {
-    [SerializeField] private PlayerItemManager itemManager;
+    [SerializeField] private PlayerInventoryManager itemManager;
 
 
-    public PlayerItemManager ItemManager { get { return itemManager; } }
+    public PlayerInventoryManager ItemManager { get { return itemManager; } }
 
 
 

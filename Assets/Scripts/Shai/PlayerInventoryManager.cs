@@ -2,11 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerItemManager : MonoBehaviour
+public class PlayerInventoryManager : MonoBehaviour
 {
     [SerializeField] private Transform itemDropPos;
     [SerializeField] private CursorFollowIcon cursorFollowIcon;
+    [SerializeField] private GameObject playerInventoryUI;
+    [SerializeField] private List<SmoothRotator> playerRotators;
+    
     private InventorySlotUI currentSlot;
+    private bool isActive;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            isActive = !isActive;
+            playerInventoryUI.SetActive(!playerInventoryUI.activeSelf);
+            Cursor.lockState = playerInventoryUI.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+            foreach (var rotator in playerRotators)
+            {
+                rotator.enabled = !rotator.enabled;
+            }
+
+            if (!isActive)//reset slots
+            {
+                ClearCurrentSlot();
+            }
+
+        }
+    }
 
 
     public void RecieveSlot(InventorySlotUI slotUI)
@@ -37,7 +61,7 @@ public class PlayerItemManager : MonoBehaviour
 
     private void ClearCurrentSlot()
     {
-        currentSlot.ToggleGreyMask(false);
+        currentSlot?.ToggleGreyMask(false);
         currentSlot = null;
         UpdateCursorIcon();
     }
@@ -90,7 +114,7 @@ public class PlayerItemManager : MonoBehaviour
 
     public void DropItem()
     {
-        GameObject droppedItemGO = Instantiate(currentSlot.Slot.Item.ReturnItemSO().ItemPrefab);
+        GameObject droppedItemGO = Instantiate(currentSlot.Slot.Item.ReturnItemSO().ItemPrefab, itemDropPos.position, itemDropPos.rotation);
         ItemHolderData itemData;
         droppedItemGO.TryGetComponent<ItemHolderData>(out itemData);
 

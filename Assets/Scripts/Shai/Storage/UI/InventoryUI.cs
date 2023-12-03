@@ -15,9 +15,11 @@ public class InventoryUI : MonoBehaviour
 
     private void OnEnable()
     {
+        RefreshInventoryUI();
     }
 
-    private void RefreshInventoryUI()
+    [ContextMenu("Refresh")]
+    public void RefreshInventoryUI()
     {
         foreach (var slot in inventory.slots)
         {

@@ -17,6 +17,6 @@ MonoBehaviour:
   _id: bluc00
   _itemPrefab: {fileID: 4286266839220331429, guid: a0154c2265b7ebc43b25b5a2b8564d2c,
     type: 3}
-  _icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  _icon: {fileID: 21300000, guid: c7789ac141ed8a748bcff2b20039daf2, type: 3}
   _isStackable: 1
   _stackMax: 6

@@ -7,6 +7,9 @@ public class ItemDropZone : MonoBehaviour, IPointerDownHandler
 {
     public void OnPointerDown(PointerEventData eventData)
     {
-        BlackBoard.Instance.ItemManager.RecieveSlot(null);
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            BlackBoard.Instance.ItemManager.RecieveSlot(null);
+        }
     }
 }

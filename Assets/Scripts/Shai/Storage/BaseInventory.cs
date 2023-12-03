@@ -6,10 +6,12 @@ using UnityEngine.Events;
 public class BaseInventory : MonoBehaviour
 {
     public List<InventorySlot> slots;
-    public UnityEvent OnInventoryChanged;
+    [HideInInspector] public UnityEvent OnInventoryChanged;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private int capacity;
+
+    //should add type of mask of containable item types
 
 
 

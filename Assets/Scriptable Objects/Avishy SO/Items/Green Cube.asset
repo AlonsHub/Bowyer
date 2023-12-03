@@ -17,6 +17,6 @@ MonoBehaviour:
   _id: gc00
   _itemPrefab: {fileID: 2576039009494548298, guid: 4a1001e4d03c73744bc608a75752d9ce,
     type: 3}
-  _icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _icon: {fileID: 21300000, guid: 5dc4152a2f954e344a2e23974a35ca63, type: 3}
   _isStackable: 1
   _stackMax: 2

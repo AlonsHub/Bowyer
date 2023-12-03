@@ -11,13 +11,17 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Image greyMask;
     [SerializeField] private TMP_Text stackNumTxt;
     [SerializeField] private InventorySlot slot;
+    [SerializeField] private bool isInteractable;
 
     public Sprite ItemIcon { get { return itemIcon.sprite; } }
     public InventorySlot Slot { get { return slot; } }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        BlackBoard.Instance.ItemManager.RecieveSlot(this);
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isInteractable)
+        {
+            BlackBoard.Instance.ItemManager.RecieveSlot(this);
+        }
     }
 
    

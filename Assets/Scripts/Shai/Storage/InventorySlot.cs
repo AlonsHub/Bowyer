@@ -11,6 +11,11 @@ public class InventorySlot : MonoBehaviour
 
 
 
+    private void OnEnable()
+    {
+        UpdateUI();
+    }
+
     /// <summary>
     /// Add item to slot, return amount of an item that cant be added to the slot
     /// </summary>
