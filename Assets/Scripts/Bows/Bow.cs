@@ -56,6 +56,9 @@ public class Bow : MonoBehaviour
    
     Camera _cam; //TEMP AND BAD!
 
+    [SerializeField]
+    LayerMask layerMask;
+
     MoveType _currentMoveAnimation;
     private void Awake()
     {
@@ -219,9 +222,29 @@ public class Bow : MonoBehaviour
 
     private void MovementAnimation()
     {
-        Vector3 noFallVel = pc.GetVelocity;
-        noFallVel.y = 0;
-            anim.SetFloat("MoveSpeed", noFallVel.magnitude/10f);
+        if (pc.IsGrounded)
+        {
+            Vector3 noFallVel = pc.GetVelocity;
+            noFallVel.y = 0;
+            float current = anim.GetFloat("MoveSpeed");
+            float smoothed = Mathf.Lerp(current, noFallVel.magnitude / 5f, .05f);
+            anim.SetFloat("MoveSpeed", smoothed);
+        }
+        else
+        {
+            //anim set fall speed?
+            float current = anim.GetFloat("MoveSpeed");
+            if (pc.GetVelocity.y > 0)
+            {
+                float smoothed = Mathf.Lerp(current, -1, .08f);
+                anim.SetFloat("MoveSpeed", smoothed);
+            }
+            else
+            {
+                float smoothed = Mathf.Lerp(current, -2, .04f);
+                anim.SetFloat("MoveSpeed", smoothed);
+            }
+        }
         //else
         //    anim.SetTrigger("Aim");
 
@@ -282,7 +305,7 @@ public class Bow : MonoBehaviour
             _currentPull += TEMP_perfectShotBonus;
             //perfect shot sound and vfx
         }
-
+        _loadedArrow.transform.GetChild(0).gameObject.layer= layerMask; //temp quick layer fix for cameras
         _loadedArrow.transform.SetParent(null);
         _loadedArrow.GetComponent<Arrow>().ForceMe(arrowNotchTransform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;

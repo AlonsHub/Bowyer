@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private float drag;
 
     Vector3 _currentJumpForce;
+    //Vector3 _jumpTime;
 
     float _originalHeight = 4.635122f;
 
@@ -113,7 +114,7 @@ public MoveType CurrentMoveType;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    
+    float _jumpTime;
     void Update()
     {
         _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
@@ -126,8 +127,21 @@ public MoveType CurrentMoveType;
         //temp!
         _inputVector *= _currentSpeed();
 
+        //jump should be timed better, perhaps using a "regular/normalized jump time" will permit the use of an acceleration curve
+
         if (!cc.isGrounded)
-            _currentJumpForce += Physics.gravity *Time.deltaTime; //This will decay the jump force correctly + it will become negative after peeking, adding to the fall
+        {
+            if (cc.velocity.y > 0f)
+            {
+                _currentJumpForce += Physics.gravity * _jumpTime * Time.deltaTime; 
+            }
+            else
+            {
+                _currentJumpForce += Physics.gravity * _jumpTime * Time.deltaTime;
+            }
+
+            _jumpTime += Time.deltaTime * 10;
+        }
         else
         {
             _currentJumpForce = Vector3.zero;
@@ -145,51 +159,59 @@ public MoveType CurrentMoveType;
 
     void Move()
     {
+        //if(cc.isGrounded)
+        //cc.Move(Physics.gravity * Time.deltaTime);
         Vector3 _moveVector = _inputVector + _currentJumpForce;
         if (_moveVector.magnitude > minMoveMagnitude)
-            cc.Move((_moveVector + Physics.gravity) * Time.deltaTime);
+            cc.Move((_moveVector+Physics.gravity) * Time.deltaTime);
     }
 
     void HandleMoveStates()
     {
         if (!cc.isGrounded)
-        {   
+        {
             CurrentMoveType = MoveType.MidAir;
-        }
-        else if (Input.GetKey(sprintKey))
-        {
-            CurrentMoveType = MoveType.Sprint;
-        }
-        else if (Input.GetKey(stepKey))
-        {
-            CurrentMoveType = MoveType.Step;
-        }
-        else if (Input.GetKey(crouchKey))
-        {
-            CurrentMoveType = MoveType.Crouch;
-            cc.height = _originalHeight * crouchYValue;
-        }
-        else if (Input.GetKey(proneKey))
-        {
-            CurrentMoveType = MoveType.Prone;
-
-            cc.height = _originalHeight * proneYValue;
         }
         else
         {
-            cc.height = _originalHeight;
-            CurrentMoveType = MoveType.Run;
+            //fix below line with a contains check on a list of disabling movestates
+            if (Input.GetKey(sprintKey) && CurrentMoveType != MoveType.Step && CurrentMoveType != MoveType.Crouch && CurrentMoveType != MoveType.Prone)
+            {
+                CurrentMoveType = MoveType.Sprint;
+            }
+            else if (Input.GetKey(stepKey))
+            {
+                CurrentMoveType = MoveType.Step;
+            }
+            else if (Input.GetKey(crouchKey))
+            {
+                CurrentMoveType = MoveType.Crouch;
+                cc.height = _originalHeight * crouchYValue;
+            }
+            else if (Input.GetKey(proneKey))
+            {
+                CurrentMoveType = MoveType.Prone;
+
+                cc.height = _originalHeight * proneYValue;
+            }
+            else
+            {
+                cc.height = _originalHeight;
+                CurrentMoveType = MoveType.Run;
+            }
         }
 
-        if (Input.GetKeyUp(crouchKey))
+        if (Input.GetKeyUp(crouchKey)) //this may be a problem
         {
-     
             cc.height = _originalHeight;
         }
     }
 
     void Jump()
     {
-        _currentJumpForce = Vector3.up * jumpForce + cc.velocity/5f;
+        _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
+        _jumpTime = 0f;
     }
+
+    public bool IsGrounded => cc.isGrounded;
 }

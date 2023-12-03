@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
+  - enabled: 1
+    path: Assets/Scenes/TargetTrainningCourse.unity
+    guid: 10a8c0187c7d44c4e94b133f3a257009
+  - enabled: 1
+    path: Assets/Scenes/TargetTrainningCourse 1.unity
+    guid: 6f18fdb420e884147b55e1d75b14b5df
+  - enabled: 1
+    path: Assets/Scenes/TargetTrainningCourse 2.unity
+    guid: 36ebacd1d1ba71041aafc9e196bd9493
   m_configObjects: {}

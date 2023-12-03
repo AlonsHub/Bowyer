@@ -7,8 +7,9 @@ public class Arrow : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
     [SerializeField]
-    Collider collider;
-
+    Collider myCollider;
+    [SerializeField]
+    Animator anim;
     [SerializeField]
     private float arrowStickInAmount;
     [SerializeField]
@@ -25,10 +26,13 @@ public class Arrow : MonoBehaviour
     private void Awake()
     {
         rb.isKinematic = true;
+        if (!anim)
+            anim = GetComponent<Animator>();
     }
 
     public void ForceMe(Vector3 force)
     {
+        anim.SetTrigger("Fly");
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
 
@@ -51,6 +55,9 @@ public class Arrow : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Sticky"))
         {
+
+            anim.SetTrigger("Stick");
+
             _hasHit = true;
             //gfx.Translate(Vector3.forward* arrowStickInAmount);
             _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
@@ -97,7 +104,7 @@ public class Arrow : MonoBehaviour
     IEnumerator LateStop()
     {
         yield return new WaitForSeconds(.02f);
-        collider.enabled = false;
+        myCollider.enabled = false;
         Destroy(vtc);
 
         //this.enabled = false;
