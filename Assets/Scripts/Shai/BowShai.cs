@@ -269,6 +269,11 @@ public class BowShai : MonoBehaviour
 
     public void LoadArrow(GameObject arrow)
     {
+        if (_loadedArrow != null)
+        {
+            Destroy(_loadedArrow);
+        }
+
         _currentBowState = BowState.Loaded;
         _loadedArrow = Instantiate(arrow, arrowNotchTransform);
     }
