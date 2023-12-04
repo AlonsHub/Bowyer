@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7847607129272498496
 Transform:
   m_ObjectHideFlags: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3769043569851158680}
   - {fileID: 2289564022346153080}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3689932455724876254
 MonoBehaviour:
@@ -138,6 +138,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   _cancleShotSpeed: 150
   disablingMoveTypes: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!95 &3419098155271582685
 Animator:
   serializedVersion: 5

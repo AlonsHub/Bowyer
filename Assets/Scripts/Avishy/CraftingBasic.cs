@@ -78,7 +78,7 @@ public class CraftingBasic : MonoBehaviour
             }
 
             //spawn outcome
-            Instantiate(craftingSO.outputItemSO.itemPrefab, itemSpawnPoint.position, itemSpawnPoint.transform.rotation);
+            Instantiate(craftingSO.outputItemSO.ItemPrefab, itemSpawnPoint.position, itemSpawnPoint.transform.rotation);
             // if we're in here we already know we have the items to craft the item = success craft
         }
     }
