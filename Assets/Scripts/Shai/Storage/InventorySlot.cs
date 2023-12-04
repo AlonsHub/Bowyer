@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private ItemHolderData _item;
     [SerializeField] private InventorySlotUI _ui;
     public ItemHolderData Item { get { return _item; } }
+    public bool IsEmpty { get { return _item.ReturnItemSO(); } }
 
 
 
