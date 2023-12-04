@@ -7,6 +7,31 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Basic_Common_Bow_Rig_v002_ArrowTip
+    second: {fileID: 2100000, guid: 6c188f7fb968e0e4baaf089e2ab17d79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Basic_Common_Bow_Rig_v002_Basic_Bow_Mat
+    second: {fileID: 2100000, guid: 6c188f7fb968e0e4baaf089e2ab17d79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Basic_Common_Bow_Rig_v002_aiStandardSurface2
+    second: {fileID: 2100000, guid: 6c188f7fb968e0e4baaf089e2ab17d79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Basic_Common_Bow_Rig_v002_arrow
+    second: {fileID: 2100000, guid: 6c188f7fb968e0e4baaf089e2ab17d79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 6c188f7fb968e0e4baaf089e2ab17d79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert2
     second: {fileID: 2100000, guid: 6c188f7fb968e0e4baaf089e2ab17d79, type: 2}
   materials:
