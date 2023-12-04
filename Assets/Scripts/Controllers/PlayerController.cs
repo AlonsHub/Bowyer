@@ -215,6 +215,8 @@ public class PlayerController : MonoBehaviour
         _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
     }
 
+    public bool IsGrounded => cc.isGrounded;
+
     private void UpdateSound()
     {
         Vector3 _moveVector = _inputVector + _currentJumpForce;
