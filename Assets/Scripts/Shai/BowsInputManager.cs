@@ -15,7 +15,7 @@ public class BowsInputManager : MonoBehaviour
 
     private void ArrowUiInputDetection()
     {
-        NumericalArrowChange();
+        //NumericalArrowChange(); // 
         ScrollArrowChange();
     }
 

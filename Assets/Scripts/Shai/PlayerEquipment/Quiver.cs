@@ -27,6 +27,8 @@ public class Quiver : BaseInventory
 
     public ArrowSO GetCurrentArrow()
     {
+        //check if empty first?
+
         return (ArrowSO)slots[currentArrowIndex].Item.ReturnItemSO();
     }
 

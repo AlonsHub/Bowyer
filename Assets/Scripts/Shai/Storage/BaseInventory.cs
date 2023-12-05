@@ -16,8 +16,8 @@ public class BaseInventory : MonoBehaviour
 
 
 
-
-    private void Awake()
+    [ContextMenu("Trick")]
+    public void Trick()
     {
         slots = new List<InventorySlot>();
         for (int i = 0; i < capacity; i++)
@@ -27,6 +27,41 @@ public class BaseInventory : MonoBehaviour
             if (slotGO.TryGetComponent<InventorySlot>(out newSlot))
             {
                 slots.Add(newSlot);
+            }
+        }
+    }
+
+    //capcity check and fill/remove
+    private void OnEnable()
+    {
+        CapacitySlotCheck();
+    }
+
+    private void CapacitySlotCheck()
+    {
+        if (slots.Count != capacity)
+        {
+            int delta = slots.Count - capacity;
+
+            if (delta < 0)
+            {
+                for (int i = 0; i < delta * -1; i++)
+                {
+                    GameObject slotGO = Instantiate(slotPrefab, inventoryUI.slotGrid);
+                    InventorySlot newSlot = null;
+                    if (slotGO.TryGetComponent<InventorySlot>(out newSlot))
+                    {
+                        slots.Add(newSlot);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < delta; i++)
+                {
+                    Destroy(slots[slots.Count - 1 - i].gameObject);
+                    slots.RemoveAt(slots.Count - 1 - i);
+                }
             }
         }
     }

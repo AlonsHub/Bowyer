@@ -15,10 +15,10 @@ MonoBehaviour:
   _type: 1
   _name: 
   _id: arr1
-  _itemPrefab: {fileID: 5682505232231446610, guid: 03acc5bcb7774874f9258970994f8819,
+  _itemPrefab: {fileID: 5682505232231446610, guid: f1b4476a0afb44649a85575f8740f8d2,
     type: 3}
   _icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  _isStackable: 0
+  _isStackable: 1
   _isEquipable: 0
   _isCollectible: 0
   _stackMax: 20
