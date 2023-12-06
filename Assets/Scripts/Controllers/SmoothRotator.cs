@@ -6,7 +6,7 @@ public class SmoothRotator : MonoBehaviour
 {
     //Rotator Data
     [SerializeField]
-    AxisDirection axisDirection;
+    public AxisDirection axisDirection;
     string inputAxis()
     {
         switch (axisDirection)
@@ -89,15 +89,15 @@ public class SmoothRotator : MonoBehaviour
         transform.localEulerAngles = _targetRotVector;
     }
 
-    //TEMP INPUT
-    private void Update()
-    {
-        //float rawinput = Input.GetAxis(inputAxis());
-        _currentInput = Input.GetAxis(inputAxis());
-        if (_currentInput != 0)
-        {
-           GetInput(_currentInput);
-        }
+    ////TEMP INPUT
+    //private void Update()
+    //{
+    //    //float rawinput = Input.GetAxis(inputAxis());
+    //    _currentInput = Input.GetAxis(inputAxis());
+    //    if (_currentInput != 0)
+    //    {
+    //       GetInput(_currentInput);
+    //    }
        
-    }
+    //}
 }

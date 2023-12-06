@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 enum BowState { Empty, Loaded, Pulling, CancelShot}
-public class Bow : MonoBehaviour
+public class Bow : MonoBehaviour, InputPanel
 {
+    
+    
     [SerializeField]
     PlayerController pc;
 
@@ -106,16 +108,24 @@ public class Bow : MonoBehaviour
 
         if (disablingMoveTypes.Length > 0 && disablingMoveTypes.Contains(pc.CurrentMoveType))
         {
-            if(pc.CurrentMoveType == MoveType.Sprint)
+            if (pc.CurrentMoveType == MoveType.Sprint)
             {
                 anim.SetTrigger("Run");
             }
         }
+        GrabInput();
+    }
+
+    public void GrabInput()
+    {
+        if (!IsEnabled())
+            return;
+
         //RIGHT CLICK TO ZOOM!
-        if(Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             _targetZoom = _bowStats.AimAmount;
-        }    
+        }
         else
         {
             _targetZoom = SpeedsAndSensitivities.BaseCameraFOV;
@@ -125,10 +135,10 @@ public class Bow : MonoBehaviour
         //RIGHT CLICK TO ZOOM!
 
 
-        if(Mathf.Abs(_currentZoom - _targetZoom) >= .1f)
+        if (Mathf.Abs(_currentZoom - _targetZoom) >= .1f)
         {
-            float delta = Time.deltaTime*_bowStats.ToAimTime;
-            if(_currentZoom > _targetZoom)
+            float delta = Time.deltaTime * _bowStats.ToAimTime;
+            if (_currentZoom > _targetZoom)
             {
                 delta *= -1f;
             }
@@ -140,8 +150,8 @@ public class Bow : MonoBehaviour
             case BowState.Empty:
                 //if (Input.GetKeyDown(loadArrowKey))
                 //    LoadArrow();
-               
-                
+
+
 
                 break;
             case BowState.Loaded:
@@ -167,7 +177,7 @@ public class Bow : MonoBehaviour
                     _currentPull = TEMP_armStrength / _bowStats.PullResistence * _currentPullTime;
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
-                    
+
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
 
                     _currentPullTime += Time.deltaTime; //so we start at 0
@@ -205,9 +215,9 @@ public class Bow : MonoBehaviour
                 {
                     //Penalty zone! can't do anything until arrow returns
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
-                    
+
                     _currentPull -= _cancleShotSpeed * Time.deltaTime;
-                    SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f,_bowStats.PullWeight, _currentPull/_bowStats.MaxPull_Tension));
+                    SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f, _bowStats.PullWeight, _currentPull / _bowStats.MaxPull_Tension));
 
 
                     if (_currentPull <= 0)
@@ -292,5 +302,11 @@ public class Bow : MonoBehaviour
         //_loadedArrow.transform.forward = shotTransform.forward;
         _loadedArrow.GetComponent<Arrow>().ForceMe(Camera.main.transform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
+    }
+
+
+    public bool IsEnabled()
+    {
+        return PlayerController.ActionInputPanelsEnabled;
     }
 }

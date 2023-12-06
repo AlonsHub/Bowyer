@@ -6,15 +6,19 @@ using UnityEngine;
 public enum MoveType { Run, Sprint, Step, MidAir, Crouch, Prone};
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, InputPanel
 {
     //handles input grab and processing
     //controls the player character, NOT THE BOW!
     //the player interacts with the bow as an interface - and that can recat however it would like
-  
+
+    public static bool ActionInputPanelsEnabled;
+
+    //[SerializeField]
+    //bool inputPanelEnabled;
+
     [SerializeField]
     Transform gfxScaler;
-
 
     [SerializeField]
     CharacterController cc;
@@ -46,6 +50,12 @@ public class PlayerController : MonoBehaviour
     //Vector3 _jumpTime;
 
     float _originalHeight = 2.69f;
+
+    [SerializeField]
+    SmoothRotator yRotator;
+    [SerializeField]
+    SmoothRotator xRotator;
+
 
     [Header("Keys")]
     [SerializeField]
@@ -124,15 +134,7 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
-        
-        if (_inputVector.magnitude > 1)
-            _inputVector.Normalize();
-
-
-        HandleMoveStates();
-        //temp!
-        _inputVector *= _currentSpeed();
+        GrabInput();
 
         //jump should be timed better, perhaps using a "regular/normalized jump time" will permit the use of an acceleration curve
 
@@ -140,14 +142,43 @@ public class PlayerController : MonoBehaviour
         {
             if (cc.velocity.y > 0f)
             {
-                _currentJumpForce += Physics.gravity * Time.deltaTime; 
+                _currentJumpForce += Physics.gravity * Time.deltaTime;
             }
             else
             {
                 _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
             }
         }
-        else
+        //else
+        //{
+        //    _currentJumpForce = Vector3.zero;
+        //    //TEMP! jump should be independant since it may not depend only on IsGrounded (double jump is the obvious example)
+        //    if (Input.GetKeyDown(jumpKey))
+        //    {
+        //        Jump();
+        //    }
+        //}
+
+        //_inputVector *= Time.deltaTime;
+        Move();
+
+
+
+        UpdateSound();
+
+    }
+
+    public void GrabInput()
+    {
+        if (!IsEnabled())
+            return;
+
+        _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
+
+        if (_inputVector.magnitude > 1)
+            _inputVector.Normalize();
+
+        if (!cc.isGrounded)
         {
             _currentJumpForce = Vector3.zero;
             //TEMP! jump should be independant since it may not depend only on IsGrounded (double jump is the obvious example)
@@ -157,12 +188,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //_inputVector *= Time.deltaTime;
-        Move();
+        yRotator.GetInput(Input.GetAxis("Mouse X"));
+        xRotator.GetInput(Input.GetAxis("Mouse Y"));
 
-
-
-        UpdateSound();
+        HandleMoveStates();
+        _inputVector *= _currentSpeed();
 
     }
 
@@ -259,5 +289,16 @@ public class PlayerController : MonoBehaviour
             playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
             playerFootstepsSprint.stop(STOP_MODE.ALLOWFADEOUT);
         }
+    }
+
+
+    public bool IsEnabled()
+    {
+        return ActionInputPanelsEnabled;
+    }
+
+    public void SetInputPanelEnable(bool isEnable)
+    {
+        ActionInputPanelsEnabled = isEnable;
     }
 }
