@@ -1,5 +1,182 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7798816482010173416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Items/ItemCollected
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Items/ItemCollected
+  Guid:
+    Data1: 1889142733
+    Data2: 1190538030
+    Data3: -409599870
+    Data4: 2023012316
+  Banks:
+  - {fileID: 8507424810674843173}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7644592949324730516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/World Music/Area
+  m_EditorClassIdentifier: 
+  Name: Area
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2293576718
+    data2: 3897132354
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Zone1
+  - Zone2
+  Exists: 1
+--- !u!114 &-5856521412825798177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Zone 1.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/alons/Downloads/Bowyer_Sounds (1)/Bowyer Sounds/Build/Desktop/Zone
+    1.bank
+  Name: Zone 1
+  StudioPath: bank:/Zone 1
+  lastModified: 638373026213358323
+  FileSizes:
+  - Name: Desktop
+    Value: 3068608
+  Exists: 1
+--- !u!114 &-5656527387912386127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/World Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music/World Music
+  Guid:
+    Data1: -903368987
+    Data2: 1281908696
+    Data3: -297162861
+    Data4: -1362637246
+  Banks:
+  - {fileID: -5856521412825798177}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7644592949324730516}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4942908287710043085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/alons/Downloads/Bowyer_Sounds (1)/Bowyer Sounds/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638373026212617457
+  FileSizes:
+  - Name: Desktop
+    Value: 1374
+  Exists: 1
+--- !u!114 &-2040673712998646015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Monster Hunter Ambient
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Monster Hunter Ambient
+  Guid:
+    Data1: -443273721
+    Data2: 1298160339
+    Data3: -248819265
+    Data4: 651727691
+  Banks:
+  - {fileID: -5856521412825798177}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 5204184835299696201}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120216
+--- !u!114 &-1505124283779676584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Player Footsetps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Player Footsetps
+  Guid:
+    Data1: -994402863
+    Data2: 1216308164
+    Data3: -998675794
+    Data4: 258643255
+  Banks:
+  - {fileID: 8507424810674843173}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,10 +189,140 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: -4942908287710043085}
+  - {fileID: 1406185713688691081}
+  - {fileID: 8507424810674843173}
+  - {fileID: -5856521412825798177}
+  EditorEvents:
+  - {fileID: 5130028858980394588}
+  - {fileID: 1272681819660905953}
+  - {fileID: -7798816482010173416}
+  - {fileID: -1505124283779676584}
+  - {fileID: -2040673712998646015}
+  - {fileID: -5656527387912386127}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  cacheTime: 0
+  MasterBanks:
+  - {fileID: 1406185713688691081}
+  StringsBanks:
+  - {fileID: -4942908287710043085}
+  cacheTime: 638373026213358323
   cacheVersion: 131609
+--- !u!114 &1272681819660905953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Player FootsetpsSprint
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Player FootsetpsSprint
+  Guid:
+    Data1: 204390008
+    Data2: 1308518463
+    Data3: -510291050
+    Data4: -474206387
+  Banks:
+  - {fileID: 8507424810674843173}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &1406185713688691081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/alons/Downloads/Bowyer_Sounds (1)/Bowyer Sounds/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638373026212597511
+  FileSizes:
+  - Name: Desktop
+    Value: 1486
+  Exists: 1
+--- !u!114 &5130028858980394588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Items/Item Pickup Idle
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Items/Item Pickup Idle
+  Guid:
+    Data1: 1772611690
+    Data2: 1137752042
+    Data3: 1014639291
+    Data4: -594556444
+  Banks:
+  - {fileID: 8507424810674843173}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1704
+--- !u!114 &5204184835299696201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Monster Hunter Ambient/MonsterHunterAmbienceIntensity
+  m_EditorClassIdentifier: 
+  Name: MonsterHunterAmbienceIntensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4002994352
+    data2: 1197374487
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8507424810674843173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/alons/Downloads/Bowyer_Sounds (1)/Bowyer Sounds/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638373026213004526
+  FileSizes:
+  - Name: Desktop
+    Value: 55936
+  Exists: 1

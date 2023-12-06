@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,33 +64,39 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 GetVelocity => cc.velocity;
 
-public MoveType CurrentMoveType;
+    //EventInstance allows us to start and stop events of sound as needed.
+    //requires using FMOD.Studio;
+
+    private EventInstance playerFootsteps;
+    private EventInstance playerFootstepsSprint;
+
+    private void Start()
+    {
+        //Creating the instances here in order to allow us full control of when the sound will activate and stop.
+        playerFootsteps = AudioManager.Instance.CreateEventIsntace(FMODEvents.Instance.playerFootsteps);
+        playerFootstepsSprint = AudioManager.Instance.CreateEventIsntace(FMODEvents.Instance.playerFootstepsSprint);
+    }
+
+    public MoveType CurrentMoveType;
     float _currentSpeed()
     {
         switch (CurrentMoveType)
         {
             case MoveType.Run:
                 return walkSpeed;
-                break;
             case MoveType.Sprint:
                 return runSpeed;
-                break;
             case MoveType.Step:
                 return stepSpeed;
-                break;
                 case MoveType.MidAir:
                 return midairSpeed;
-                break;
             case MoveType.Crouch:
                 return crouchSpeed;
-                break;
                 case MoveType.Prone: 
                 return proneSpeed;
-                break;
 
             default:
                 return 0f;
-                break;
         }
     }
 
@@ -114,7 +121,7 @@ public MoveType CurrentMoveType;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    float _jumpTime;
+    
     void Update()
     {
         _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
@@ -133,14 +140,12 @@ public MoveType CurrentMoveType;
         {
             if (cc.velocity.y > 0f)
             {
-                _currentJumpForce += Physics.gravity * _jumpTime * Time.deltaTime; 
+                _currentJumpForce += Physics.gravity * Time.deltaTime; 
             }
             else
             {
-                _currentJumpForce += Physics.gravity * _jumpTime * Time.deltaTime;
+                _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
             }
-
-            _jumpTime += Time.deltaTime * 10;
         }
         else
         {
@@ -155,50 +160,48 @@ public MoveType CurrentMoveType;
         //_inputVector *= Time.deltaTime;
         Move();
 
+
+
+        UpdateSound();
+
     }
 
     void Move()
     {
-        //if(cc.isGrounded)
-        //cc.Move(Physics.gravity * Time.deltaTime);
         Vector3 _moveVector = _inputVector + _currentJumpForce;
         if (_moveVector.magnitude > minMoveMagnitude)
-            cc.Move((_moveVector+Physics.gravity) * Time.deltaTime);
+            cc.Move((_moveVector + Physics.gravity) * Time.deltaTime);
     }
 
     void HandleMoveStates()
     {
         if (!cc.isGrounded)
-        {
+        {   
             CurrentMoveType = MoveType.MidAir;
+        }
+        else if (Input.GetKey(sprintKey) && ((int)CurrentMoveType <= 2))
+        {
+            CurrentMoveType = MoveType.Sprint;
+        }
+        else if (Input.GetKey(stepKey))
+        {
+            CurrentMoveType = MoveType.Step;
+        }
+        else if (Input.GetKey(crouchKey))
+        {
+            CurrentMoveType = MoveType.Crouch;
+            cc.height = _originalHeight * crouchYValue;
+        }
+        else if (Input.GetKey(proneKey))
+        {
+            CurrentMoveType = MoveType.Prone;
+
+            cc.height = _originalHeight * proneYValue;
         }
         else
         {
-            //fix below line with a contains check on a list of disabling movestates
-            if (Input.GetKey(sprintKey) && CurrentMoveType != MoveType.Step && CurrentMoveType != MoveType.Crouch && CurrentMoveType != MoveType.Prone)
-            {
-                CurrentMoveType = MoveType.Sprint;
-            }
-            else if (Input.GetKey(stepKey))
-            {
-                CurrentMoveType = MoveType.Step;
-            }
-            else if (Input.GetKey(crouchKey))
-            {
-                CurrentMoveType = MoveType.Crouch;
-                cc.height = _originalHeight * crouchYValue;
-            }
-            else if (Input.GetKey(proneKey))
-            {
-                CurrentMoveType = MoveType.Prone;
-
-                cc.height = _originalHeight * proneYValue;
-            }
-            else
-            {
-                cc.height = _originalHeight;
-                CurrentMoveType = MoveType.Run;
-            }
+            cc.height = _originalHeight;
+            CurrentMoveType = MoveType.Run;
         }
 
         if (Input.GetKeyUp(crouchKey)) //this may be a problem
@@ -210,8 +213,51 @@ public MoveType CurrentMoveType;
     void Jump()
     {
         _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
-        _jumpTime = 0f;
     }
 
     public bool IsGrounded => cc.isGrounded;
+
+    private void UpdateSound()
+    {
+        Vector3 _moveVector = _inputVector + _currentJumpForce;
+        if (_moveVector.magnitude > minMoveMagnitude && cc.isGrounded)
+        {
+            //PLAYBACK_STATE returns the state that the sound is currently in.
+            //the options are PLAYING, SUSTAINING, STOPPED, STARTING, STOPPING
+
+            PLAYBACK_STATE playbackState;
+
+            if(CurrentMoveType == MoveType.Sprint)
+            {
+                playerFootsteps.stop(STOP_MODE.IMMEDIATE);
+
+                //This is how we get the PLAYBACK_STATE
+                playerFootstepsSprint.getPlaybackState(out playbackState);
+
+                //This is how we check what the PLAYBACK_STATE is
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    playerFootstepsSprint.start();
+                }
+            }
+            else
+            {
+                playerFootstepsSprint.stop(STOP_MODE.IMMEDIATE);
+
+                playerFootsteps.getPlaybackState(out playbackState);
+
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    playerFootsteps.start();
+                }
+            }
+        }
+        else
+        {
+            //When we stop we can eitehr stop with allowing Fadeout for the sound
+            //Or we can stop immediately 
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            playerFootstepsSprint.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
 }

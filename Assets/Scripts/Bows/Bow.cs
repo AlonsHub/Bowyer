@@ -14,7 +14,9 @@ public class Bow : MonoBehaviour
     GameObject arrowPrefab;
     [SerializeField]
     Transform arrowNotchTransform;
-    Vector3 ogArrowNotchLocalPos;
+    [SerializeField]
+    Transform shotTransform;
+    //Vector3 ogArrowNotchLocalPos;
 
     //should be arrow!
     GameObject _loadedArrow;
@@ -63,7 +65,7 @@ public class Bow : MonoBehaviour
     private void Awake()
     {
         _currentBowState = BowState.Empty;
-        ogArrowNotchLocalPos = arrowNotchTransform.localPosition;
+        //ogArrowNotchLocalPos = arrowNotchTransform.localPosition;
 
         _cam = Camera.main; //TEMP AND BADDDD
 
@@ -148,8 +150,8 @@ public class Bow : MonoBehaviour
                     //Apply "Pulling-Weight"
                     SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
 
-                    //anim.SetTrigger("Aim");
-                    anim.SetBool("IsAim", true);
+                    anim.SetTrigger("Aim");
+                    //anim.SetBool("IsAim", true);
 
                     //ZOOM BY SHOOTING!
                     //_targetZoom = _bowStats.AimAmount;
@@ -165,7 +167,7 @@ public class Bow : MonoBehaviour
                     _currentPull = TEMP_armStrength / _bowStats.PullResistence * _currentPullTime;
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
-                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
+                    //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
 
                     _currentPullTime += Time.deltaTime; //so we start at 0
                 }
@@ -182,11 +184,14 @@ public class Bow : MonoBehaviour
                     else
                     {
                         _currentBowState = BowState.Empty; //Just fired
-                        arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
+                        //arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
+
+                        anim.SetTrigger("Release");
+
                         Release();
 
                         //anim.SetTrigger("ToIdle");
-                        anim.SetBool("IsAim", false);
+                        //anim.SetBool("IsAim", false);
                         SpeedsAndSensitivities.SetPullWeight(0f);
                     }
                     //ZOOM BY SHOOTING!
@@ -198,7 +203,7 @@ public class Bow : MonoBehaviour
             case BowState.CancelShot:
                 {
                     //Penalty zone! can't do anything until arrow returns
-                    arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
+                    //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
                     
                     _currentPull -= _cancleShotSpeed * Time.deltaTime;
                     SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f,_bowStats.PullWeight, _currentPull/_bowStats.MaxPull_Tension));
@@ -206,11 +211,11 @@ public class Bow : MonoBehaviour
 
                     if (_currentPull <= 0)
                     {
-                        arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
+                        //arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
                         _currentBowState = BowState.Loaded;
                         SpeedsAndSensitivities.SetPullWeight(0f);
-                        //anim.SetTrigger("ToIdle");
-                        anim.SetBool("IsAim", false);
+                        anim.SetTrigger("ToIdle");
+                        //anim.SetBool("IsAim", false);
 
                     }
                 }
@@ -245,50 +250,20 @@ public class Bow : MonoBehaviour
                 anim.SetFloat("MoveSpeed", smoothed);
             }
         }
-        //else
-        //    anim.SetTrigger("Aim");
-
-        //if (_currentMoveAnimation != pc.CurrentMoveType)
-        //{
-        //    switch (pc.CurrentMoveType)
-        //    {
-        //        case MoveType.Run:
-        //            //temp - walk will have it's own animation.
-        //            anim.SetTrigger("Run");
-        //            break;
-        //        //temp - walk will have it's own animation.
-        //        case MoveType.Sprint:
-        //            anim.SetTrigger("Sprint");
-        //            break;
-        //        //temp - walk will have it's own animation.
-        //        case MoveType.Step:
-        //            anim.SetTrigger("ToIdle");
-        //            break;
-        //        //temp - walk will have it's own animation.
-        //        case MoveType.MidAir:
-        //            anim.SetTrigger("ToIdle");
-        //            break;
-        //        //temp - walk will have it's own animation.
-        //        case MoveType.Crouch:
-        //            anim.SetTrigger("ToIdle");
-        //            break;
-        //        //temp - walk will have it's own animation.
-        //        case MoveType.Prone:
-        //            //temp - walk will have it's own animation.
-        //            anim.SetTrigger("ToIdle");
-
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //    _currentMoveAnimation = pc.CurrentMoveType;
-        //}
     }
 
-    void LoadArrow()
+    public void LoadArrow()
     {
         _currentBowState = BowState.Loaded;
         _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
+        _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
+    }
+    public void LoadArrow(GameObject newArrowPrefab)
+    {
+        arrowPrefab = newArrowPrefab;
+        _currentBowState = BowState.Loaded;
+        _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
+        _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
     }
 
     void Pull()
@@ -298,8 +273,7 @@ public class Bow : MonoBehaviour
 
     void Release()
     {
-       
-        if(_bowStats.IsPerfect(_currentPull))
+        if (_bowStats.IsPerfect(_currentPull))
         {
             Debug.Log("PERFECT SHOT!");
             _currentPull += TEMP_perfectShotBonus;
@@ -307,7 +281,10 @@ public class Bow : MonoBehaviour
         }
         _loadedArrow.transform.GetChild(0).gameObject.layer= layerMask; //temp quick layer fix for cameras
         _loadedArrow.transform.SetParent(null);
-        _loadedArrow.GetComponent<Arrow>().ForceMe(arrowNotchTransform.forward * _currentPull * _bowStats.PullFactor);
+        //Vector3 cleanFwd = arrowNotchTransform.right * -1f;
+        //cleanFwd.y = 0;
+        //_loadedArrow.transform.forward = shotTransform.forward;
+        _loadedArrow.GetComponent<Arrow>().ForceMe(Camera.main.transform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
     }
 }
