@@ -137,8 +137,8 @@ public class Bow : MonoBehaviour
         switch (_currentBowState)
         {
             case BowState.Empty:
-                if (Input.GetKeyDown(loadArrowKey))
-                    LoadArrow();
+                //if (Input.GetKeyDown(loadArrowKey))
+                //    LoadArrow();
                
                 
 
@@ -254,6 +254,11 @@ public class Bow : MonoBehaviour
 
     public void LoadArrow()
     {
+        if(_loadedArrow)
+        {
+            Debug.LogError("Trying to Double Load arrows - stop this");
+            return;
+        }
         _currentBowState = BowState.Loaded;
         _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
         _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
@@ -271,7 +276,7 @@ public class Bow : MonoBehaviour
 
     }
 
-    void Release()
+    public void Release()
     {
         if (_bowStats.IsPerfect(_currentPull))
         {

@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     Vector3 _currentJumpForce;
     //Vector3 _jumpTime;
 
-    float _originalHeight = 4.635122f;
+    float _originalHeight = 2.69f;
 
     [Header("Keys")]
     [SerializeField]
