@@ -178,9 +178,9 @@ public class PlayerController : MonoBehaviour, InputPanel
         if (_inputVector.magnitude > 1)
             _inputVector.Normalize();
 
-        if (!cc.isGrounded)
+        if (cc.isGrounded)
         {
-            _currentJumpForce = Vector3.zero;
+            //_currentJumpForce = Vector3.zero;
             //TEMP! jump should be independant since it may not depend only on IsGrounded (double jump is the obvious example)
             if (Input.GetKeyDown(jumpKey))
             {
