@@ -37,6 +37,8 @@ public class Bow : MonoBehaviour
     float TEMP_armStrength;
     [SerializeField]
     float TEMP_perfectShotBonus;
+    [SerializeField]
+    float TEMP_drawSpeed;
 
     float _currentPullTime;
     float _currentPull;
@@ -69,9 +71,6 @@ public class Bow : MonoBehaviour
 
         _cam = Camera.main; //TEMP AND BADDDD
 
-        //_currentMoveAnimation = MoveType.Walk;
-
-
         if (!anim)
             anim = GetComponent<Animator>();
 
@@ -92,6 +91,8 @@ public class Bow : MonoBehaviour
     private void OnEnable()
     {
         SpeedsAndSensitivities.SetBowWeight(_bowStats.Weight);
+        anim.SetFloat("DrawSpeed", TEMP_drawSpeed);
+
     }
     private void OnDisable()
     {
@@ -152,10 +153,9 @@ public class Bow : MonoBehaviour
 
                     anim.SetTrigger("Aim");
                     //anim.SetBool("IsAim", true);
-
                     //ZOOM BY SHOOTING!
                     //_targetZoom = _bowStats.AimAmount;
-                   
+
                     _currentPull = 0;
                     _currentPullTime = 0;
                 }
@@ -167,6 +167,7 @@ public class Bow : MonoBehaviour
                     _currentPull = TEMP_armStrength / _bowStats.PullResistence * _currentPullTime;
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
+                    
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
 
                     _currentPullTime += Time.deltaTime; //so we start at 0
