@@ -35,7 +35,7 @@ public class BowsLogic : MonoBehaviour
     {
         sets[currentSetIndex].bow.gameObject.SetActive(false);
         int newIndex = currentSetIndex += step;
-        currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count);
+        currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
         sets[currentSetIndex].bow.gameObject.SetActive(true);
 
         //should update the bow the player sees
