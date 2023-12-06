@@ -39,7 +39,7 @@ public class BaseInventory : MonoBehaviour
 
     private void CapacitySlotCheck()
     {
-        if (slots.Count != capacity)
+        if (slots != null && slots.Count != capacity)
         {
             int delta = slots.Count - capacity;
 
