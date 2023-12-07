@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1782.1282, g: 1941.7288, b: 2852.8713, a: 1}
+  m_IndirectSpecularColor: {r: 1781.1829, g: 1940.8948, b: 2852.4885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10059,6 +10059,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _item: {fileID: 1836036705}
   _ui: {fileID: 1836036704}
+--- !u!4 &1910572075 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7819152257878368602, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 591700589468049388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1938143063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10451,8 +10457,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975199980}
   m_LocalRotation: {x: -0, y: -0.29775113, z: -0, w: 0.95464355}
-  m_LocalPosition: {x: -22.150703, y: -1.1479001, z: -45.158665}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalPosition: {x: -22.150703, y: -1.1361, z: -45.158665}
+  m_LocalScale: {x: 6, y: 5.9766, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2002733768}
@@ -11725,6 +11731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2118541705}
   - component: {fileID: 2118541704}
+  - component: {fileID: 2118541706}
   m_Layer: 0
   m_Name: InputDisabler
   m_TagString: Untagged
@@ -11759,6 +11766,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118541706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118541703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e9e5bfa33a89048b48ebbadb86e5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyCodes_v1: 690000007100000000000000
+  keyCodes_v2: 09000000660000003c010000
 --- !u!1001 &591700589468049388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11786,6 +11807,26 @@ PrefabInstance:
         type: 3}
       propertyPath: TEMP_drawSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 923372368854988836, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541282362867292059, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31500024
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987671452699511334, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2144912019633624495, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2810414007973891266, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
@@ -11832,6 +11873,11 @@ PrefabInstance:
       propertyPath: yRotator
       value: 
       objectReference: {fileID: 351239824}
+    - target: {fileID: 4096420977489433102, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: gfxScaler
+      value: 
+      objectReference: {fileID: 1910572075}
     - target: {fileID: 4103526046670560280, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: inventoryUI
@@ -11841,6 +11887,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011215102624839930, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011215102624839930, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011215102624839930, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 5338281240709208176, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
@@ -11872,15 +11933,25 @@ PrefabInstance:
       propertyPath: slots.Array.data[4]
       value: 
       objectReference: {fileID: 2000278921}
+    - target: {fileID: 5985128076181253275, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6100171953156390666, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6527146009460212639, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7409027404657641651, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7819152257878368602, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
@@ -11942,8 +12013,15 @@ PrefabInstance:
       propertyPath: TEMP_drawSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8927867676750391360, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2778963799939522915, guid: 92fdc7f0a246a494aa89ed2a30cecdb6, type: 3}
+    - {fileID: 1810177941065260152, guid: 92fdc7f0a246a494aa89ed2a30cecdb6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92fdc7f0a246a494aa89ed2a30cecdb6, type: 3}
