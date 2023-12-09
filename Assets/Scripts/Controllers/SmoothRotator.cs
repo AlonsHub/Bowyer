@@ -88,16 +88,4 @@ public class SmoothRotator : MonoBehaviour
 
         transform.localEulerAngles = _targetRotVector;
     }
-
-    ////TEMP INPUT
-    //private void Update()
-    //{
-    //    //float rawinput = Input.GetAxis(inputAxis());
-    //    _currentInput = Input.GetAxis(inputAxis());
-    //    if (_currentInput != 0)
-    //    {
-    //       GetInput(_currentInput);
-    //    }
-       
-    //}
 }
