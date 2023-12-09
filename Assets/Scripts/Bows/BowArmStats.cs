@@ -6,6 +6,9 @@ public class BowArmStats : BowPart
 {
     //TBD Consider making a tension-gradient instead of all these floats
 
+    [Tooltip("Time till shakes begin when bow is drawn")]
+    public float shakeTime;
+
     /// <summary>
     /// Maximum force 
     /// </summary>

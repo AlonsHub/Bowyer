@@ -179,6 +179,7 @@ public class Bow : MonoBehaviour, InputPanel
 
 
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
+                    anim.SetFloat("DrawTime", (_currentPullTime / _bowStats.armStats.shakeTime)-1);
 
                     _currentPullTime += Time.deltaTime; //so we start at 0
                 }
