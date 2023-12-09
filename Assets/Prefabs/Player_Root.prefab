@@ -239,37 +239,6 @@ MonoBehaviour:
   amplitudes: {x: 0.01, y: 0.02}
   smooth: 10
   returnSmooth: 10
---- !u!1 &1810177941065260152
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5892403088335417479}
-  m_Layer: 9
-  m_Name: StandPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5892403088335417479
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810177941065260152}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.727, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7819152257878368602}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1849037378233179946
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849037378233179946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.727, z: 0.845}
+  m_LocalPosition: {x: 0, y: 0, z: 0.845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -330,7 +299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2311304160514345533}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -487,42 +456,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2516599593914833302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 2.845}
+  m_LocalPosition: {x: 0, y: 0.75, z: 2.845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8927867676750391360}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2778963799939522915
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 923372368854988836}
-  m_Layer: 9
-  m_Name: CrouchPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &923372368854988836
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2778963799939522915}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.26, z: 0.26}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7819152257878368602}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4367705567882705005
@@ -559,8 +497,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5892403088335417479}
-  - {fileID: 923372368854988836}
   - {fileID: 5985128076181253275}
   - {fileID: 8927867676750391360}
   - {fileID: 1233580637128863114}
@@ -598,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85444e99b6530734b947e559eb3f7d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gfxScaler: {fileID: 5985128076181253275}
+  gfxScaler: {fileID: 7819152257878368602}
   cc: {fileID: 5011215102624839930}
   bow: {fileID: 0}
   walkSpeed: 10
@@ -610,6 +546,8 @@ MonoBehaviour:
   jumpForce: 20
   minMoveMagnitude: 0.1
   drag: 0.1
+  yRotator: {fileID: 6086265734952772892}
+  xRotator: {fileID: 7411816880749131839}
   sprintKey: 304
   stepKey: 308
   crouchKey: 306
@@ -638,12 +576,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2.69
-  m_Radius: 0.78
+  m_Radius: 0.48
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.39
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.16, z: 0}
+  m_Center: {x: 0, y: 1.36, z: 0}
 --- !u!114 &6595648563270342899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,7 +1314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6915630380584646812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1429,7 +1367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7060502873252950652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.727, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1755,6 +1693,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5682505232231446610, guid: d2752256f8947c04ab46b315e51d5018,
         type: 3}
+    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
+        type: 3}
+      propertyPath: TEMP_drawSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3129447661804517318, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
         type: 3}
       propertyPath: m_Name
@@ -2044,7 +1987,7 @@ PrefabInstance:
     - target: {fileID: 2394113186447180252, guid: 4088e2a6593867845849354eb337286f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5349999
+      value: -0.31500024
       objectReference: {fileID: 0}
     - target: {fileID: 2394113186447180252, guid: 4088e2a6593867845849354eb337286f,
         type: 3}
@@ -2190,6 +2133,11 @@ PrefabInstance:
       propertyPath: shotTransform
       value: 
       objectReference: {fileID: 7494047724318671407}
+    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
+        type: 3}
+      propertyPath: TEMP_drawSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
       propertyPath: _bowStats.armStats.maxTension
