@@ -21,7 +21,7 @@ public class InventoryUI : MonoBehaviour
     [ContextMenu("Refresh")]
     public void RefreshInventoryUI()
     {
-        foreach (var slot in inventory.slots)
+        foreach (var slot in inventory.GetAllSlots())
         {
             slot.UpdateUI();
         }

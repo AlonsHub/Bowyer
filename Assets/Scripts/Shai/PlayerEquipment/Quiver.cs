@@ -74,7 +74,7 @@ public class Quiver : BaseInventory
         OnInventoryChanged.Invoke();
     }
 
-    public List<InventorySlot> GetAllArrows()
+    public override List<InventorySlot> GetAllSlots()
     {
         List<InventorySlot> allArrows = new List<InventorySlot>();
         allArrows.AddRange(slots);
