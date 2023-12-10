@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1796.6877, g: 1965.8069, b: 2909.7854, a: 1}
+  m_IndirectSpecularColor: {r: 1781.6321, g: 1941.3206, b: 2852.6838, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16449,6 +16449,11 @@ PrefabInstance:
       propertyPath: playerInventoryUI
       value: 
       objectReference: {fileID: 2003965389}
+    - target: {fileID: 802031096496411463, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: _bowStats.armStats.shakeTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4077555579795155503, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: inventoryUI
@@ -16573,6 +16578,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265708023631520488, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: _bowStats.armStats.shakeTime
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8274279807840969154, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
