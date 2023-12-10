@@ -8,6 +8,8 @@ public class BowArmStats : BowPart
 
     [Tooltip("Time till shakes begin when bow is drawn")]
     public float shakeTime;
+    [Tooltip("Time till arrow releases")]
+    public float releaseTime;
 
     /// <summary>
     /// Maximum force 
