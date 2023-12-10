@@ -14,7 +14,8 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(Temp_KeyMapper.GetKeycodeForInputAction(InputActions.Inventory)))
         {
             isActive = !isActive;
             playerInventoryUI.SetActive(!playerInventoryUI.activeSelf);

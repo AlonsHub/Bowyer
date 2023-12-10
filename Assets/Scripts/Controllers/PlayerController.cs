@@ -6,15 +6,19 @@ using UnityEngine;
 public enum MoveType { Run, Sprint, Step, MidAir, Crouch, Prone};
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, InputPanel
 {
     //handles input grab and processing
     //controls the player character, NOT THE BOW!
     //the player interacts with the bow as an interface - and that can recat however it would like
-  
+
+    public static bool ActionInputPanelsEnabled = true;
+
+    //[SerializeField]
+    //bool inputPanelEnabled;
+
     [SerializeField]
     Transform gfxScaler;
-
 
     [SerializeField]
     CharacterController cc;
@@ -45,7 +49,13 @@ public class PlayerController : MonoBehaviour
     Vector3 _currentJumpForce;
     //Vector3 _jumpTime;
 
-    float _originalHeight = 4.635122f;
+    float _originalHeight;
+
+    [SerializeField]
+    SmoothRotator yRotator;
+    [SerializeField]
+    SmoothRotator xRotator;
+
 
     [Header("Keys")]
     [SerializeField]
@@ -113,6 +123,9 @@ public class PlayerController : MonoBehaviour
         _previousMoveType = MoveType.Run;
         CurrentMoveType = MoveType.Run;
         _currentJumpForce = Vector3.zero;
+
+        _originalHeight = gfxScaler.localScale.y;
+
         if (!cc)
         {
             cc = GetComponent<CharacterController>(); //this actually must exist, since it is a required component
@@ -124,15 +137,7 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
-        
-        if (_inputVector.magnitude > 1)
-            _inputVector.Normalize();
-
-
-        HandleMoveStates();
-        //temp!
-        _inputVector *= _currentSpeed();
+        GrabInput();
 
         //jump should be timed better, perhaps using a "regular/normalized jump time" will permit the use of an acceleration curve
 
@@ -140,22 +145,22 @@ public class PlayerController : MonoBehaviour
         {
             if (cc.velocity.y > 0f)
             {
-                _currentJumpForce += Physics.gravity * Time.deltaTime; 
+                _currentJumpForce += Physics.gravity * Time.deltaTime;
             }
             else
             {
                 _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
             }
         }
-        else
-        {
-            _currentJumpForce = Vector3.zero;
-            //TEMP! jump should be independant since it may not depend only on IsGrounded (double jump is the obvious example)
-            if (Input.GetKeyDown(jumpKey))
-            {
-                Jump();
-            }
-        }
+        //else
+        //{
+        //    _currentJumpForce = Vector3.zero;
+        //    //TEMP! jump should be independant since it may not depend only on IsGrounded (double jump is the obvious example)
+        //    if (Input.GetKeyDown(jumpKey))
+        //    {
+        //        Jump();
+        //    }
+        //}
 
         //_inputVector *= Time.deltaTime;
         Move();
@@ -163,6 +168,38 @@ public class PlayerController : MonoBehaviour
 
 
         UpdateSound();
+
+    }
+
+    public void GrabInput()
+    {
+        if (!IsEnabled())
+            return;
+
+        _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
+
+        if (_inputVector.magnitude > 1)
+            _inputVector.Normalize();
+
+        if (cc.isGrounded)
+        {
+            //_currentJumpForce = Vector3.zero;
+            //TEMP! jump should be independant since it may not depend only on IsGrounded (double jump is the obvious example)
+            if (Input.GetKeyDown(jumpKey))
+            {
+                Jump();
+            }
+        }
+
+        yRotator.GetInput(Input.GetAxis("Mouse X"));
+        xRotator.GetInput(Input.GetAxis("Mouse Y"));
+
+        if (Temp_KeyMapper.ToggleOrHold)
+            HandleMoveStatesToggle();
+        else
+            HandleMoveStates();
+
+        _inputVector *= _currentSpeed();
 
     }
 
@@ -175,7 +212,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleMoveStates()
     {
-        if (!cc.isGrounded)
+        if ((int)CurrentMoveType < 4 && !cc.isGrounded) //fixes the problem of crouch and prone having some air time
         {   
             CurrentMoveType = MoveType.MidAir;
         }
@@ -190,23 +227,96 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(crouchKey))
         {
             CurrentMoveType = MoveType.Crouch;
-            cc.height = _originalHeight * crouchYValue;
+            //cc.height = _originalHeight * crouchYValue;
+            gfxScaler.localScale = new Vector3(1, _originalHeight * crouchYValue, 1);
+            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * crouchYValue, xRotator.transform.localPosition.z);
         }
         else if (Input.GetKey(proneKey))
         {
             CurrentMoveType = MoveType.Prone;
 
-            cc.height = _originalHeight * proneYValue;
+            //cc.height = _originalHeight * proneYValue;
+            gfxScaler.localScale = new Vector3(1, _originalHeight * proneYValue, 1);
+            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * proneYValue, xRotator.transform.localPosition.z);
+
+
         }
         else
         {
-            cc.height = _originalHeight;
+            //cc.height = _originalHeight;
+            gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
+            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
             CurrentMoveType = MoveType.Run;
         }
 
         if (Input.GetKeyUp(crouchKey)) //this may be a problem
         {
-            cc.height = _originalHeight;
+            //cc.height = _originalHeight;
+            gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
+            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
+        }
+    }
+    void HandleMoveStatesToggle()
+    {
+
+        if ((int)CurrentMoveType < 4 && !cc.isGrounded) //fixes the problem of crouch and prone having some air time
+        {
+            CurrentMoveType = MoveType.MidAir;
+        }
+        else if (Input.GetKeyDown(sprintKey) && ((int)CurrentMoveType <= 2))
+        {
+            if (CurrentMoveType == MoveType.Sprint)
+                CurrentMoveType = MoveType.Run;
+            else
+                CurrentMoveType = MoveType.Sprint;
+            
+        }
+        else if (Input.GetKeyDown(stepKey))
+        {
+            if (CurrentMoveType == MoveType.Step)
+                CurrentMoveType = MoveType.Run;
+            else
+                CurrentMoveType = MoveType.Step;
+        }
+        else if (Input.GetKeyDown(crouchKey))
+        {
+            if (CurrentMoveType == MoveType.Crouch)
+            {
+                CurrentMoveType = MoveType.Run;
+                //cc.height = _originalHeight;
+                
+                gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
+                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
+
+            }
+            else
+            { 
+                CurrentMoveType = MoveType.Crouch;
+                //cc.height = _originalHeight * crouchYValue;
+                gfxScaler.localScale = new Vector3(1, _originalHeight * crouchYValue, 1);
+                
+                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * crouchYValue, xRotator.transform.localPosition.z);
+            }
+        }
+        else if (Input.GetKeyDown(proneKey))
+        {
+            if (CurrentMoveType == MoveType.Prone)
+            {
+                //cc.height = _originalHeight;
+                gfxScaler.localScale = new Vector3(1, _originalHeight , 1);
+                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
+
+                CurrentMoveType = MoveType.Run;
+            }
+            else
+            {
+                CurrentMoveType = MoveType.Prone;
+                gfxScaler.localScale = new Vector3(1, _originalHeight * proneYValue, 1);
+                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * proneYValue, xRotator.transform.localPosition.z);
+
+
+                //cc.height = _originalHeight * proneYValue;
+            }
         }
     }
 
@@ -259,5 +369,16 @@ public class PlayerController : MonoBehaviour
             playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
             playerFootstepsSprint.stop(STOP_MODE.ALLOWFADEOUT);
         }
+    }
+
+
+    public bool IsEnabled()
+    {
+        return ActionInputPanelsEnabled;
+    }
+
+    public void SetInputPanelEnable(bool isEnable)
+    {
+        ActionInputPanelsEnabled = isEnable;
     }
 }
