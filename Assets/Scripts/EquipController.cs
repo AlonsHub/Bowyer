@@ -19,7 +19,7 @@ public class EquipController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.H))
         {
             //if()
-            SelectItem(0);
+            SelectItem(_selectedIndex);
         }
         else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -38,24 +38,45 @@ public class EquipController : MonoBehaviour
 
     public void SelectItem(int toSelect)
     {
-        if(toSelect >= equippedItems.Count)
+        if (toSelect >= equippedItems.Count)
         {
             Debug.LogError("trying to select an item above current item count");
             return;
         }
 
-        if(_selectedItem)
-            _selectedItem.SetActive(false);
-        
-        if(_selectedIndex == toSelect)
+        if (_selectedItem)
+        {
+            _selectedItem.GetComponent<Animator>().SetTrigger("Holster");
+            //_selectedItem.SetActive(false);
+        }
+
+        if (_selectedIndex == toSelect)
         {
             _selectedIndex = -1;
             _selectedItem = null;
             return;
         }
 
+        if (_selectedItem)
+        {
+            StartCoroutine(WaitForHolster(toSelect));
+        }
+        else
+        {
+            _selectedIndex = toSelect;
+            _selectedItem = equippedItems[_selectedIndex];
+            _selectedItem.SetActive(true);
+            _selectedItem.GetComponent<Animator>().SetTrigger("Equip");
+        }
+    }
+
+    private IEnumerator WaitForHolster(int toSelect)
+    {
+        yield return new WaitUntil(() => !_selectedItem.activeSelf);
         _selectedIndex = toSelect;
         _selectedItem = equippedItems[_selectedIndex];
         _selectedItem.SetActive(true);
+        _selectedItem.GetComponent<Animator>().SetTrigger("Equip");
     }
+
 }

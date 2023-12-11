@@ -148,8 +148,11 @@ public class Bow : MonoBehaviour, InputPanel
         switch (_currentBowState)
         {
             case BowState.Empty:
-                //if (Input.GetKeyDown(loadArrowKey))
-                //    LoadArrow();
+                //if (Temp_KeyMapper.ToggleOrHold && Input.GetKeyDown(Temp_KeyMapper.GetKeycodeForInputAction(InputActions.Reload))) //Input Version 2, for keys like R
+                if (Temp_KeyMapper.ToggleOrHold && Input.GetMouseButtonDown(0)) //Input Version 2, but for mouse button
+                {
+                    LoadArrow(); //loads current arrow, assuming the correct one has been preloaded to the prefab? should pull from quiver really
+                }
 
 
 
@@ -179,7 +182,22 @@ public class Bow : MonoBehaviour, InputPanel
 
 
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
-                    anim.SetFloat("DrawTime", (_currentPullTime / _bowStats.armStats.shakeTime)-1);
+                    if(_currentPullTime >= _bowStats.armStats.shakeTime)
+                    anim.SetFloat("DrawTime", (_currentPullTime - _bowStats.armStats.shakeTime));
+                    else
+                    anim.SetFloat("DrawTime", 0);
+
+
+                    if(_currentPullTime >= _bowStats.armStats.releaseTime)
+                    {
+                        _currentBowState = BowState.Empty; //Just fired
+
+                        anim.SetTrigger("Release");
+
+                        Release();
+
+                        SpeedsAndSensitivities.SetPullWeight(0f);
+                    }
 
                     _currentPullTime += Time.deltaTime; //so we start at 0
                 }
@@ -275,6 +293,21 @@ public class Bow : MonoBehaviour, InputPanel
         _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
         _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
     }
+    public void CallLoadArrow() //called by animation event
+    {
+        if (Temp_KeyMapper.ToggleOrHold)
+            return;
+
+        if(_loadedArrow)
+        {
+            Debug.LogError("Trying to Double Load arrows - stop this");
+            return;
+        }
+        _currentBowState = BowState.Loaded;
+        _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
+        _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
+    }
+
     public void LoadArrow(GameObject newArrowPrefab)
     {
         arrowPrefab = newArrowPrefab;
@@ -298,6 +331,9 @@ public class Bow : MonoBehaviour, InputPanel
         }
         _loadedArrow.transform.GetChild(0).gameObject.layer= layerMask; //temp quick layer fix for cameras
         _loadedArrow.transform.SetParent(null);
+
+        if(!Temp_KeyMapper.ToggleOrHold)
+        anim.SetTrigger("Reload");
         //Vector3 cleanFwd = arrowNotchTransform.right * -1f;
         //cleanFwd.y = 0;
         //_loadedArrow.transform.forward = shotTransform.forward;
@@ -309,5 +345,10 @@ public class Bow : MonoBehaviour, InputPanel
     public bool IsEnabled()
     {
         return PlayerController.ActionInputPanelsEnabled;
+    }
+
+    public void DisableMe()
+    {
+        gameObject.SetActive(false);
     }
 }
