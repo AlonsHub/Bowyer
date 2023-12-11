@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1781.4622, g: 1941.1155, b: 2852.6135, a: 1}
+  m_IndirectSpecularColor: {r: 1781.4622, g: 1941.1311, b: 2852.6604, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -490,6 +490,12 @@ MonoBehaviour:
   slotHighlight: {fileID: 1874708024}
   gridLayout: {fileID: 0}
   slots: []
+--- !u!95 &109913357 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 501886131360958742, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 591700589468049388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &118633782
 GameObject:
   m_ObjectHideFlags: 0
@@ -4650,6 +4656,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1762334476}
   m_SourcePrefab: {fileID: 100100000, guid: 88bc14753cd36e349a3a3116185cd2b5, type: 3}
+--- !u!95 &663978829 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3123129178234857655, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 591700589468049388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &671103245
 GameObject:
   m_ObjectHideFlags: 0
@@ -16462,6 +16474,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyCodes_v1: 690000007100000000000000
   keyCodes_v2: 09000000660000003c010000
+  semiAutoBowAnimator: {fileID: 9100000, guid: 57a0bc296e3adda44b006518d19465d5, type: 2}
+  autoBowAnimator: {fileID: 9100000, guid: 3bc24ab8d997a814bacf6f6d9d10949f, type: 2}
+  bowAnimators:
+  - {fileID: 109913357}
+  - {fileID: 663978829}
 --- !u!4 &2142286158
 Transform:
   m_ObjectHideFlags: 0
@@ -16495,6 +16512,11 @@ PrefabInstance:
       propertyPath: playerInventoryUI
       value: 
       objectReference: {fileID: 2003965389}
+    - target: {fileID: 501886131360958742, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3bc24ab8d997a814bacf6f6d9d10949f, type: 2}
     - target: {fileID: 802031096496411463, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: TEMP_drawSpeed
@@ -16515,6 +16537,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3123129178234857655, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3bc24ab8d997a814bacf6f6d9d10949f, type: 2}
     - target: {fileID: 4077555579795155503, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: inventoryUI

@@ -151,7 +151,8 @@ public class Bow : MonoBehaviour, InputPanel
                 //if (Temp_KeyMapper.ToggleOrHold && Input.GetKeyDown(Temp_KeyMapper.GetKeycodeForInputAction(InputActions.Reload))) //Input Version 2, for keys like R
                 if (Temp_KeyMapper.ToggleOrHold && Input.GetMouseButtonDown(0)) //Input Version 2, but for mouse button
                 {
-                    LoadArrow(); //loads current arrow, assuming the correct one has been preloaded to the prefab? should pull from quiver really
+                    anim.SetTrigger("Reload");
+                    //LoadArrow(); //loads current arrow, assuming the correct one has been preloaded to the prefab? should pull from quiver really
                 }
 
 
@@ -201,7 +202,7 @@ public class Bow : MonoBehaviour, InputPanel
 
                     _currentPullTime += Time.deltaTime; //so we start at 0
                 }
-                else //assuing now what the KeyUp - since it must be at first, this wont happen again afterwards
+                else //assuing KeyUp - since it must be at first, this wont happen again afterwards
                 {
                     if (_currentPull <= _bowStats.MinPull_Tension)
                     {
@@ -332,8 +333,8 @@ public class Bow : MonoBehaviour, InputPanel
         _loadedArrow.transform.GetChild(0).gameObject.layer= layerMask; //temp quick layer fix for cameras
         _loadedArrow.transform.SetParent(null);
 
-        if(!Temp_KeyMapper.ToggleOrHold)
-        anim.SetTrigger("Reload");
+        //if(!Temp_KeyMapper.ToggleOrHold)
+        //anim.SetTrigger("Reload");
         //Vector3 cleanFwd = arrowNotchTransform.right * -1f;
         //cleanFwd.y = 0;
         //_loadedArrow.transform.forward = shotTransform.forward;

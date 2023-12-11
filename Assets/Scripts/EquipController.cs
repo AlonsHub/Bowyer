@@ -21,16 +21,16 @@ public class EquipController : MonoBehaviour
             //if()
             SelectItem(_selectedIndex);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha1))
+        else if(Input.GetKeyDown(KeyCode.Keypad1))
         {
             SelectItem(1);
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             SelectItem(2);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
         {
             SelectItem(3);
         }

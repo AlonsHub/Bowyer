@@ -17,6 +17,12 @@ public class Temp_KeyMapper : MonoBehaviour
     public static int currentVersion = 0;
 
     public static KeyCode[][] keyCode_versions;
+
+    public RuntimeAnimatorController semiAutoBowAnimator;
+    public RuntimeAnimatorController autoBowAnimator;
+
+    public Animator[] bowAnimators;
+    
     
     /// <summary>
     /// True means Toggle - False means Hold
@@ -30,6 +36,8 @@ public class Temp_KeyMapper : MonoBehaviour
         keyCode_versions[1] = keyCodes_v2;
 
         SetInputVersion(currentVersion);
+
+        //semiAutoBowAnimator.
     }
 
     //Even more temp than this whole script
@@ -52,6 +60,10 @@ public class Temp_KeyMapper : MonoBehaviour
     {
         currentVersion = v;
         SetKeys(keyCode_versions[currentVersion]);
+        foreach (var item in bowAnimators)
+        {
+            item.runtimeAnimatorController = v == 0 ? autoBowAnimator : semiAutoBowAnimator;
+        }
     }
 
     void SetKeys(KeyCode[] keys)
