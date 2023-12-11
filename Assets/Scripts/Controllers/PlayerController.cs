@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour, InputPanel
 
     [SerializeField]
     CharacterController cc;
-    [SerializeField]
-    Bow bow;
+    //[SerializeField]
+    public static Bow CurrentBow;
 
     [SerializeField]
     float walkSpeed;
@@ -143,15 +143,16 @@ public class PlayerController : MonoBehaviour, InputPanel
 
         if (!cc.isGrounded)
         {
-            if (cc.velocity.y > 0f)
+            if (cc.velocity.y > 0f )
             {
                 _currentJumpForce += Physics.gravity * Time.deltaTime;
             }
             else
             {
-                _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
+                _currentJumpForce += 4f * Physics.gravity * Time.deltaTime;
             }
         }
+        
         //else
         //{
         //    _currentJumpForce = Vector3.zero;
@@ -212,6 +213,9 @@ public class PlayerController : MonoBehaviour, InputPanel
 
     void HandleMoveStates()
     {
+        if(CurrentBow)
+            CurrentBow.SetAnimInAir(!cc.isGrounded);
+
         if ((int)CurrentMoveType < 4 && !cc.isGrounded) //fixes the problem of crouch and prone having some air time
         {   
             CurrentMoveType = MoveType.MidAir;
@@ -243,6 +247,7 @@ public class PlayerController : MonoBehaviour, InputPanel
         }
         else
         {
+      
             //cc.height = _originalHeight;
             gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
             //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
@@ -258,6 +263,8 @@ public class PlayerController : MonoBehaviour, InputPanel
     }
     void HandleMoveStatesToggle()
     {
+        if(CurrentBow)
+            CurrentBow.SetAnimInAir(!cc.isGrounded);
 
         if ((int)CurrentMoveType < 4 && !cc.isGrounded) //fixes the problem of crouch and prone having some air time
         {
@@ -318,10 +325,14 @@ public class PlayerController : MonoBehaviour, InputPanel
                 //cc.height = _originalHeight * proneYValue;
             }
         }
+
+
     }
 
     void Jump()
     {
+        if(CurrentBow)
+        CurrentBow.TrySetJump();
         _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
     }
 
@@ -381,4 +392,9 @@ public class PlayerController : MonoBehaviour, InputPanel
     {
         ActionInputPanelsEnabled = isEnable;
     }
+    public void LandOnGround()
+    {
+        _currentJumpForce = Vector3.zero;
+    }
+
 }

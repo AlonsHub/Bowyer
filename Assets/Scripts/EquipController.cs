@@ -12,7 +12,7 @@ public class EquipController : MonoBehaviour
 
     private void Awake()
     {
-        SelectItem(0);
+        SelectItem(1);
     }
     void Update() //temp! bad input grab, but good enough for now!
     {
@@ -67,6 +67,7 @@ public class EquipController : MonoBehaviour
             _selectedItem = equippedItems[_selectedIndex];
             _selectedItem.SetActive(true);
             _selectedItem.GetComponent<Animator>().SetTrigger("Equip");
+            PlayerController.CurrentBow = _selectedItem.GetComponent<Bow>();
         }
     }
 

@@ -21,7 +21,7 @@ public class Temp_KeyMapper : MonoBehaviour
     public RuntimeAnimatorController semiAutoBowAnimator;
     public RuntimeAnimatorController autoBowAnimator;
 
-    public Animator[] bowAnimators;
+    public Bow[] bows;
     
     
     /// <summary>
@@ -60,9 +60,9 @@ public class Temp_KeyMapper : MonoBehaviour
     {
         currentVersion = v;
         SetKeys(keyCode_versions[currentVersion]);
-        foreach (var item in bowAnimators)
+        foreach (var item in bows)
         {
-            item.runtimeAnimatorController = v == 0 ? autoBowAnimator : semiAutoBowAnimator;
+            item.SetAnimatorController( v == 0 ? autoBowAnimator : semiAutoBowAnimator);
         }
     }
 

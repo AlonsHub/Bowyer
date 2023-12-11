@@ -352,4 +352,26 @@ public class Bow : MonoBehaviour, InputPanel
     {
         gameObject.SetActive(false);
     }
+
+    public void TrySetJump()
+    {
+        if (_currentBowState == BowState.Pulling)
+            return;
+
+        anim.SetTrigger("Jump");
+    }
+
+    public void SetAnimInAir(bool isInAir)
+    {
+        anim.SetBool("InAir", isInAir);
+    }
+    public void ReportLanded()
+    {
+        pc.LandOnGround();
+    }
+
+    public void SetAnimatorController(RuntimeAnimatorController runtimeAnimatorController)
+    {
+        anim.runtimeAnimatorController = runtimeAnimatorController;
+    }
 }
