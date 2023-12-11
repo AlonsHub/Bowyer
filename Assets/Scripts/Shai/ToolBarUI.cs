@@ -33,20 +33,23 @@ public class ToolBarUI : MonoBehaviour
             }
 
             //check if all of the slots are empty and abort if so
-            bool empty = true;
+            bool barEmpty = true;
             foreach (var slot in slots)
             {
                 if (slot.IsEmpty)
                 {
-                    empty = false;
+                    barEmpty = false;
                 }
             }
-            if (empty)
+            if (barEmpty)
             {
                 return;
             }
-
-
+            else //recurse attempt,still not working as it should. single scroll not removing all empty slots
+            {
+                currentSlotIndex = GetTmpIndexWithStep(step);
+                ChangeCurrentSlotByStep(step);
+            }
         }
 
 
