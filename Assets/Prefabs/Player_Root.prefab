@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4623309992848324853}
   - component: {fileID: 3237240897973007526}
   - component: {fileID: 4304817502373424313}
+  - component: {fileID: 7003234817878694600}
   m_Layer: 9
   m_Name: BowCam
   m_TagString: Untagged
@@ -239,6 +240,22 @@ MonoBehaviour:
   amplitudes: {x: 0.01, y: 0.02}
   smooth: 10
   returnSmooth: 10
+--- !u!114 &7003234817878694600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314902237639369073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b7b07d96262ec45a10c133ff9f297a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTarget: {fileID: 1987671452699511334}
+  pc: {fileID: 4096420977489433102}
+  scaler: 150
+  smoother: 0.1
 --- !u!1 &1849037378233179946
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gfxScaler: {fileID: 7819152257878368602}
   cc: {fileID: 5011215102624839930}
-  bow: {fileID: 0}
   walkSpeed: 10
   runSpeed: 20
   crouchSpeed: 4
@@ -1499,7 +1515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7316116089224533278
 Transform:
   m_ObjectHideFlags: 0
@@ -1696,8 +1712,23 @@ PrefabInstance:
     - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
         type: 3}
       propertyPath: TEMP_drawSpeed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
+        type: 3}
+      propertyPath: _bowStats.armStats.shakeTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
+        type: 3}
+      propertyPath: _bowStats.armStats.releaseTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826296596633785267, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 08972908eb7408949ad2d899e648bbb4, type: 2}
     - target: {fileID: 3129447661804517318, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
         type: 3}
       propertyPath: m_Name
@@ -1931,6 +1962,8 @@ MonoBehaviour:
     armStats:
       breakingPoint: 0
       weight: 0
+      shakeTime: 0
+      releaseTime: 0
       maxTension: 0
       perfectTension:
         x: 0
@@ -2068,6 +2101,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f8731179bdab94a499d35dcc9520baac, type: 2}
+    - target: {fileID: 3600811584914767970, guid: e770741da986f7044948746cd37fd4aa,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 08972908eb7408949ad2d899e648bbb4, type: 2}
     - target: {fileID: 4397720805206119632, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
       propertyPath: m_RootOrder
@@ -2136,7 +2174,12 @@ PrefabInstance:
     - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
       propertyPath: TEMP_drawSpeed
-      value: 0.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
+        type: 3}
+      propertyPath: _bowStats.armStats.shakeTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
@@ -2147,6 +2190,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _bowStats.armStats.minTension
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
+        type: 3}
+      propertyPath: _bowStats.armStats.releaseTime
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
@@ -2384,6 +2432,8 @@ MonoBehaviour:
     armStats:
       breakingPoint: 0
       weight: 0
+      shakeTime: 0
+      releaseTime: 0
       maxTension: 0
       perfectTension:
         x: 0
