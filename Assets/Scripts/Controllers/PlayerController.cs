@@ -241,14 +241,10 @@ public class PlayerController : MonoBehaviour, InputPanel
 
             //cc.height = _originalHeight * proneYValue;
             gfxScaler.localScale = new Vector3(1, _originalHeight * proneYValue, 1);
-            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * proneYValue, xRotator.transform.localPosition.z);
-
-
+           
         }
         else
         {
-      
-            //cc.height = _originalHeight;
             gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
             //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
             CurrentMoveType = MoveType.Run;
@@ -301,8 +297,6 @@ public class PlayerController : MonoBehaviour, InputPanel
                 CurrentMoveType = MoveType.Crouch;
                 //cc.height = _originalHeight * crouchYValue;
                 gfxScaler.localScale = new Vector3(1, _originalHeight * crouchYValue, 1);
-                
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * crouchYValue, xRotator.transform.localPosition.z);
             }
         }
         else if (Input.GetKeyDown(proneKey))
@@ -334,7 +328,36 @@ public class PlayerController : MonoBehaviour, InputPanel
         if(CurrentBow)
         CurrentBow.TrySetJump();
         _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
+        StartCoroutine(InAirCoro());
     }
+
+    IEnumerator InAirCoro()
+    {
+        yield return new WaitForSeconds(.1f);
+        while (true)
+        {
+
+            if (!cc.isGrounded)
+            {
+                if (cc.velocity.y > 0f)
+                {
+                    _currentJumpForce += Physics.gravity * Time.deltaTime;
+                }
+                else
+                {
+                    _currentJumpForce += 4f * Physics.gravity * Time.deltaTime;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            else
+            {
+                //can call Land animation here
+                _currentJumpForce = Vector3.zero;
+                yield break;
+            }
+        }
+    }
+
 
     public bool IsGrounded => cc.isGrounded;
 
