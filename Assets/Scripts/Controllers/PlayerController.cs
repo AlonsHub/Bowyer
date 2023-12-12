@@ -327,13 +327,17 @@ public class PlayerController : MonoBehaviour, InputPanel
     {
         if(CurrentBow)
         CurrentBow.TrySetJump();
-        _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
+
+        Vector3 noY_Vel = cc.velocity / 2f;
+        noY_Vel.y = 0;
+        //_currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
+        _currentJumpForce = Vector3.up * jumpForce + noY_Vel;
         StartCoroutine(InAirCoro());
     }
 
     IEnumerator InAirCoro()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitUntil(()=> !cc.isGrounded);
         while (true)
         {
 
@@ -345,7 +349,7 @@ public class PlayerController : MonoBehaviour, InputPanel
                 }
                 else
                 {
-                    _currentJumpForce += 4f * Physics.gravity * Time.deltaTime;
+                    _currentJumpForce += 3f * Physics.gravity * Time.deltaTime;
                 }
                 yield return new WaitForEndOfFrame();
             }

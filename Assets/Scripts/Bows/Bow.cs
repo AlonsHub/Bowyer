@@ -76,12 +76,12 @@ public class Bow : MonoBehaviour, InputPanel
         if (!anim)
             anim = GetComponent<Animator>();
 
-        _targetZoom = SpeedsAndSensitivities.BaseCameraFOV;
-        SetFov(SpeedsAndSensitivities.BaseCameraFOV);
     }
 
     private void Start()
     {
+        _targetZoom = SpeedsAndSensitivities.BaseCameraFOV;
+        SetFov(SpeedsAndSensitivities.BaseCameraFOV);
         //MovementAnimation();
     }
 
@@ -92,9 +92,10 @@ public class Bow : MonoBehaviour, InputPanel
     }
     private void OnEnable()
     {
-        SpeedsAndSensitivities.SetBowWeight(_bowStats.Weight);
-        anim.SetFloat("DrawSpeed", TEMP_drawSpeed);
+        if (SpeedsAndSensitivities.Instance)
+            SpeedsAndSensitivities.SetBowWeight(_bowStats.Weight);
 
+        anim.SetFloat("DrawSpeed", TEMP_drawSpeed);
     }
     private void OnDisable()
     {

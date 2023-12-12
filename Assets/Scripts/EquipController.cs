@@ -66,7 +66,7 @@ public class EquipController : MonoBehaviour
             _selectedIndex = toSelect;
             _selectedItem = equippedItems[_selectedIndex];
             _selectedItem.SetActive(true);
-            _selectedItem.GetComponent<Animator>().SetTrigger("Equip");
+            //_selectedItem.GetComponent<Animator>().SetTrigger("Equip");
             PlayerController.CurrentBow = _selectedItem.GetComponent<Bow>();
         }
     }
@@ -77,7 +77,7 @@ public class EquipController : MonoBehaviour
         _selectedIndex = toSelect;
         _selectedItem = equippedItems[_selectedIndex];
         _selectedItem.SetActive(true);
-        _selectedItem.GetComponent<Animator>().SetTrigger("Equip");
+        //_selectedItem.GetComponent<Animator>().SetTrigger("Equip");
     }
 
 }
