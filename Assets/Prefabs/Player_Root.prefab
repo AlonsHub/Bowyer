@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sets:
-  - bow: {fileID: 8437651416670180977}
+  - bow: {fileID: 802031096496411463}
     quiver: {fileID: 4077555579795155503}
   - bow: {fileID: 8265708023631520488}
     quiver: {fileID: 5338281240709208176}
@@ -519,7 +519,7 @@ Transform:
   - {fileID: 1233580637128863114}
   - {fileID: 2122641760701205219}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6086265734952772892
 MonoBehaviour:
@@ -1703,32 +1703,6 @@ PrefabInstance:
       propertyPath: pc
       value: 
       objectReference: {fileID: 4096420977489433102}
-    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 5682505232231446610, guid: d2752256f8947c04ab46b315e51d5018,
-        type: 3}
-    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
-        type: 3}
-      propertyPath: TEMP_drawSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
-        type: 3}
-      propertyPath: _bowStats.armStats.shakeTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
-        type: 3}
-      propertyPath: _bowStats.armStats.releaseTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
-        type: 3}
-      propertyPath: _bowStats.stringStats.elasticity
-      value: 1.3
-      objectReference: {fileID: 0}
     - target: {fileID: 2826296596633785267, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
         type: 3}
       propertyPath: m_Controller
@@ -1804,6 +1778,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f0341b4ccbc204e87fa9c1a1f62cca, type: 3}
+--- !u!114 &802031096496411463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
+    type: 3}
+  m_PrefabInstance: {fileID: 895812491682528004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810414007973891266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb523fdca9fc3fa43adbbf5b02d7320c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2810414007973891266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3129447661804517318, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
@@ -2176,46 +2162,6 @@ PrefabInstance:
       propertyPath: shotTransform
       value: 
       objectReference: {fileID: 7494047724318671407}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: TEMP_drawSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: _bowStats.armStats.shakeTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: _bowStats.armStats.maxTension
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: _bowStats.armStats.minTension
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: _bowStats.armStats.releaseTime
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: _bowStats.stringStats.elasticity
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: _bowStats.armStats.perfectTension.x
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: _bowStats.armStats.perfectTension.y
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 5227280440901873033, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2473,15 +2419,3 @@ MonoBehaviour:
     m_RotationOrder: 4
   _cancleShotSpeed: 0
   disablingMoveTypes: 
---- !u!114 &8437651416670180977 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3689932455724876254, guid: 6a10e247403244e408299201c1d6d893,
-    type: 3}
-  m_PrefabInstance: {fileID: 5056919263145105327}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5699796531459159880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb523fdca9fc3fa43adbbf5b02d7320c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

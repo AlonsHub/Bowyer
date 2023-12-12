@@ -557,7 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pc: {fileID: 0}
   anim: {fileID: 2826296596633785267}
-  arrowPrefab: {fileID: 5682505232231446610, guid: c07da4a41dbd97f49984a387e64e98f5,
+  arrowPrefab: {fileID: 5682505232231446610, guid: d2752256f8947c04ab46b315e51d5018,
     type: 3}
   arrowNotchTransform: {fileID: 8331451287954036035}
   shotTransform: {fileID: 0}
@@ -567,12 +567,14 @@ MonoBehaviour:
     stringStats:
       breakingPoint: 0
       weight: 1
-      elasticity: 1
+      elasticity: 1.1
       stringLength: 1
       noisePerUnitOfForce: 0
     armStats:
       breakingPoint: 0
       weight: 15
+      shakeTime: 2
+      releaseTime: 4
       maxTension: 60
       perfectTension:
         x: 55
@@ -588,6 +590,7 @@ MonoBehaviour:
     bowWeightToPullWeightRatio: 0.5
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0
+  TEMP_drawSpeed: 2
   pullCurve:
     serializedVersion: 2
     m_Curve:

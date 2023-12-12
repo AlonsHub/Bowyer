@@ -1931,17 +1931,19 @@ MonoBehaviour:
     stringStats:
       breakingPoint: 0
       weight: 10
-      elasticity: 0.8
+      elasticity: 1
       stringLength: 1
       noisePerUnitOfForce: 0
     armStats:
       breakingPoint: 0
       weight: 30
-      maxTension: 145
+      shakeTime: 4
+      releaseTime: 6
+      maxTension: 100
       perfectTension:
-        x: 100
-        y: 130
-      minTension: 60
+        x: 80
+        y: 90
+      minTension: 20
       resistence: 3
     gripStats:
       breakingPoint: 0
@@ -1952,7 +1954,7 @@ MonoBehaviour:
     bowWeightToPullWeightRatio: 2
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0
-  TEMP_drawSpeed: 0
+  TEMP_drawSpeed: 1
   pullCurve:
     serializedVersion: 2
     m_Curve:
