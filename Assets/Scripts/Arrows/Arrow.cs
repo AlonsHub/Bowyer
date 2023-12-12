@@ -64,7 +64,7 @@ public class Arrow : MonoBehaviour
             transform.position += _pushDir;
             rb.isKinematic = true;
 
-            if (collision.transform.localScale.x == collision.transform.localScale.y && collision.transform.localScale.x == collision.transform.localScale.z)
+            //if (collision.transform.localScale.x == collision.transform.localScale.y && collision.transform.localScale.x == collision.transform.localScale.z)
                 transform.SetParent(collision.transform);
 
 

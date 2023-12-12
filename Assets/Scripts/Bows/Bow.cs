@@ -361,6 +361,13 @@ public class Bow : MonoBehaviour, InputPanel
 
         anim.SetTrigger("Jump");
     }
+    public void Holster()
+    {
+        //if (_currentBowState == BowState.Pulling)
+        //    return;
+
+        anim.SetTrigger("Holster");
+    }
 
     public void SetAnimInAir(bool isInAir)
     {
