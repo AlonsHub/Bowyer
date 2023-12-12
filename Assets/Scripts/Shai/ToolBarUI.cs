@@ -20,17 +20,17 @@ public class ToolBarUI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        RefreshToolbar();
+    }
+
     public void ChangeCurrentSlotByStep(int step)
     {
         int tmpIndex = GetTmpIndexWithStep(step);
 
         if (slots[tmpIndex].IsEmpty)
         {
-            //disable a slot's GO if empty and enabled (might be irrelevant once bar refresh is implemented)
-            if (slots[tmpIndex].gameObject.activeSelf)
-            {
-                slots[tmpIndex].gameObject.SetActive(false);
-            }
 
             //check if all of the slots are empty and abort if so
             bool barEmpty = true;
@@ -47,15 +47,16 @@ public class ToolBarUI : MonoBehaviour
             }
             else //recurse attempt,still not working as it should. single scroll not removing all empty slots
             {
-                currentSlotIndex = GetTmpIndexWithStep(step);
+                currentSlotIndex = tmpIndex;
                 ChangeCurrentSlotByStep(step);
             }
         }
+        else
+        {
+            currentSlotIndex = tmpIndex;
 
-
-        currentSlotIndex = GetTmpIndexWithStep(step);
-
-        slotHighlight.transform.position = slots[currentSlotIndex].transform.position;
+            slotHighlight.transform.position = slots[currentSlotIndex].transform.position;
+        }
     }
 
     private int GetTmpIndexWithStep(int step)
@@ -69,7 +70,7 @@ public class ToolBarUI : MonoBehaviour
     }
 
     // need to chage this, what happens if the player presses 3 when slot3 is disabled but slot4 appears as 3 hmmm?
-    public void ChangeCurrentSlotByIndex(int index) 
+    public void ChangeCurrentSlotByIndex(int index)
     {
         if (!slots[index].IsEmpty)
         {
@@ -96,5 +97,43 @@ public class ToolBarUI : MonoBehaviour
         ItemHolderData IHD = slots[currentSlotIndex].Item;
         slots[currentSlotIndex].RemoveItem();
         return IHD;
+    }
+
+    [ContextMenu("Refresh")]
+    private void RefreshToolbar()
+    {
+        //disable any empty slots and enable occupied ones who are disabled
+        foreach (var slot in slots)
+        {
+            if (slot.IsEmpty)
+            {
+                slot.gameObject.SetActive(false);
+            }
+            else if (!slot.gameObject.activeSelf)
+            {
+                slot.gameObject.SetActive(true);
+            }
+        }
+
+        //try to fix the position and status of the highlighter,
+        //seems to work but on the start of the game the highlighter isnt in the right position
+        if (!slots[currentSlotIndex].IsEmpty)
+        {
+            slotHighlight.SetActive(true);
+            slotHighlight.transform.position = slots[currentSlotIndex].transform.position;
+        }
+        else
+        {
+            foreach (var slot in slots)
+            {
+                if (!slot.IsEmpty)
+                {
+                    slotHighlight.SetActive(true);
+                    slotHighlight.transform.position = slot.transform.position;
+                    return;
+                }
+            }
+            slotHighlight.SetActive(false);
+        }
     }
 }

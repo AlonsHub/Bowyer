@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1781.4622, g: 1941.1155, b: 2852.6135, a: 1}
+  m_IndirectSpecularColor: {r: 1781.4622, g: 1941.1311, b: 2852.6604, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -444,10 +444,10 @@ RectTransform:
   m_Father: {fileID: 1147823490}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109898419
 MonoBehaviour:
@@ -6927,8 +6927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a1c59ee42a1fa438c95b0bf8502064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 0}
-  _stack: 0
+  itemSO: {fileID: 11400000, guid: 04e2bb3cb0d0bc7458cdbaf418ccab9f, type: 2}
+  _stack: 4
 --- !u!114 &981956140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7419,8 +7419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a1c59ee42a1fa438c95b0bf8502064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 0}
-  _stack: 0
+  itemSO: {fileID: 11400000, guid: 32f3437b57005d54085bfe47bafeaf4a, type: 2}
+  _stack: 1
 --- !u!114 &1038051388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10258,9 +10258,9 @@ RectTransform:
   m_Father: {fileID: 109898418}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -194, y: 201}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375182587
@@ -10283,7 +10283,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 53.16, y: 100}
+  m_CellSize: {x: 53, y: 53}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
