@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 enum BowState { Empty, Loaded, Pulling, CancelShot}
+public enum BowType { Short, Recurve, Long}
 public class Bow : MonoBehaviour, InputPanel
 {
     

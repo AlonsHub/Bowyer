@@ -22,7 +22,7 @@ public class ToolBarUI : MonoBehaviour
 
     private void OnEnable()
     {
-        RefreshToolbar();
+        Invoke("RefreshToolbar", 0.1f);
     }
 
     public void ChangeCurrentSlotByStep(int step)
