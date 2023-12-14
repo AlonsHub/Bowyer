@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
 
 public class BowsLogic : MonoBehaviour
 {
     [SerializeField] private List<BowQuiverset> sets;
+
     private int currentSetIndex;
 
     //remove current arrow from current set's quiver, update currentArrowIndex, instantiate arrow and shoot it
@@ -65,5 +67,41 @@ public class BowsLogic : MonoBehaviour
     {
         //sets[currentSetIndex].bow.LoadArrow(sets[currentSetIndex].quiver.GetCurrentArrow().ItemPrefab);
         sets[currentSetIndex].Bow.LoadArrow(sets[currentSetIndex].quiver.GetCurrentArrow().ItemPrefab);
+    }
+
+    /// <summary>
+    /// Get appropriate quiver and try to add the arrow to it.
+    /// </summary>
+    /// <param name="arrowHolderData"></param>
+    /// <returns>remainder of stack</returns>
+    public int TryAddArrow(ItemHolderData arrowHolderData)//should probably recieve a class deriving from IHD
+    {
+        int ogStack = arrowHolderData.Stack;
+        Quiver tmpQuiver = null;
+        foreach (var set in sets)
+        {
+            if ( set.quiver.SO.QuiverType == ((ArrowSO)arrowHolderData.ReturnItemSO()).ArrowType)
+            {
+                tmpQuiver = set.quiver;
+            }
+        }
+
+        if (tmpQuiver)
+        {
+
+            if (((ArrowSO)arrowHolderData.ReturnItemSO()).IsSpecial)
+            {
+                return tmpQuiver.AddSpecialArrow(arrowHolderData);
+            }
+            else
+            {
+                return tmpQuiver.AddItem(arrowHolderData);
+            }
+        }
+        else
+        {
+            Debug.Log("No appropriate quiver found");
+            return ogStack;
+        }
     }
 }

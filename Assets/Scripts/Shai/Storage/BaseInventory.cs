@@ -66,6 +66,11 @@ public class BaseInventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns item amount that cant be added to inventory
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
     public int AddItem(ItemHolderData item)
     {
         int itemsNum = item.Stack;

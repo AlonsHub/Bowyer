@@ -23,5 +23,6 @@ MonoBehaviour:
   _isCollectible: 0
   _stackMax: 20
   effect: 0
+  arrowType: 2
   damage: 20
   isSpecial: 0
