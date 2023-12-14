@@ -57,7 +57,7 @@ public class BowsLogic : MonoBehaviour
         int newIndex = currentSetIndex += step;
         currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
         sets[currentSetIndex].bow.gameObject.SetActive(true);
-
+        sets[currentSetIndex].bow.OnShoot.AddListener(()=> sets[currentSetIndex].quiver.RemoveCurrentArrow());
         PlayerController.CurrentBow = sets[currentSetIndex].bow;
 
         //_selectedItem.GetComponent<Animator>().SetTrigger("Equip");

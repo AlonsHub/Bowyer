@@ -252,9 +252,7 @@ public class PlayerController : MonoBehaviour, InputPanel
 
         if (Input.GetKeyUp(crouchKey)) //this may be a problem
         {
-            //cc.height = _originalHeight;
-            gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
-            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
+            gfxScaler.localScale = new Vector3(1, _originalHeight, 1);            
         }
     }
     void HandleMoveStatesToggle()
@@ -289,13 +287,10 @@ public class PlayerController : MonoBehaviour, InputPanel
                 //cc.height = _originalHeight;
                 
                 gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
-
             }
             else
             { 
                 CurrentMoveType = MoveType.Crouch;
-                //cc.height = _originalHeight * crouchYValue;
                 gfxScaler.localScale = new Vector3(1, _originalHeight * crouchYValue, 1);
             }
         }
@@ -303,20 +298,13 @@ public class PlayerController : MonoBehaviour, InputPanel
         {
             if (CurrentMoveType == MoveType.Prone)
             {
-                //cc.height = _originalHeight;
                 gfxScaler.localScale = new Vector3(1, _originalHeight , 1);
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
-
                 CurrentMoveType = MoveType.Run;
             }
             else
             {
                 CurrentMoveType = MoveType.Prone;
                 gfxScaler.localScale = new Vector3(1, _originalHeight * proneYValue, 1);
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * proneYValue, xRotator.transform.localPosition.z);
-
-
-                //cc.height = _originalHeight * proneYValue;
             }
         }
 
@@ -349,7 +337,7 @@ public class PlayerController : MonoBehaviour, InputPanel
                 }
                 else
                 {
-                    _currentJumpForce += 3f * Physics.gravity * Time.deltaTime;
+                    _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
                 }
                 yield return new WaitForEndOfFrame();
             }

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4273513688245963583
 MonoBehaviour:
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e9e5bfa33a89048b48ebbadb86e5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCodes_v1: 690000007100000000000000
-  keyCodes_v2: 09000000660000003c010000
+  keyCodes_v1: 69000000710000000000000072000000
+  keyCodes_v2: 09000000660000003c01000072000000
   semiAutoBowAnimator: {fileID: 9100000, guid: 57a0bc296e3adda44b006518d19465d5, type: 2}
   autoBowAnimator: {fileID: 9100000, guid: 08972908eb7408949ad2d899e648bbb4, type: 2}
   bows:

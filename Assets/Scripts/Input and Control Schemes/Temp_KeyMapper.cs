@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InputActions{Inventory,UseConsumeable,Reload};
+public enum InputActions{Inventory,UseConsumeable,Reload, CancelShot};
 public class Temp_KeyMapper : MonoBehaviour
 {
     static Dictionary<InputActions, KeyCode> dict;
