@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class BaseInventory : MonoBehaviour
 {
-    public List<InventorySlot> slots;
     [HideInInspector] public UnityEvent OnInventoryChanged;
+    [SerializeField] protected List<InventorySlot> slots;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private int capacity;
@@ -106,4 +106,8 @@ public class BaseInventory : MonoBehaviour
         return null;
     }
 
+    public virtual List<InventorySlot> GetAllSlots()
+    {
+        return slots;
+    }
 }
