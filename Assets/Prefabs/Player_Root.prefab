@@ -406,10 +406,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91605b2be4eecb34287a6fb6540861e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: []
   OnInventoryChanged:
     m_PersistentCalls:
       m_Calls: []
+  slots: []
   slotPrefab: {fileID: 7109043909565499035, guid: cda8268b32017dc4bb327740396b33a0,
     type: 3}
   inventoryUI: {fileID: 0}
@@ -1187,19 +1187,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f06cfbcceee6049ae0ce54563cdb12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInventoryChanged:
+    m_PersistentCalls:
+      m_Calls: []
   slots:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  OnInventoryChanged:
-    m_PersistentCalls:
-      m_Calls: []
   slotPrefab: {fileID: 7109043909565499035, guid: cda8268b32017dc4bb327740396b33a0,
     type: 3}
   inventoryUI: {fileID: 0}
   capacity: 5
+  so: {fileID: 11400000, guid: 1a671138b261ad444a6db3a00c8998b3, type: 2}
+  sArrowsSlots:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6906055668541486120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,19 +1547,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f06cfbcceee6049ae0ce54563cdb12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInventoryChanged:
+    m_PersistentCalls:
+      m_Calls: []
   slots:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  OnInventoryChanged:
-    m_PersistentCalls:
-      m_Calls: []
   slotPrefab: {fileID: 7109043909565499035, guid: cda8268b32017dc4bb327740396b33a0,
     type: 3}
   inventoryUI: {fileID: 0}
   capacity: 5
+  so: {fileID: 11400000, guid: 1a671138b261ad444a6db3a00c8998b3, type: 2}
+  sArrowsSlots:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8868249268665163226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,6 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39ace1501404b44ba8fb2f3ae0373ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bowsLogic: {fileID: 5032854035815903979}
   mainCam: {fileID: 6562655508372775589}
   playerInv: {fileID: 4103526046670560280}
   autoCollectColl: {fileID: 6871842181199506676}
@@ -1703,6 +1712,12 @@ PrefabInstance:
       propertyPath: pc
       value: 
       objectReference: {fileID: 4096420977489433102}
+    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
+        type: 3}
+      propertyPath: arrowPrefab
+      value: 
+      objectReference: {fileID: 5682505232231446610, guid: 9790937e3414c1e4ab1ca61393fe627d,
+        type: 3}
     - target: {fileID: 2826296596633785267, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
         type: 3}
       propertyPath: m_Controller
@@ -2157,6 +2172,12 @@ PrefabInstance:
       propertyPath: pc
       value: 
       objectReference: {fileID: 4096420977489433102}
+    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
+        type: 3}
+      propertyPath: arrowPrefab
+      value: 
+      objectReference: {fileID: 5682505232231446610, guid: 0f77f6c2865b1404f9e43dc60cd011be,
+        type: 3}
     - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
       propertyPath: shotTransform
