@@ -78,6 +78,7 @@ public class Bow : MonoBehaviour, InputPanel
 
     //temp?
     bool _cancelShot = false;
+    bool _canShoot = false;
 
     private void Awake()
     {
@@ -196,7 +197,8 @@ public class Bow : MonoBehaviour, InputPanel
 
                 break;
             case BowState.Loaded:
-                if (_cancelShot ? Input.GetMouseButtonDown(0) : Input.GetMouseButton(0))
+                //if (_cancelShot ? Input.GetMouseButtonDown(0) : Input.GetMouseButton(0))
+                if (_canShoot && Input.GetMouseButton(0))
                 {
                     _currentBowState = BowState.Pulling;
                     //Apply "Pulling-Weight"
@@ -213,8 +215,9 @@ public class Bow : MonoBehaviour, InputPanel
                 break;
             case BowState.Pulling:
 
-                anim.ResetTrigger("Aim");
-                _cancelShot = false;
+                //anim.ResetTrigger("Aim");
+                _canShoot = true;
+                //_cancelShot = false;
 
                 if (Input.GetMouseButton(0))
                 {
@@ -222,7 +225,9 @@ public class Bow : MonoBehaviour, InputPanel
                     if(Input.GetKeyDown(Temp_KeyMapper.GetKeycodeForInputAction(InputActions.CancelShot)))
                     {
                         _currentBowState = BowState.CancelShot;
-                        _cancelShot = true;
+                        //_cancelShot = true;
+                        _canShoot = false;
+
                         return;
                     }
 
@@ -285,6 +290,9 @@ public class Bow : MonoBehaviour, InputPanel
                     //Penalty zone! can't do anything until arrow returns
                     //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
 
+                    _canShoot = false;
+
+
                     _currentPull -= _cancleShotSpeed * Time.deltaTime;
                     SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f, _bowStats.PullWeight, _currentPull / _bowStats.MaxPull_Tension));
 
@@ -298,6 +306,8 @@ public class Bow : MonoBehaviour, InputPanel
                         _currentPullTime = 0;
 
                         anim.SetTrigger("ToIdle");
+                        _canShoot = true;
+
                         //anim.SetBool("IsAim", false);
 
                     }
@@ -345,32 +355,47 @@ public class Bow : MonoBehaviour, InputPanel
         _currentBowState = BowState.Loaded;
         _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
         _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
+
+        //_canShoot = true;
     }
+
+
     public void CallLoadArrow() //called by animation event
     {
         if (Temp_KeyMapper.ToggleOrHold)
             return;
 
-        _currentBowState = BowState.Loaded;
-        if (_loadedArrow)
-        {
-            Destroy(_loadedArrow);
-        }
-        _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
-        _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
+        LoadArrow();
+
+        //_currentBowState = BowState.Loaded;
+        //if (_loadedArrow)
+        //{
+        //    Destroy(_loadedArrow);
+        //}
+        //_loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
+        //_loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
+    }
+
+    public void CallReadyToShoot()
+    {
+        if(_loadedArrow)
+        _canShoot = true;
     }
 
     public void LoadArrow(GameObject newArrowPrefab)
     {
         arrowPrefab = newArrowPrefab;
-        _currentBowState = BowState.Loaded;
 
-        if (_loadedArrow)
-        {
-            Destroy(_loadedArrow);
-        }
-        _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
-        _loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
+        LoadArrow();
+
+        //_currentBowState = BowState.Loaded;
+
+        //if (_loadedArrow)
+        //{
+        //    Destroy(_loadedArrow);
+        //}
+        //_loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
+        //_loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
 
     }
 
