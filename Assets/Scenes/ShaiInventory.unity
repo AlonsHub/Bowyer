@@ -16456,18 +16456,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952701225}
   m_CullTransparentMesh: 1
---- !u!114 &1954107725 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5032854035815903979, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-    type: 3}
-  m_PrefabInstance: {fileID: 591700589468049388}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29946092873d20341ad8778e7f5284eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1959669728
 GameObject:
   m_ObjectHideFlags: 0
@@ -18464,48 +18452,6 @@ PrefabInstance:
       propertyPath: playerInventoryUI
       value: 
       objectReference: {fileID: 2003965389}
-    - target: {fileID: 802031096496411463, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 5682505232231446610, guid: 9790937e3414c1e4ab1ca61393fe627d,
-        type: 3}
-    - target: {fileID: 802031096496411463, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: TEMP_drawSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 802031096496411463, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.shakeTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 802031096496411463, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.releaseTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2810414007973891266, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3209476041892340946, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: bowsLogic
-      value: 
-      objectReference: {fileID: 1954107725}
-    - target: {fileID: 3209476041892340946, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: isAutomatic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077555579795155503, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: so
-      value: 
-      objectReference: {fileID: 11400000, guid: 1a671138b261ad444a6db3a00c8998b3,
-        type: 2}
     - target: {fileID: 4077555579795155503, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: inventoryUI
@@ -18538,11 +18484,6 @@ PrefabInstance:
       objectReference: {fileID: 1758119181}
     - target: {fileID: 4077555579795155503, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
-      propertyPath: sArrowsSlots.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077555579795155503, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
       propertyPath: sArrowsSlots.Array.data[0]
       value: 
       objectReference: {fileID: 353409669}
@@ -18561,17 +18502,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Root
       objectReference: {fileID: 0}
-    - target: {fileID: 5032854035815903979, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: sets.Array.data[0].bow
-      value: 
-      objectReference: {fileID: 1000950926}
-    - target: {fileID: 5338281240709208176, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: so
-      value: 
-      objectReference: {fileID: 11400000, guid: 1a671138b261ad444a6db3a00c8998b3,
-        type: 2}
     - target: {fileID: 5338281240709208176, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: inventoryUI
@@ -18604,11 +18534,6 @@ PrefabInstance:
       objectReference: {fileID: 2000278921}
     - target: {fileID: 5338281240709208176, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
-      propertyPath: sArrowsSlots.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5338281240709208176, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
       propertyPath: sArrowsSlots.Array.data[0]
       value: 
       objectReference: {fileID: 695604100}
@@ -18617,10 +18542,15 @@ PrefabInstance:
       propertyPath: sArrowsSlots.Array.data[1]
       value: 
       objectReference: {fileID: 870783862}
-    - target: {fileID: 6100171953156390666, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+    - target: {fileID: 7411816880749131839, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: maxRot
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411816880749131839, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
+        type: 3}
+      propertyPath: minRot
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 7819152257878368602, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
@@ -18676,32 +18606,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265708023631520488, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 5682505232231446610, guid: 0f77f6c2865b1404f9e43dc60cd011be,
-        type: 3}
-    - target: {fileID: 8265708023631520488, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: TEMP_drawSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265708023631520488, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.shakeTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265708023631520488, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: _bowStats.armStats.releaseTime
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8274279807840969154, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

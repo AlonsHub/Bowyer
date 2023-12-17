@@ -1359,8 +1359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axisDirection: 0
   doLimit: 1
-  minRot: -45
-  maxRot: 45
+  minRot: -70
+  maxRot: 70
   _currentRot: 0
   _currentInput: 0
 --- !u!1 &7060502873252950652
@@ -2183,6 +2183,11 @@ PrefabInstance:
       propertyPath: shotTransform
       value: 
       objectReference: {fileID: 7494047724318671407}
+    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
+        type: 3}
+      propertyPath: _bowStats.stringStats.elasticity
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5227280440901873033, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
