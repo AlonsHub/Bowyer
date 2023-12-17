@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2025.4607, g: 1264.2579, b: 1058.4337, a: 1}
+  m_IndirectSpecularColor: {r: 1859.9631, g: 1088.4293, b: 768.04895, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23321,11 +23321,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Root
       objectReference: {fileID: 0}
-    - target: {fileID: 5032854035815903979, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: sets.Array.data[0].bow
-      value: 
-      objectReference: {fileID: 1751839641}
     - target: {fileID: 5338281240709208176, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: inventoryUI
@@ -23356,16 +23351,6 @@ PrefabInstance:
       propertyPath: slots.Array.data[4]
       value: 
       objectReference: {fileID: 274986432}
-    - target: {fileID: 7003234817878694600, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: scaler
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003234817878694600, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
-        type: 3}
-      propertyPath: smoother
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7819152257878368602, guid: 92fdc7f0a246a494aa89ed2a30cecdb6,
         type: 3}
       propertyPath: m_RootOrder
