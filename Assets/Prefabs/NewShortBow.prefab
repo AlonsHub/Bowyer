@@ -526,7 +526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7207556065776309456
 Transform:
   m_ObjectHideFlags: 0
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pc: {fileID: 0}
   anim: {fileID: 2826296596633785267}
-  arrowPrefab: {fileID: 5682505232231446610, guid: c07da4a41dbd97f49984a387e64e98f5,
+  arrowPrefab: {fileID: 5682505232231446610, guid: 9790937e3414c1e4ab1ca61393fe627d,
     type: 3}
   arrowNotchTransform: {fileID: 8331451287954036035}
   shotTransform: {fileID: 0}
@@ -567,12 +567,14 @@ MonoBehaviour:
     stringStats:
       breakingPoint: 0
       weight: 1
-      elasticity: 1
+      elasticity: 1.1
       stringLength: 1
       noisePerUnitOfForce: 0
     armStats:
       breakingPoint: 0
       weight: 15
+      shakeTime: 2
+      releaseTime: 4
       maxTension: 60
       perfectTension:
         x: 55
@@ -588,6 +590,8 @@ MonoBehaviour:
     bowWeightToPullWeightRatio: 0.5
   TEMP_armStrength: 100
   TEMP_perfectShotBonus: 0
+  TEMP_drawSpeed: 2
+  TEMP_reloadSpeed: 0
   pullCurve:
     serializedVersion: 2
     m_Curve:
@@ -650,6 +654,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &2826296596633785267
 Animator:
   serializedVersion: 5
@@ -660,7 +667,7 @@ Animator:
   m_GameObject: {fileID: 3129447661804517318}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 10b37188de0aaf5488066538c04b73ca, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3bc24ab8d997a814bacf6f6d9d10949f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 08972908eb7408949ad2d899e648bbb4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -12,7 +12,7 @@ public class EquipController : MonoBehaviour
 
     private void Awake()
     {
-        SelectItem(0);
+        SelectItem(1);
     }
     void Update() //temp! bad input grab, but good enough for now!
     {
@@ -21,16 +21,16 @@ public class EquipController : MonoBehaviour
             //if()
             SelectItem(_selectedIndex);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha1))
+        else if(Input.GetKeyDown(KeyCode.Keypad1))
         {
             SelectItem(1);
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             SelectItem(2);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
         {
             SelectItem(3);
         }
@@ -66,7 +66,8 @@ public class EquipController : MonoBehaviour
             _selectedIndex = toSelect;
             _selectedItem = equippedItems[_selectedIndex];
             _selectedItem.SetActive(true);
-            _selectedItem.GetComponent<Animator>().SetTrigger("Equip");
+            //_selectedItem.GetComponent<Animator>().SetTrigger("Equip");
+            PlayerController.CurrentBow = _selectedItem.GetComponent<Bow>();
         }
     }
 
@@ -76,7 +77,7 @@ public class EquipController : MonoBehaviour
         _selectedIndex = toSelect;
         _selectedItem = equippedItems[_selectedIndex];
         _selectedItem.SetActive(true);
-        _selectedItem.GetComponent<Animator>().SetTrigger("Equip");
+        //_selectedItem.GetComponent<Animator>().SetTrigger("Equip");
     }
 
 }

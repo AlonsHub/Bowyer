@@ -28,6 +28,8 @@ public class Arrow : MonoBehaviour
         rb.isKinematic = true;
         if (!anim)
             anim = GetComponent<Animator>();
+
+        myCollider.enabled = false;
     }
 
     public void ForceMe(Vector3 force)
@@ -35,6 +37,7 @@ public class Arrow : MonoBehaviour
         anim.SetTrigger("Fly");
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
+        myCollider.enabled = true;
 
     }
 
@@ -64,7 +67,7 @@ public class Arrow : MonoBehaviour
             transform.position += _pushDir;
             rb.isKinematic = true;
 
-            if (collision.transform.localScale.x == collision.transform.localScale.y && collision.transform.localScale.x == collision.transform.localScale.z)
+            //if (collision.transform.localScale.x == collision.transform.localScale.y && collision.transform.localScale.x == collision.transform.localScale.z)
                 transform.SetParent(collision.transform);
 
 

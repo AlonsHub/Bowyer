@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedsAndSensitivities : MonoBehaviour
 {
-    static SpeedsAndSensitivities Instance;
+    public static SpeedsAndSensitivities Instance;
 
 
     [SerializeField, Tooltip("Default 120f,120f")]

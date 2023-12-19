@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour, InputPanel
 
     [SerializeField]
     CharacterController cc;
-    [SerializeField]
-    Bow bow;
+    //[SerializeField]
+    public static Bow CurrentBow;
 
     [SerializeField]
     float walkSpeed;
@@ -143,15 +143,16 @@ public class PlayerController : MonoBehaviour, InputPanel
 
         if (!cc.isGrounded)
         {
-            if (cc.velocity.y > 0f)
+            if (cc.velocity.y > 0f )
             {
                 _currentJumpForce += Physics.gravity * Time.deltaTime;
             }
             else
             {
-                _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
+                _currentJumpForce += 4f * Physics.gravity * Time.deltaTime;
             }
         }
+        
         //else
         //{
         //    _currentJumpForce = Vector3.zero;
@@ -212,6 +213,9 @@ public class PlayerController : MonoBehaviour, InputPanel
 
     void HandleMoveStates()
     {
+        if(CurrentBow)
+            CurrentBow.SetAnimInAir(!cc.isGrounded);
+
         if ((int)CurrentMoveType < 4 && !cc.isGrounded) //fixes the problem of crouch and prone having some air time
         {   
             CurrentMoveType = MoveType.MidAir;
@@ -237,13 +241,10 @@ public class PlayerController : MonoBehaviour, InputPanel
 
             //cc.height = _originalHeight * proneYValue;
             gfxScaler.localScale = new Vector3(1, _originalHeight * proneYValue, 1);
-            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * proneYValue, xRotator.transform.localPosition.z);
-
-
+           
         }
         else
         {
-            //cc.height = _originalHeight;
             gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
             //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
             CurrentMoveType = MoveType.Run;
@@ -251,13 +252,13 @@ public class PlayerController : MonoBehaviour, InputPanel
 
         if (Input.GetKeyUp(crouchKey)) //this may be a problem
         {
-            //cc.height = _originalHeight;
-            gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
-            //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
+            gfxScaler.localScale = new Vector3(1, _originalHeight, 1);            
         }
     }
     void HandleMoveStatesToggle()
     {
+        if(CurrentBow)
+            CurrentBow.SetAnimInAir(!cc.isGrounded);
 
         if ((int)CurrentMoveType < 4 && !cc.isGrounded) //fixes the problem of crouch and prone having some air time
         {
@@ -286,44 +287,69 @@ public class PlayerController : MonoBehaviour, InputPanel
                 //cc.height = _originalHeight;
                 
                 gfxScaler.localScale = new Vector3(1, _originalHeight, 1);
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
-
             }
             else
             { 
                 CurrentMoveType = MoveType.Crouch;
-                //cc.height = _originalHeight * crouchYValue;
                 gfxScaler.localScale = new Vector3(1, _originalHeight * crouchYValue, 1);
-                
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * crouchYValue, xRotator.transform.localPosition.z);
             }
         }
         else if (Input.GetKeyDown(proneKey))
         {
             if (CurrentMoveType == MoveType.Prone)
             {
-                //cc.height = _originalHeight;
                 gfxScaler.localScale = new Vector3(1, _originalHeight , 1);
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight, xRotator.transform.localPosition.z);
-
                 CurrentMoveType = MoveType.Run;
             }
             else
             {
                 CurrentMoveType = MoveType.Prone;
                 gfxScaler.localScale = new Vector3(1, _originalHeight * proneYValue, 1);
-                //xRotator.transform.localPosition = new Vector3(xRotator.transform.localPosition.x, _originalHeight * proneYValue, xRotator.transform.localPosition.z);
-
-
-                //cc.height = _originalHeight * proneYValue;
             }
         }
+
+
     }
 
     void Jump()
     {
-        _currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
+        if(CurrentBow)
+        CurrentBow.TrySetJump();
+
+        Vector3 noY_Vel = cc.velocity / 2f;
+        noY_Vel.y = 0;
+        //_currentJumpForce = Vector3.up * jumpForce + cc.velocity/2f;
+        _currentJumpForce = Vector3.up * jumpForce + noY_Vel;
+        StartCoroutine(InAirCoro());
     }
+
+    IEnumerator InAirCoro()
+    {
+        yield return new WaitUntil(()=> !cc.isGrounded);
+        while (true)
+        {
+
+            if (!cc.isGrounded)
+            {
+                if (cc.velocity.y > 0f)
+                {
+                    _currentJumpForce += Physics.gravity * Time.deltaTime;
+                }
+                else
+                {
+                    _currentJumpForce += 2f * Physics.gravity * Time.deltaTime;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            else
+            {
+                //can call Land animation here
+                _currentJumpForce = Vector3.zero;
+                yield break;
+            }
+        }
+    }
+
 
     public bool IsGrounded => cc.isGrounded;
 
@@ -381,4 +407,9 @@ public class PlayerController : MonoBehaviour, InputPanel
     {
         ActionInputPanelsEnabled = isEnable;
     }
+    public void LandOnGround()
+    {
+        _currentJumpForce = Vector3.zero;
+    }
+
 }

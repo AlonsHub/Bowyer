@@ -35,12 +35,32 @@ public class BowsLogic : MonoBehaviour
 
     public void ChangeCurrentSetIndexByStep(int step)
     {
-        sets[currentSetIndex].bow.gameObject.SetActive(false);
+        //Alon changes begin
+
+        //sets[currentSetIndex].bow.gameObject.SetActive(false);
+        sets[currentSetIndex].bow.Holster();
+        //int newIndex = currentSetIndex += step;
+        //currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
+        //sets[currentSetIndex].bow.gameObject.SetActive(true);
+
+        StartCoroutine(WaitForHolster(step));
+
+        //Alon changes end
+
+
+        //should update the bow the player sees
+    }
+
+    private IEnumerator WaitForHolster(int step)
+    {
+        yield return new WaitUntil(() => !sets[currentSetIndex].bow.gameObject.activeSelf);
         int newIndex = currentSetIndex += step;
         currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
         sets[currentSetIndex].bow.gameObject.SetActive(true);
+        sets[currentSetIndex].bow.OnShoot.AddListener(()=> sets[currentSetIndex].quiver.RemoveCurrentArrow());
+        PlayerController.CurrentBow = sets[currentSetIndex].bow;
 
-        //should update the bow the player sees
+        //_selectedItem.GetComponent<Animator>().SetTrigger("Equip");
     }
 
     private void LoadBow()

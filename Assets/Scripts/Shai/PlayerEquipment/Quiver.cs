@@ -29,7 +29,11 @@ public class Quiver : BaseInventory
         Debug.Log("Invalid Index");
         return null;
     }
-
+    public void RemoveCurrentArrow()
+    {
+        RemoveArrowAt(currentArrowIndex);
+        //handle index reset if needed
+    }
     public void RemoveArrowAt(int index)
     {
         if (index <= slots.Count - 1)//remove arrow from default arrows slots

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InputActions{Inventory,UseConsumeable,Reload};
+public enum InputActions{Inventory,UseConsumeable,Reload, CancelShot};
 public class Temp_KeyMapper : MonoBehaviour
 {
     static Dictionary<InputActions, KeyCode> dict;
@@ -17,6 +17,12 @@ public class Temp_KeyMapper : MonoBehaviour
     public static int currentVersion = 0;
 
     public static KeyCode[][] keyCode_versions;
+
+    public RuntimeAnimatorController semiAutoBowAnimator;
+    public RuntimeAnimatorController autoBowAnimator;
+
+    public Bow[] bows;
+    
     
     /// <summary>
     /// True means Toggle - False means Hold
@@ -30,6 +36,8 @@ public class Temp_KeyMapper : MonoBehaviour
         keyCode_versions[1] = keyCodes_v2;
 
         SetInputVersion(currentVersion);
+
+        //semiAutoBowAnimator.
     }
 
     //Even more temp than this whole script
@@ -52,6 +60,10 @@ public class Temp_KeyMapper : MonoBehaviour
     {
         currentVersion = v;
         SetKeys(keyCode_versions[currentVersion]);
+        foreach (var item in bows)
+        {
+            item.SetAnimatorController( v == 0 ? autoBowAnimator : semiAutoBowAnimator);
+        }
     }
 
     void SetKeys(KeyCode[] keys)
