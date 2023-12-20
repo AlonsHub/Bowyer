@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ecef17a5c557449a3ee76ef9f2a81f, type: 3}
   m_Name: Blue Cube
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 4
   _name: Blue Cube
   _id: bluc00
   _itemPrefab: {fileID: 4286266839220331429, guid: a0154c2265b7ebc43b25b5a2b8564d2c,
     type: 3}
   _icon: {fileID: 21300000, guid: c7789ac141ed8a748bcff2b20039daf2, type: 3}
   _isStackable: 1
+  _isEquipable: 0
+  _isCollectible: 0
   _stackMax: 6

@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public enum ItemType
+[Flags]public enum ItemType
 {
-    Potion,
-    Arrow,
-    CraftingMaterial,
-    Mod,
-    Bow,
-    Equipment,
-    Quiver
+    None = 0,
+    Potion = 1 << 0,
+    Arrow = 1 << 1,
+    CraftingMaterial = 1 << 2,
+    Mod = 1 << 3,
+    Bow = 1 << 4,
+    Equipment = 1 << 5,
+    Quiver = 1 << 6
 }
 
 [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Create Item"/*, order = 1*/)]

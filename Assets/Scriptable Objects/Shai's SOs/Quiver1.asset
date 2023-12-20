@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1deabe8fe23801448237a093f06849a, type: 3}
   m_Name: Quiver1
   m_EditorClassIdentifier: 
-  _type: 6
+  _type: 64
   _name: 
   _id: quiv1
   _itemPrefab: {fileID: 298607577464845297, guid: 99a55e91f1d1e6648ab30d21b838fefa,

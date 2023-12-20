@@ -23,10 +23,12 @@ public class PlayerCollector : MonoBehaviour
 
     private void TryCollectItem()
     {
+
         if (Physics.Raycast(mainCam.position, mainCam.forward, out RaycastHit hit, collectRange))
         {
-            if (hit.transform.TryGetComponent(out tmpItemHolder))
+            if (hit.transform.TryGetComponent(out tmpItemHolder) || hit.transform.parent.TryGetComponent(out tmpItemHolder))
             {
+                Debug.Log("piss");
                 if (tmpItemHolder.ReturnItemSO().Type == ItemType.Arrow)
                 {
                     CollectArrow(tmpItemHolder);
