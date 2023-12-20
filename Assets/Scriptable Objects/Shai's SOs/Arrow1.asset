@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0735d92605646479d55affacc58b37, type: 3}
   m_Name: Arrow1
   m_EditorClassIdentifier: 
-  _type: 1
+  _type: 2
   _name: 
   _id: arr1
   _itemPrefab: {fileID: 5682505232231446610, guid: f1b4476a0afb44649a85575f8740f8d2,

@@ -104,14 +104,25 @@ public class Quiver : BaseInventory
     /// <returns></returns>
     public int AddSpecialArrow(ItemHolderData arrowIHD)
     {
+
         int itemsNum = arrowIHD.Stack;
-        InventorySlot slot = GetAvailableSpecialSlot(arrowIHD);
-        while (itemsNum > 0 && slot != null)//keep adding items until stack reaches 0
+
+        if (containableItemTypes.HasFlag(arrowIHD.ReturnItemSO().Type))
         {
-            itemsNum = slot.AddItem(arrowIHD);
-            slot = GetAvailableSpecialSlot(arrowIHD);
+            InventorySlot slot = GetAvailableSpecialSlot(arrowIHD);
+            while (itemsNum > 0 && slot != null)//keep adding items until stack reaches 0
+            {
+                itemsNum = slot.AddItem(arrowIHD);
+                slot = GetAvailableSpecialSlot(arrowIHD);
+            }
+            OnInventoryChanged.Invoke();
+
         }
-        OnInventoryChanged.Invoke();
+        else
+        {
+            Debug.Log(gameObject.name + " cannot contain item of type: " + arrowIHD.ReturnItemSO().Type);
+        }
+
         return itemsNum;
     }
 

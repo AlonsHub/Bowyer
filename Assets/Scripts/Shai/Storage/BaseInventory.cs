@@ -10,6 +10,7 @@ public class BaseInventory : MonoBehaviour
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private int capacity;
+    [SerializeField] protected ItemType containableItemTypes;
 
     //should add type of mask of containable item types
 
@@ -74,13 +75,20 @@ public class BaseInventory : MonoBehaviour
     public int AddItem(ItemHolderData item)
     {
         int itemsNum = item.Stack;
-        InventorySlot slot = GetAvailableSlot(item);
-        while (itemsNum > 0 && slot != null)//keep adding items until stack reaches 0
+        if (containableItemTypes.HasFlag(item.ReturnItemSO().Type))
         {
-            itemsNum = slot.AddItem(item);
-            slot = GetAvailableSlot(item);
+            InventorySlot slot = GetAvailableSlot(item);
+            while (itemsNum > 0 && slot != null)//keep adding items until stack reaches 0
+            {
+                itemsNum = slot.AddItem(item);
+                slot = GetAvailableSlot(item);
+            }
+            OnInventoryChanged.Invoke();
         }
-        OnInventoryChanged.Invoke();
+        else
+        {
+            Debug.Log(gameObject.name + " cannot contain item of type: " + item.ReturnItemSO().Type);
+        }
         return itemsNum;
     }
 
@@ -89,9 +97,9 @@ public class BaseInventory : MonoBehaviour
         //try to find a slot with the same item
         foreach (var slot in slots)
         {
-            if (slot.Item.ReturnItemSO() != null 
-                && slot.Item.ReturnItemSO().ID == item.ReturnItemSO().ID 
-                && slot.Item.ReturnItemSO().StackMax > slot.Item.Stack 
+            if (slot.Item.ReturnItemSO() != null
+                && slot.Item.ReturnItemSO().ID == item.ReturnItemSO().ID
+                && slot.Item.ReturnItemSO().StackMax > slot.Item.Stack
                 && slot.Item.ReturnItemSO().IsStackable)
             {
                 return slot;
