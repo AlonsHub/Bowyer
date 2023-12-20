@@ -8,10 +8,10 @@ enum BowState { Empty, Loaded, Pulling, CancelShot}
 public enum BowType { Short, Recurve, Long}
 public class Bow : MonoBehaviour, InputPanel
 {
-    
-    
     [SerializeField]
     PlayerController pc;
+    [SerializeField]
+    Camera bowCam;
 
     [SerializeField]
     Animator anim;
@@ -172,29 +172,6 @@ public class Bow : MonoBehaviour, InputPanel
                     //LoadArrow(); //loads current arrow, assuming the correct one has been preloaded to the prefab? should pull from quiver really
                 }
                
-                //else
-                //{
-                //    //_currentBowState = BowState.Loaded;
-                //    if (Input.GetMouseButton(0))
-                //    {
-
-                //        _currentBowState = BowState.Pulling;
-                //        //Apply "Pulling-Weight"
-                //        SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
-
-                //        anim.SetTrigger("Aim");
-                //        //anim.SetBool("IsAim", true);
-                //        //ZOOM BY SHOOTING!
-                //        //_targetZoom = _bowStats.AimAmount;
-
-                //        _currentPull = 0;
-                //        _currentPullTime = 0;
-                //    }
-                //}
-
-
-
-
                 break;
             case BowState.Loaded:
                 //if (_cancelShot ? Input.GetMouseButtonDown(0) : Input.GetMouseButton(0))
@@ -205,24 +182,19 @@ public class Bow : MonoBehaviour, InputPanel
                     SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
 
                     anim.SetTrigger("Aim");
-                    //anim.SetBool("IsAim", true);
-                    //ZOOM BY SHOOTING!
-                    //_targetZoom = _bowStats.AimAmount;
-
+                  
                     _currentPull = 0;
                     _currentPullTime = 0;
                 }
                 break;
             case BowState.Pulling:
 
-                //anim.ResetTrigger("Aim");
                 _canShoot = true;
-                //_cancelShot = false;
 
                 if (Input.GetMouseButton(0))
                 {
 
-                    if(Input.GetKeyDown(Temp_KeyMapper.GetKeycodeForInputAction(InputActions.CancelShot)))
+                    if (Input.GetKeyDown(Temp_KeyMapper.GetKeycodeForInputAction(InputActions.CancelShot)))
                     {
                         _currentBowState = BowState.CancelShot;
                         //_cancelShot = true;
@@ -230,20 +202,16 @@ public class Bow : MonoBehaviour, InputPanel
 
                         return;
                     }
-
-                    //_currentPull += TEMP_armStrength / _bowStats.PullResistence * Time.deltaTime;
                     _currentPull = TEMP_armStrength / _bowStats.PullResistence * _currentPullTime;
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
-
-                    //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
-                    if(_currentPullTime >= _bowStats.armStats.shakeTime)
-                    anim.SetFloat("DrawTime", (_currentPullTime - _bowStats.armStats.shakeTime));
+                    if (_currentPullTime >= _bowStats.armStats.shakeTime)
+                        anim.SetFloat("DrawTime", (_currentPullTime - _bowStats.armStats.shakeTime));
                     else
-                    anim.SetFloat("DrawTime", 0);
+                        anim.SetFloat("DrawTime", 0);
 
 
-                    if(_currentPullTime >= _bowStats.armStats.releaseTime)
+                    if (_currentPullTime >= _bowStats.armStats.releaseTime)
                     {
                         _currentBowState = BowState.Empty; //Just fired
 
@@ -288,10 +256,8 @@ public class Bow : MonoBehaviour, InputPanel
             case BowState.CancelShot:
                 {
                     //Penalty zone! can't do anything until arrow returns
-                    //arrowNotchTransform.localPosition = ogArrowNotchLocalPos + Vector3.back * pullCurve.Evaluate(Mathf.Lerp(0, _bowStats.MaxPull_ArrowDistance, _currentPull / _bowStats.MaxPull_Tension));
 
                     _canShoot = false;
-
 
                     _currentPull -= _cancleShotSpeed * Time.deltaTime;
                     SpeedsAndSensitivities.SetPullWeight(Mathf.Lerp(0f, _bowStats.PullWeight, _currentPull / _bowStats.MaxPull_Tension));
@@ -307,8 +273,6 @@ public class Bow : MonoBehaviour, InputPanel
 
                         anim.SetTrigger("ToIdle");
                         _canShoot = true;
-
-                        //anim.SetBool("IsAim", false);
 
                     }
                 }
@@ -367,13 +331,6 @@ public class Bow : MonoBehaviour, InputPanel
 
         LoadArrow();
 
-        //_currentBowState = BowState.Loaded;
-        //if (_loadedArrow)
-        //{
-        //    Destroy(_loadedArrow);
-        //}
-        //_loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
-        //_loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
     }
 
     public void CallReadyToShoot()
@@ -387,16 +344,6 @@ public class Bow : MonoBehaviour, InputPanel
         arrowPrefab = newArrowPrefab;
 
         LoadArrow();
-
-        //_currentBowState = BowState.Loaded;
-
-        //if (_loadedArrow)
-        //{
-        //    Destroy(_loadedArrow);
-        //}
-        //_loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
-        //_loadedArrow.transform.localEulerAngles = new Vector3(0, -90, 0);
-
     }
 
     void Pull()
@@ -418,12 +365,7 @@ public class Bow : MonoBehaviour, InputPanel
 
         OnShoot?.Invoke();
 
-        //if(!Temp_KeyMapper.ToggleOrHold)
-        //anim.SetTrigger("Reload");
-        //Vector3 cleanFwd = arrowNotchTransform.right * -1f;
-        //cleanFwd.y = 0;
-        //_loadedArrow.transform.forward = shotTransform.forward;
-        _loadedArrow.GetComponent<Arrow>().ForceMe(Camera.main.transform.forward * _currentPull * _bowStats.PullFactor);
+        _loadedArrow.GetComponent<Arrow>().ForceMe(bowCam.transform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
 
         _currentBowState = BowState.Empty;
@@ -450,9 +392,6 @@ public class Bow : MonoBehaviour, InputPanel
     }
     public void Holster()
     {
-        //if (_currentBowState == BowState.Pulling)
-        //    return;
-
         anim.SetTrigger("Holster");
     }
 
