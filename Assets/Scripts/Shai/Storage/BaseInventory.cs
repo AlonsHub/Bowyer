@@ -8,7 +8,7 @@ public class BaseInventory : MonoBehaviour
     [HideInInspector] public UnityEvent OnInventoryChanged;
     [SerializeField] protected List<InventorySlot> slots;
     [SerializeField] private GameObject slotPrefab;
-    [SerializeField] private InventoryUI inventoryUI;
+    [SerializeField] protected InventoryUI inventoryUI;
     [SerializeField] private int capacity;
     [SerializeField] protected ItemType containableItemTypes;
 

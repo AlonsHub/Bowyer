@@ -11,8 +11,23 @@ public class ToolBarUI : MonoBehaviour
     [SerializeField] private List<InventorySlot> slots;
     private int currentSlotIndex;
 
+    private void OnEnable()
+    {
+        BowsLogic.OnEquipQuiver += AddSlots;
+        Invoke(nameof(RefreshToolbar), 0.1f);
+    }
+
+    private void OnDisable()
+    {
+        BowsLogic.OnEquipQuiver -= AddSlots;
+    }
+
     public void AddSlots(List<InventorySlot> slotsToAdd)
     {
+        //remove slots?
+        if (slots != null && slots.Count > 0)
+            ClearSlots();
+
         slots.AddRange(slotsToAdd);
         foreach (var slot in slotsToAdd)
         {
@@ -20,9 +35,14 @@ public class ToolBarUI : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    void ClearSlots()
     {
-        Invoke("RefreshToolbar", 0.1f);
+        for (int i = 0; i < slots.Count; i++)
+        {
+            slots[i].transform.SetParent(null);
+            slots[i].transform.position = new Vector3(0,-10000,0);
+        }
+        slots.Clear();
     }
 
     public void ChangeCurrentSlotByStep(int step)

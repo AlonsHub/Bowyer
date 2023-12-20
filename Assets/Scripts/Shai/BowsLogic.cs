@@ -9,6 +9,9 @@ public class BowsLogic : MonoBehaviour
 
     private int currentSetIndex;
 
+    public System.Action OnEquipBow;
+    public static System.Action<List<InventorySlot>> OnEquipQuiver;
+
     //remove current arrow from current set's quiver, update currentArrowIndex, instantiate arrow and shoot it
     //probably useless since shoot is called from an input in bow
     //public void Shoot()
@@ -21,6 +24,17 @@ public class BowsLogic : MonoBehaviour
     //}
 
     //method name is very shit, change it
+
+
+    private void Start()
+    {
+        sets[0].bow.OnShoot.AddListener(() => sets[0].quiver.RemoveCurrentArrow());
+        sets[1].bow.OnShoot.AddListener(() => sets[1].quiver.RemoveCurrentArrow());
+        PlayerController.CurrentBow = sets[currentSetIndex].bow;
+
+        OnEquipQuiver.Invoke(sets[currentSetIndex].quiver.GetAllSlots());
+    }
+
     public void ChangeCurrentArrowIndexByStep(int step)
     {
         sets[currentSetIndex].quiver.ChangeCurrentArrowIndexByStep(step);
@@ -36,12 +50,7 @@ public class BowsLogic : MonoBehaviour
     public void ChangeCurrentSetIndexByStep(int step)
     {
         //Alon changes begin
-
-        //sets[currentSetIndex].bow.gameObject.SetActive(false);
-        sets[currentSetIndex].bow.Holster();
-        //int newIndex = currentSetIndex += step;
-        //currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
-        //sets[currentSetIndex].bow.gameObject.SetActive(true);
+        sets[currentSetIndex].bow.Holster();  
 
         StartCoroutine(WaitForHolster(step));
 
@@ -53,14 +62,16 @@ public class BowsLogic : MonoBehaviour
 
     private IEnumerator WaitForHolster(int step)
     {
+        sets[currentSetIndex].bow.OnShoot.RemoveAllListeners();
         yield return new WaitUntil(() => !sets[currentSetIndex].bow.gameObject.activeSelf);
         int newIndex = currentSetIndex += step;
         currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
         sets[currentSetIndex].bow.gameObject.SetActive(true);
         sets[currentSetIndex].bow.OnShoot.AddListener(()=> sets[currentSetIndex].quiver.RemoveCurrentArrow());
         PlayerController.CurrentBow = sets[currentSetIndex].bow;
+        sets[currentSetIndex].quiver.HookToOwnUI();
+        OnEquipQuiver.Invoke(sets[currentSetIndex].quiver.GetAllSlots());
 
-        //_selectedItem.GetComponent<Animator>().SetTrigger("Equip");
     }
 
     private void LoadBow()

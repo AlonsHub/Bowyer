@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7077980757352873208}
   - component: {fileID: 2633866924701697717}
   - component: {fileID: 8588988818247633397}
+  - component: {fileID: 6232966719638424490}
   m_Layer: 7
-  m_Name: SB_Arrow_Prefab 1
+  m_Name: LB_Arrow_Prefab
   m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,6 +119,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6232966719638424490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5682505232231446610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a1c59ee42a1fa438c95b0bf8502064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSO: {fileID: 11400000, guid: 7df4a21b55dbcc74687dfadcd80aeca5, type: 2}
+  _stack: 1
 --- !u!1001 &8164043849502301184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,12 +149,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e768a67a82fb7c14b9879856057dfb24,
         type: 3}

@@ -26,4 +26,10 @@ public class InventoryUI : MonoBehaviour
             slot.UpdateUI();
         }
     }
+
+    public void SetToInventory(BaseInventory newInventory)
+    {
+        inventory = newInventory;
+        inventory.OnInventoryChanged.AddListener(RefreshInventoryUI);
+    }
 }

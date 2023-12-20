@@ -13,6 +13,11 @@ public class Quiver : BaseInventory
 
     public QuiverSO SO { get { return so; } }
 
+    public void HookToOwnUI()
+    {
+        inventoryUI.SetToInventory(this);
+    }
+
     public ArrowSO GetArrowAt(int index)
     {
         if (index <= slots.Count - 1)
@@ -36,6 +41,8 @@ public class Quiver : BaseInventory
     }
     public void RemoveArrowAt(int index)
     {
+        Debug.Log("trying to remove arrow");
+
         if (index <= slots.Count - 1)//remove arrow from default arrows slots
         {
             slots[index].Item.RemoveAmount(1);//remove one arrow
@@ -65,6 +72,10 @@ public class Quiver : BaseInventory
         {
             Debug.Log("Invalid Index");
         }
+
+
+        OnInventoryChanged.Invoke();
+        //inventoryUI.RefreshInventoryUI();
 
         //slots[index].Item.RemoveAmount(1);//remove one arrow
 

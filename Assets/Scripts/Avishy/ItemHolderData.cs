@@ -64,6 +64,8 @@ public class ItemHolderData : MonoBehaviour
             itemSO = null;
         }
 
+        Debug.Log($"{_stack} current stack");
+
         return removedAmount;
     }
 

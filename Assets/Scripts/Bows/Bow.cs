@@ -362,8 +362,7 @@ public class Bow : MonoBehaviour, InputPanel
         _loadedArrow.transform.GetChild(0).gameObject.layer= layerMask; //temp quick layer fix for cameras
         _loadedArrow.transform.SetParent(null);
 
-
-        OnShoot?.Invoke();
+        OnShoot.Invoke();
 
         _loadedArrow.GetComponent<Arrow>().ForceMe(bowCam.transform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
