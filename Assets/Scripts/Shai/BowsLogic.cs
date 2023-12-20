@@ -68,8 +68,10 @@ public class BowsLogic : MonoBehaviour
         currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
         sets[currentSetIndex].bow.gameObject.SetActive(true);
         sets[currentSetIndex].bow.OnShoot.AddListener(()=> sets[currentSetIndex].quiver.RemoveCurrentArrow());
+
         PlayerController.CurrentBow = sets[currentSetIndex].bow;
         sets[currentSetIndex].quiver.HookToOwnUI();
+
         OnEquipQuiver.Invoke(sets[currentSetIndex].quiver.GetAllSlots());
 
     }

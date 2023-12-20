@@ -33,6 +33,8 @@ public class ToolBarUI : MonoBehaviour
         {
             slot.transform.SetParent(gridLayout.transform);
         }
+
+        RefreshToolbar();
     }
 
     void ClearSlots()
