@@ -11,7 +11,7 @@ public class Bow : MonoBehaviour, InputPanel
     [SerializeField]
     PlayerController pc;
     [SerializeField]
-    Camera bowCam;
+    Camera envCam;
 
     [SerializeField]
     Animator anim;
@@ -65,7 +65,7 @@ public class Bow : MonoBehaviour, InputPanel
     [SerializeField]
     MoveType[] disablingMoveTypes;
    
-    Camera _cam; //TEMP AND BAD!
+    //Camera _cam; //TEMP AND BAD!
 
     [SerializeField]
     LayerMask layerMask;
@@ -85,7 +85,7 @@ public class Bow : MonoBehaviour, InputPanel
         _currentBowState = BowState.Empty;
         //ogArrowNotchLocalPos = arrowNotchTransform.localPosition;
 
-        _cam = Camera.main; //TEMP AND BADDDD
+        //_cam = Camera.main; //TEMP AND BADDDD
 
         if (!anim)
             anim = GetComponent<Animator>();
@@ -102,7 +102,7 @@ public class Bow : MonoBehaviour, InputPanel
     void SetFov(float zoom)
     {
         _currentZoom = zoom;
-        _cam.fieldOfView = _currentZoom;
+        envCam.fieldOfView = _currentZoom;
     }
     private void OnEnable()
     {
@@ -364,7 +364,7 @@ public class Bow : MonoBehaviour, InputPanel
 
         OnShoot.Invoke();
 
-        _loadedArrow.GetComponent<Arrow>().ForceMe(bowCam.transform.forward * _currentPull * _bowStats.PullFactor);
+        _loadedArrow.GetComponent<Arrow>().ForceMe(envCam.transform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
 
         _currentBowState = BowState.Empty;

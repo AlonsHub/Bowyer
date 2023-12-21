@@ -44,21 +44,23 @@ public class EquipController : MonoBehaviour
             return;
         }
 
-        if (_selectedItem)
-        {
-            _selectedItem.GetComponent<Animator>().SetTrigger("Holster");
-            //_selectedItem.SetActive(false);
-        }
+        //if (_selectedItem)
+        //{
+        //    _selectedItem.GetComponent<Animator>().SetTrigger("Holster");
+        //    //_selectedItem.SetActive(false);
+        //}
 
         if (_selectedIndex == toSelect)
         {
             _selectedIndex = -1;
             _selectedItem = null;
+            _selectedItem.GetComponent<Animator>().SetTrigger("Holster");
             return;
         }
 
         if (_selectedItem)
         {
+            _selectedItem.GetComponent<Animator>().SetTrigger("Holster");
             StartCoroutine(WaitForHolster(toSelect));
         }
         else

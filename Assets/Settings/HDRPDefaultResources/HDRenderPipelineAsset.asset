@@ -26,9 +26,9 @@ MonoBehaviour:
     supportVolumetrics: 1
     supportVolumetricClouds: 0
     supportLightLayers: 0
-    supportWater: 0
+    supportWater: 1
     waterSimulationResolution: 128
-    waterCPUSimulation: 0
+    waterCPUSimulation: 1
     supportDistortion: 1
     supportTransparentBackface: 1
     supportTransparentDepthPrepass: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
     supportMotionVectors: 1
     supportRuntimeAOVAPI: 0
     supportDitheringCrossFade: 1
-    supportTerrainHole: 0
+    supportTerrainHole: 1
     lightProbeSystem: 0
     probeVolumeMemoryBudget: 1024
     probeVolumeBlendingMemoryBudget: 128

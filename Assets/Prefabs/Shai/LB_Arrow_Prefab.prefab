@@ -77,8 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5263808136552898757}
-  myCollider: {fileID: 8468092021133610454}
-  anim: {fileID: 8588988818247633397}
+  col: {fileID: 8468092021133610454}
   arrowStickInAmount: 0.01
   gfx: {fileID: 0}
   vtc: {fileID: 2633866924701697717}

@@ -40,17 +40,17 @@ public class Temp_KeyMapper : MonoBehaviour
         //semiAutoBowAnimator.
     }
 
-    //Even more temp than this whole script
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Backspace))
-        {
-            if (currentVersion == 0)
-                SetInputVersion(1);
-            else
-                SetInputVersion(0);
-        }
-    }
+    
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Backspace))
+    //    {
+    //        if (currentVersion == 0)
+    //            SetInputVersion(1);
+    //        else
+    //            SetInputVersion(0);
+    //    }
+    //}
 
     /// <summary>
     /// 0 - version1 ; 1 - version2
