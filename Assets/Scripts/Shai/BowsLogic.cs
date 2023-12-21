@@ -64,8 +64,19 @@ public class BowsLogic : MonoBehaviour
     {
         sets[currentSetIndex].bow.OnShoot.RemoveAllListeners();
         yield return new WaitUntil(() => !sets[currentSetIndex].bow.gameObject.activeSelf);
+        
         int newIndex = currentSetIndex += step;
-        currentSetIndex = Mathf.Clamp(newIndex, 0, sets.Count - 1);
+        if (newIndex >= sets.Count)
+        {
+            newIndex = 0;
+        }
+        if (newIndex < 0)
+        {
+            newIndex = sets.Count - 1;
+        }
+        //currentArrowIndex = Mathf.Clamp(newIndex, 0, slots.Count);
+        currentSetIndex = newIndex;
+
         sets[currentSetIndex].bow.gameObject.SetActive(true);
         sets[currentSetIndex].bow.OnShoot.AddListener(()=> sets[currentSetIndex].quiver.RemoveCurrentArrow());
 
