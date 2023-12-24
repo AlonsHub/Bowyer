@@ -22,6 +22,15 @@ public class Temp_KeyMapper : MonoBehaviour
     public RuntimeAnimatorController autoBowAnimator;
 
     public Bow[] bows;
+
+    [SerializeField]
+    UnityEngine.UI.Toggle isHoldToggle;
+    
+    
+    [SerializeField]
+    UnityEngine.UI.Toggle isCrosshair;
+    [SerializeField]
+    UnityEngine.UI.Image crosshair;
     
     
     /// <summary>
@@ -40,10 +49,10 @@ public class Temp_KeyMapper : MonoBehaviour
         //semiAutoBowAnimator.
     }
 
-    
+
     //private void Update()
     //{
-    //    if(Input.GetKeyDown(KeyCode.Backspace))
+    //    if (Input.GetKeyDown(KeyCode.Backspace))
     //    {
     //        if (currentVersion == 0)
     //            SetInputVersion(1);
@@ -78,5 +87,15 @@ public class Temp_KeyMapper : MonoBehaviour
     public static KeyCode GetKeycodeForInputAction(InputActions inputAction)
     {
         return dict[inputAction];
+    }
+
+    public void VersionToggle()
+    {
+        SetInputVersion(isHoldToggle.isOn ? 1 : 0);
+    }
+
+    public void CrosshairToggle()
+    {
+        crosshair.gameObject.SetActive(isCrosshair.isOn);
     }
 }

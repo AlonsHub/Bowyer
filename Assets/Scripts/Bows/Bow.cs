@@ -314,7 +314,9 @@ public class Bow : MonoBehaviour, InputPanel
         if(_loadedArrow)
         {
             Debug.LogError("Trying to Double Load arrows - stop this");
-            return;
+
+            Destroy(_loadedArrow);
+            //return;
         }
         _currentBowState = BowState.Loaded;
         _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
@@ -363,7 +365,8 @@ public class Bow : MonoBehaviour, InputPanel
         _loadedArrow.transform.SetParent(null);
 
         OnShoot.Invoke();
-
+        //_loadedArrow.transform.position = envCam.transform.position + envCam.transform.forward*2f;
+        //_loadedArrow.transform.forward = envCam.transform.forward;
         _loadedArrow.GetComponent<Arrow>().ForceMe(envCam.transform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
 

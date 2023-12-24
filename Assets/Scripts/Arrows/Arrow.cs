@@ -36,28 +36,28 @@ public class Arrow : MonoBehaviour
     {
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
-
     }
-    public void ForceMeFWD(float force)
-    {
-        rb.isKinematic = false;
-        rb.AddForce(force * transform.forward, ForceMode.Impulse);
-    }
+    //public void ForceMeFWD(float force)
+    //{
+    //    rb.isKinematic = false;
+    //    rb.AddForce(force * transform.forward, ForceMode.Impulse);
+    //}
 
 
     // Update is called once per frame
     void Update()
     {
         if (!rb.isKinematic && rb.velocity.magnitude >= 6f)
-            transform.forward = Vector3.Lerp(transform.forward, rb.velocity.normalized, .6f);
+            transform.forward = Vector3.Lerp(transform.forward, rb.velocity.normalized, .8f);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (_hasHit)
             return;
+        Destroy(gameObject, 5f);
 
-        if(collision.gameObject.CompareTag("Sticky"))
+        if (collision.gameObject.CompareTag("Sticky"))
         {
             _hasHit = true;
             //gfx.Translate(Vector3.forward* arrowStickInAmount);
@@ -87,7 +87,6 @@ public class Arrow : MonoBehaviour
             }
             Destroy(vtc, .3f);
             col.enabled = false;
-
             this.enabled = false;
             //Some sort of Destroy with a delay
             //StartCoroutine(LatePush());

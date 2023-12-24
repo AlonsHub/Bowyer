@@ -363,6 +363,16 @@ public class PlayerController : MonoBehaviour, InputPanel
             {
                 //can call Land animation here
                 _currentJumpForce = Vector3.zero;
+                if(Temp_KeyMapper.ToggleOrHold)
+                {
+
+                    if (isToggleSprint)
+                        CurrentMoveType = MoveType.Sprint;
+                    else
+                        CurrentMoveType = MoveType.Run;
+
+                
+                }
                 yield break;
             }
         }
