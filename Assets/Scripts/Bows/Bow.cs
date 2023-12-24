@@ -384,6 +384,9 @@ public class Bow : MonoBehaviour, InputPanel
 
     public void TrySetJump()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         if (_currentBowState == BowState.Pulling)
             return;
 
@@ -391,11 +394,17 @@ public class Bow : MonoBehaviour, InputPanel
     }
     public void Holster()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         anim.SetTrigger("Holster");
     }
 
     public void SetAnimInAir(bool isInAir)
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         anim.SetBool("InAir", isInAir);
     }
     public void ReportLanded()
