@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/TargetTrainningCourse 2.unity
     guid: 36ebacd1d1ba71041aafc9e196bd9493
   - enabled: 1
+    path: Assets/Scenes/TargetTrainningCourse 1 With Regulars.unity
+    guid: 9f015840782a737418631213e98b789c
+  - enabled: 1
+    path: Assets/Scenes/Playground Scene with Regulars.unity
+    guid: 3b578afb9b6da354b91b882f0847f4a5
+  - enabled: 1
     path: Assets/Scenes/Violet Asset Garden.unity
     guid: 5875032bc346b964f81bc0ab48ee8bc4
   m_configObjects: {}
