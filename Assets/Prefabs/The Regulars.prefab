@@ -9722,7 +9722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d3d687971304a4d99fa346c45aee1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 3027969513730596420}
   toggleAll: {fileID: 6901634084885737115}
   muteToggle: {fileID: 7722563235022458467}
 --- !u!114 &6171881850283413597
@@ -10308,6 +10308,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9758e8bd1012a241a3e4dde1b5f2859, type: 3}
+--- !u!114 &3027969513730596420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2689238499696521827, guid: e9758e8bd1012a241a3e4dde1b5f2859,
+    type: 3}
+  m_PrefabInstance: {fileID: 1105521627223354407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3cacaf75a13fec44ac0c59d95735c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5784514095598509817 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6850294974207718110, guid: e9758e8bd1012a241a3e4dde1b5f2859,

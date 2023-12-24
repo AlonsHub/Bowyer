@@ -45,6 +45,7 @@ public class SceneManager_TrainingCourses : MonoBehaviour
 
     public void LoadSceneByNumber(int number)
     {
+        PlayerController.ActionInputPanelsEnabled = true;
         SceneManager.LoadScene(number);
     }
 
