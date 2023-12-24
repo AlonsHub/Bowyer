@@ -26,14 +26,15 @@ public class BowsLogic : MonoBehaviour
     //method name is very shit, change it
 
 
-    private void Start()
-    {
-        sets[0].bow.OnShoot.AddListener(() => sets[0].quiver.RemoveCurrentArrow());
-        sets[1].bow.OnShoot.AddListener(() => sets[1].quiver.RemoveCurrentArrow());
-        PlayerController.CurrentBow = sets[currentSetIndex].bow;
+    //private void Start()
+    //{
+    //    //sets[0].bow.OnShoot.AddListener(() => sets[0].quiver.RemoveCurrentArrow());
+    //    //sets[1].bow.OnShoot.AddListener(() => sets[1].quiver.RemoveCurrentArrow());
+    //    //PlayerController.CurrentBow = sets[currentSetIndex].bow;
+    //    //PlayerController.CurrentBow.OnShoot.AddListener(()=> sets[currentSetIndex].quiver.RemoveCurrentArrow());
 
-        OnEquipQuiver.Invoke(sets[currentSetIndex].quiver.GetAllSlots());
-    }
+    //    //OnEquipQuiver.Invoke(sets[currentSetIndex].quiver.GetAllSlots());
+    //}
 
     public void ChangeCurrentArrowIndexByStep(int step)
     {
