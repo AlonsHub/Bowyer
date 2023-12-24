@@ -419,4 +419,14 @@ public class Bow : MonoBehaviour, InputPanel
     {
         anim.runtimeAnimatorController = runtimeAnimatorController;
     }
+
+    /// <summary>
+    /// Immediately removes the currently loaded arrow GFX, but DOES NOT remove the item from its stack/slot, that will only when OnShoot() is called.
+    /// Currently used for swapping input methods into Semi/Full Auto Reloading, but will be relevant when swapping into special arrows.
+    /// </summary>
+    public void KillLoadedArrow()
+    {
+        Destroy(_loadedArrow); //To be replaced with a "StowAway" animation, or at least "Draw" in reverse? 
+        _loadedArrow = null;
+    }
 }

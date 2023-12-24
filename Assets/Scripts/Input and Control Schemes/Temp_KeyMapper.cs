@@ -92,6 +92,11 @@ public class Temp_KeyMapper : MonoBehaviour
     public void VersionToggle()
     {
         SetInputVersion(isHoldToggle.isOn ? 1 : 0);
+
+        if(PlayerController.CurrentBow.gameObject.activeInHierarchy) //should check for seperate Semi/Auto Reload boolean TBD   
+        {
+            PlayerController.CurrentBow.KillLoadedArrow();
+        }
     }
 
     public void CrosshairToggle()
