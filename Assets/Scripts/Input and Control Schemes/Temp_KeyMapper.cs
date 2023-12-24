@@ -69,9 +69,11 @@ public class Temp_KeyMapper : MonoBehaviour
     {
         currentVersion = v;
         SetKeys(keyCode_versions[currentVersion]);
-        foreach (var item in bows)
+        foreach (var bow in bows)
         {
-            item.SetAnimatorController( v == 0 ? autoBowAnimator : semiAutoBowAnimator);
+            bow.SetAnimatorController( v == 0 ? autoBowAnimator : semiAutoBowAnimator);
+
+
         }
     }
 

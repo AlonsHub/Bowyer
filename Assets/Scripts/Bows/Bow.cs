@@ -418,6 +418,8 @@ public class Bow : MonoBehaviour, InputPanel
     public void SetAnimatorController(RuntimeAnimatorController runtimeAnimatorController)
     {
         anim.runtimeAnimatorController = runtimeAnimatorController;
+        anim.SetFloat("DrawSpeed", TEMP_drawSpeed);
+        anim.SetFloat("ReloadSpeed", TEMP_reloadSpeed);
     }
 
     /// <summary>
@@ -428,5 +430,7 @@ public class Bow : MonoBehaviour, InputPanel
     {
         Destroy(_loadedArrow); //To be replaced with a "StowAway" animation, or at least "Draw" in reverse? 
         _loadedArrow = null;
+        _currentBowState = BowState.Empty;
+        
     }
 }
