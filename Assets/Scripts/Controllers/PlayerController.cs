@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour, InputPanel
     private EventInstance playerFootsteps;
     private EventInstance playerFootstepsSprint;
 
+    private bool isToggleSprint;
+
     private void Start()
     {
         //Creating the instances here in order to allow us full control of when the sound will activate and stop.
@@ -260,6 +262,8 @@ public class PlayerController : MonoBehaviour, InputPanel
         if(CurrentBow)
             CurrentBow.SetAnimInAir(!cc.isGrounded);
 
+
+
         if ((int)CurrentMoveType < 4 && !cc.isGrounded) //fixes the problem of crouch and prone having some air time
         {
             CurrentMoveType = MoveType.MidAir;
@@ -267,13 +271,21 @@ public class PlayerController : MonoBehaviour, InputPanel
         else if (Input.GetKeyDown(sprintKey) && ((int)CurrentMoveType <= 2))
         {
             if (CurrentMoveType == MoveType.Sprint)
+            {
                 CurrentMoveType = MoveType.Run;
+                isToggleSprint = false;
+            }
             else
+            {
+                isToggleSprint = true;
                 CurrentMoveType = MoveType.Sprint;
+            }
             
         }
         else if (Input.GetKeyDown(stepKey))
         {
+            isToggleSprint = false;
+
             if (CurrentMoveType == MoveType.Step)
                 CurrentMoveType = MoveType.Run;
             else
@@ -281,6 +293,8 @@ public class PlayerController : MonoBehaviour, InputPanel
         }
         else if (Input.GetKeyDown(crouchKey))
         {
+            isToggleSprint = false;
+
             if (CurrentMoveType == MoveType.Crouch)
             {
                 CurrentMoveType = MoveType.Run;
@@ -296,6 +310,9 @@ public class PlayerController : MonoBehaviour, InputPanel
         }
         else if (Input.GetKeyDown(proneKey))
         {
+            isToggleSprint = false;
+
+
             if (CurrentMoveType == MoveType.Prone)
             {
                 gfxScaler.localScale = new Vector3(1, _originalHeight , 1);
@@ -307,7 +324,8 @@ public class PlayerController : MonoBehaviour, InputPanel
                 gfxScaler.localScale = new Vector3(1, _originalHeight * proneYValue, 1);
             }
         }
-
+        if (CurrentMoveType == MoveType.Run && isToggleSprint)
+            CurrentMoveType = MoveType.Sprint;
 
     }
 

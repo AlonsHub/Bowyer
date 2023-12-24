@@ -26,9 +26,9 @@ MonoBehaviour:
     supportVolumetrics: 0
     supportVolumetricClouds: 0
     supportLightLayers: 1
-    supportWater: 0
+    supportWater: 1
     waterSimulationResolution: 128
-    waterCPUSimulation: 0
+    waterCPUSimulation: 1
     supportDistortion: 1
     supportTransparentBackface: 1
     supportTransparentDepthPrepass: 1
@@ -134,9 +134,9 @@ MonoBehaviour:
       lutFormat: 48
       bufferFormat: 74
     dynamicResolutionSettings:
-      enabled: 0
+      enabled: 1
       useMipBias: 0
-      enableDLSS: 0
+      enableDLSS: 1
       DLSSPerfQualitySetting: 0
       DLSSInjectionPoint: 0
       DLSSUseOptimalSettings: 0
@@ -293,6 +293,8 @@ MonoBehaviour:
   diffusionProfileSettings: {fileID: 0}
   virtualTexturingSettings:
     streamingCpuCacheSizeInMegaBytes: 256
+    streamingMipPreloadTexturesPerFrame: 0
+    streamingPreloadMipCount: 1
     streamingGpuCacheSettings:
     - format: 0
       sizeInMegaBytes: 128
