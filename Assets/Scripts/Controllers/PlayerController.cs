@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour, InputPanel
 
 
 
-        UpdateSound();
+        //UpdateSound();
 
     }
 

@@ -63,14 +63,14 @@ public class AudioManager : MonoBehaviour
         sfxBus = RuntimeManager.GetBus("bus:/sfx");
     }
 
-    private void Update()
-    {
-        //This is how we change the value of a bus on FMOD
-        masterBus.setVolume(masterVol);
-        musicBus.setVolume(musicVol);
-        ambientBus.setVolume(ambieceVol);
-        sfxBus.setVolume(SFXVol);
-    }
+    //private void Update()
+    //{
+    //    //This is how we change the value of a bus on FMOD
+    //    masterBus.setVolume(masterVol);
+    //    musicBus.setVolume(musicVol);
+    //    ambientBus.setVolume(ambieceVol);
+    //    sfxBus.setVolume(SFXVol);
+    //}
 
     private void Start()
     {
