@@ -72,6 +72,11 @@ public class AudioManager : MonoBehaviour
     //    sfxBus.setVolume(SFXVol);
     //}
 
+
+    public void SetMute(bool doMute)
+    {
+        masterBus.setMute(doMute);
+    }
     private void Start()
     {
         InitializeAmbience(FMODEvents.Instance.monsterHunterAmbience);
