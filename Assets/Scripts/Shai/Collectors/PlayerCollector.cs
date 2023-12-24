@@ -7,17 +7,31 @@ public class PlayerCollector : MonoBehaviour
     [SerializeField] private BowsLogic bowsLogic;
     [SerializeField] private Transform mainCam;
     [SerializeField] private BaseInventory playerInv;
-    [SerializeField] SphereCollider autoCollectColl;
+    [SerializeField] private CollectorCollider autoCollectColl;
+    [SerializeField] private CollectorCollider collectorColl;
     [SerializeField] private float collectRange;
     [SerializeField] bool isAutomatic;
     private ItemHolderData tmpItemHolder;
 
 
+    private void Awake()
+    {
+        autoCollectColl.OnTriggerEnterEvent.RemoveAllListeners();
+        collectorColl.OnTriggerEnterEvent.RemoveAllListeners();
+
+        autoCollectColl.coll.enabled = isAutomatic;
+        autoCollectColl.OnTriggerEnterEvent.AddListener(Collect);
+        collectorColl.OnTriggerEnterEvent.AddListener(Collect);
+    }
+
     private void Update()
     {
+        if (collectorColl.coll.enabled) { collectorColl.coll.enabled = false; }
+        
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            TryCollectItem();
+            collectorColl.coll.enabled = true;
         }
     }
 
@@ -57,13 +71,15 @@ public class PlayerCollector : MonoBehaviour
 
     public void IncreaseAutoCollectRange(float rangeToAdd)
     {
-        float newR = autoCollectColl.radius + rangeToAdd;
-        autoCollectColl.radius = newR < collectRange ? collectRange : newR;
+        float newR = ((SphereCollider)autoCollectColl.coll).radius + rangeToAdd;
+        ((SphereCollider)autoCollectColl.coll).radius = newR < collectRange ? collectRange : newR;
     }
 
-    private void OnTriggerEnter(Collider other)
+
+
+    private void Collect(Collider other)
     {
-        if (isAutomatic && other.transform.TryGetComponent(out tmpItemHolder))
+        if (other.transform.TryGetComponent(out tmpItemHolder))
         {
             if (tmpItemHolder.ReturnItemSO().Type == ItemType.Arrow)
             {
@@ -81,6 +97,7 @@ public class PlayerCollector : MonoBehaviour
                     {
                         Destroy(tmpItemHolder.gameObject);
                     }
+                    if (collectorColl.coll.enabled) { collectorColl.coll.enabled = false; }
                 }
                 else
                 {
@@ -89,6 +106,7 @@ public class PlayerCollector : MonoBehaviour
             }
         }
     }
+
 
     //parameter has to be an arrow item holder might want to add a deriving class from itemHolderData
     private void CollectArrow(ItemHolderData arrowItemHolder)
@@ -110,10 +128,39 @@ public class PlayerCollector : MonoBehaviour
         }
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (isAutomatic && other.transform.TryGetComponent(out tmpItemHolder))
+    //    {
+    //        if (tmpItemHolder.ReturnItemSO().Type == ItemType.Arrow)
+    //        {
+    //            CollectArrow(tmpItemHolder);
+    //        }
+    //        else
+    //        {
+    //            int remainingItems = playerInv.AddItem(tmpItemHolder);
+    //            if (remainingItems < tmpItemHolder.Stack)//checks if items were collected from the holder
+    //            {
+    //                int subItems = tmpItemHolder.Stack - remainingItems;//number of items that were collected from holder
+    //                Debug.Log(subItems.ToString() + " " + tmpItemHolder.gameObject + " collected");
+    //                tmpItemHolder.RemoveAmount(subItems);
+    //                if (tmpItemHolder.Stack <= 0)//if collected holder stack reaches 0, destroy holder
+    //                {
+    //                    Destroy(tmpItemHolder.gameObject);
+    //                }
+    //            }
+    //            else
+    //            {
+    //                Debug.Log("Can't collect " + tmpItemHolder.gameObject);
+    //            }
+    //        }
+    //    }
+    //}
+
     private void OnValidate()
     {
-        if (autoCollectColl.radius != collectRange)
-            autoCollectColl.radius = collectRange;
+        if (((SphereCollider)autoCollectColl.coll).radius != collectRange)
+            ((SphereCollider)autoCollectColl.coll).radius = collectRange;
     }
 }
 
