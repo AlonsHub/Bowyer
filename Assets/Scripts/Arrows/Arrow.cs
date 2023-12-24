@@ -36,6 +36,7 @@ public class Arrow : MonoBehaviour
     {
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
+        col.enabled = true;
     }
     //public void ForceMeFWD(float force)
     //{
