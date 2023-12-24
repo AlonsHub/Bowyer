@@ -176,8 +176,11 @@ public class PlayerController : MonoBehaviour, InputPanel
 
     public void GrabInput()
     {
-        if (!IsEnabled())
+        if (!IsInputPanelEnabled())
+        {
+            _inputVector = Vector3.zero;
             return;
+        }
 
         _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
 
@@ -426,7 +429,7 @@ public class PlayerController : MonoBehaviour, InputPanel
     }
 
 
-    public bool IsEnabled()
+    public bool IsInputPanelEnabled()
     {
         return ActionInputPanelsEnabled;
     }

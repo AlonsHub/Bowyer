@@ -16,5 +16,5 @@ public interface InputPanel
 
 
     void GrabInput();
-    bool IsEnabled();
+    bool IsInputPanelEnabled();
 }

@@ -134,7 +134,7 @@ public class Bow : MonoBehaviour, InputPanel
 
     public void GrabInput()
     {
-        if (!IsEnabled())
+        if (!IsInputPanelEnabled())
             return;
 
         //RIGHT CLICK TO ZOOM!
@@ -374,7 +374,7 @@ public class Bow : MonoBehaviour, InputPanel
     }
 
 
-    public bool IsEnabled()
+    public bool IsInputPanelEnabled()
     {
         return PlayerController.ActionInputPanelsEnabled;
     }

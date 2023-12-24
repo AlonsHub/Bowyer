@@ -17,8 +17,10 @@ public class OptionsMenu : MonoBehaviour
         {
             isOpen = !isOpen;
             toggleAll.SetActive(isOpen);
+            PlayerController.ActionInputPanelsEnabled = !isOpen;
 
             Cursor.lockState = isOpen ? CursorLockMode.Confined : CursorLockMode.Locked;
+            Cursor.visible = isOpen;
         }
     }
 }
