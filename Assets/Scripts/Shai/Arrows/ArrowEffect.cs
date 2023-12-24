@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class ArrowEffect : MonoBehaviour
+public abstract class ArrowEffect : MonoBehaviour
 {
-    [SerializeField] private AudioSource releaseSound;
-    [SerializeField] private AudioSource hitSound;
-    [SerializeField] private AudioSource enemyHitSound;
+    [SerializeField] private AudioClip releaseSound;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip enemyHitSound;
 
-    public abstract void OnHit(Collider other);
+    public virtual void OnHit(Collider other)
+    {
+        //if collider is enemy play enemyHitSound
+        //otherwise play hitSound
+        
+    }
 
-    public abstract void OnShoot();
+    public virtual void OnShoot()
+    {
+        //play releaseSound
+    }
 }
