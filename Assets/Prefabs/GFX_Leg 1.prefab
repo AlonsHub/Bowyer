@@ -85,6 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingBody: {fileID: 0}
   maxHealth: 80
+  rend: {fileID: 8197263194533635901}
+  redTime: 0.5
   agent: {fileID: 0}
   speedToLose: 2
   anim: {fileID: 8607312345547177866}

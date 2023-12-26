@@ -5,6 +5,8 @@ using UnityEngine;
 public enum InputActions{Inventory,UseConsumeable,Reload, CancelShot};
 public class Temp_KeyMapper : MonoBehaviour
 {
+    public static Temp_KeyMapper Instance;
+
     static Dictionary<InputActions, KeyCode> dict;
 
     [Header("Version 1")]
@@ -31,7 +33,8 @@ public class Temp_KeyMapper : MonoBehaviour
     UnityEngine.UI.Toggle isCrosshair;
     [SerializeField]
     UnityEngine.UI.Image crosshair;
-    
+    [SerializeField]
+    UnityEngine.UI.Image hithair;
     
     /// <summary>
     /// True means Toggle - False means Hold
@@ -45,21 +48,7 @@ public class Temp_KeyMapper : MonoBehaviour
         keyCode_versions[1] = keyCodes_v2;
 
         SetInputVersion(currentVersion);
-
-        //semiAutoBowAnimator.
     }
-
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Backspace))
-    //    {
-    //        if (currentVersion == 0)
-    //            SetInputVersion(1);
-    //        else
-    //            SetInputVersion(0);
-    //    }
-    //}
 
     /// <summary>
     /// 0 - version1 ; 1 - version2
@@ -105,4 +94,6 @@ public class Temp_KeyMapper : MonoBehaviour
     {
         crosshair.gameObject.SetActive(isCrosshair.isOn);
     }
+
+
 }

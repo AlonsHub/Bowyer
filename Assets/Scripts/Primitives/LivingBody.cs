@@ -13,10 +13,17 @@ public class LivingBody : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
 
+    [SerializeField]
+    Renderer rend;
+    [SerializeField]
+    float redTime;
+
     public bool IsDead => _currentHealth <= 0;
 
     public System.Action<float> OnAnyDamage;
     public System.Action OnDeath;
+
+
     //public System.Action<DeathData> OnDeath;
 
     protected virtual void Start()
@@ -34,11 +41,26 @@ public class LivingBody : MonoBehaviour
     {
         _currentHealth -= damage;
         OnAnyDamage?.Invoke(damage);
+        DamageFeedback();
+
 
         if (IsDead)
         {
             Die();
         }
+    }
+
+
+    public void DamageFeedback()
+    {
+        StartCoroutine(ColorChange());
+    }
+
+    IEnumerator ColorChange()
+    {
+        rend.material.SetColor("_BaseColor", Color.red);
+        yield return new WaitForSeconds(redTime);
+        rend.material.SetColor("_BaseColor", Color.white);
     }
 
     public virtual void Die()

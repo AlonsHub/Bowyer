@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4917048992863318364
 Transform:
   m_ObjectHideFlags: 0
@@ -226,6 +226,7 @@ MonoBehaviour:
   col: {fileID: 6940183216170903129}
   arrowStickInAmount: 0.01
   gfx: {fileID: 0}
+  trailer: {fileID: 6756876840523075003}
   vtc: {fileID: 4715270813097486116}
   damage: 5
 --- !u!114 &4715270813097486116
