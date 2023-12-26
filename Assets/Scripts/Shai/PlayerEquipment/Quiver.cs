@@ -49,10 +49,31 @@ public class Quiver : BaseInventory
 
             if (slots[index].IsEmpty)//if no more arrows are left in slot, orginize it 
             {
-                for (int i = index; i < slots.Count - 1; i++)
+                bool allOut = true;
+                //Alon changes
+                for (int i = 0; i < slots.Count - 1; i++)
                 {
-                    slots[i].AddItem(slots[i + 1].RemoveItem());
+                    if (!slots[i].IsEmpty)
+                    {
+                        currentArrowIndex = i;
+                        allOut = false;
+                        break;
+                    }
                 }
+
+                if(allOut)
+                {
+                    Debug.LogError("This Quiver is all out of Arrows!");
+                }
+                //for (int i = index; i < slots.Count - 1; i++)
+                //{
+                //    if (slots[i + 1].IsEmpty)
+                //        continue; //should be break really...
+
+                    //    slots[i].AddItem(slots[i + 1].RemoveItem());
+                    //}
+
+                    //Alon changes end
             }
         }
         else if (index - slots.Count - 1 <= sArrowsSlots.Count - 1 && index - slots.Count - 1 >= 0)//remove arrow from special arrows slots
