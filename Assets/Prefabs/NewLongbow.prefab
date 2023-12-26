@@ -1951,8 +1951,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pc: {fileID: 0}
+  envCam: {fileID: 0}
   anim: {fileID: 3600811584914767970}
-  arrowPrefab: {fileID: 5682505232231446610, guid: 0f77f6c2865b1404f9e43dc60cd011be,
+  arrowPrefab: {fileID: 7845837578878612973, guid: f1b4476a0afb44649a85575f8740f8d2,
     type: 3}
   arrowNotchTransform: {fileID: 1755492226612316300}
   shotTransform: {fileID: 6947532914891599652}
