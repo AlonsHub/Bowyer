@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4223259386637658}
   - component: {fileID: 2372933943511137069}
   - component: {fileID: 64097835914446458}
+  - component: {fileID: 8955631942735735361}
   m_Layer: 0
   m_Name: RockCliff001
   m_TagString: Untagged
@@ -87,9 +88,25 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c28b456c306603a43a8cfd060772c2fb, type: 3}
+--- !u!208 &8955631942735735361
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766041619381236}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.29, y: 1.87, z: 1.905}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.1, y: 1.42, z: -0.21}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3844655913517455417
 PrefabInstance:
   m_ObjectHideFlags: 0
