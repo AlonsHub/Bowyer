@@ -170,14 +170,17 @@ public class PlayerController : MonoBehaviour, InputPanel
 
 
 
-        UpdateSound();
+        //UpdateSound();
 
     }
 
     public void GrabInput()
     {
-        if (!IsEnabled())
+        if (!IsInputPanelEnabled())
+        {
+            _inputVector = Vector3.zero;
             return;
+        }
 
         _inputVector = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
 
@@ -363,6 +366,16 @@ public class PlayerController : MonoBehaviour, InputPanel
             {
                 //can call Land animation here
                 _currentJumpForce = Vector3.zero;
+                if(Temp_KeyMapper.ToggleOrHold)
+                {
+
+                    if (isToggleSprint)
+                        CurrentMoveType = MoveType.Sprint;
+                    else
+                        CurrentMoveType = MoveType.Run;
+
+                
+                }
                 yield break;
             }
         }
@@ -416,7 +429,7 @@ public class PlayerController : MonoBehaviour, InputPanel
     }
 
 
-    public bool IsEnabled()
+    public bool IsInputPanelEnabled()
     {
         return ActionInputPanelsEnabled;
     }

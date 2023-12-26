@@ -134,7 +134,7 @@ public class Bow : MonoBehaviour, InputPanel
 
     public void GrabInput()
     {
-        if (!IsEnabled())
+        if (!IsInputPanelEnabled())
             return;
 
         //RIGHT CLICK TO ZOOM!
@@ -314,7 +314,9 @@ public class Bow : MonoBehaviour, InputPanel
         if(_loadedArrow)
         {
             Debug.LogError("Trying to Double Load arrows - stop this");
-            return;
+
+            Destroy(_loadedArrow);
+            //return;
         }
         _currentBowState = BowState.Loaded;
         _loadedArrow = Instantiate(arrowPrefab, arrowNotchTransform);
@@ -363,7 +365,8 @@ public class Bow : MonoBehaviour, InputPanel
         _loadedArrow.transform.SetParent(null);
 
         OnShoot.Invoke();
-
+        //_loadedArrow.transform.position = envCam.transform.position + envCam.transform.forward*2f;
+        //_loadedArrow.transform.forward = envCam.transform.forward;
         _loadedArrow.GetComponent<Arrow>().ForceMe(envCam.transform.forward * _currentPull * _bowStats.PullFactor);
         _loadedArrow = null;
 
@@ -371,7 +374,7 @@ public class Bow : MonoBehaviour, InputPanel
     }
 
 
-    public bool IsEnabled()
+    public bool IsInputPanelEnabled()
     {
         return PlayerController.ActionInputPanelsEnabled;
     }
@@ -415,5 +418,19 @@ public class Bow : MonoBehaviour, InputPanel
     public void SetAnimatorController(RuntimeAnimatorController runtimeAnimatorController)
     {
         anim.runtimeAnimatorController = runtimeAnimatorController;
+        anim.SetFloat("DrawSpeed", TEMP_drawSpeed);
+        anim.SetFloat("ReloadSpeed", TEMP_reloadSpeed);
+    }
+
+    /// <summary>
+    /// Immediately removes the currently loaded arrow GFX, but DOES NOT remove the item from its stack/slot, that will only when OnShoot() is called.
+    /// Currently used for swapping input methods into Semi/Full Auto Reloading, but will be relevant when swapping into special arrows.
+    /// </summary>
+    public void KillLoadedArrow()
+    {
+        Destroy(_loadedArrow); //To be replaced with a "StowAway" animation, or at least "Draw" in reverse? 
+        _loadedArrow = null;
+        _currentBowState = BowState.Empty;
+        
     }
 }

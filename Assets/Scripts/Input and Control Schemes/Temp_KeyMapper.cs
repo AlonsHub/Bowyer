@@ -22,6 +22,15 @@ public class Temp_KeyMapper : MonoBehaviour
     public RuntimeAnimatorController autoBowAnimator;
 
     public Bow[] bows;
+
+    [SerializeField]
+    UnityEngine.UI.Toggle isHoldToggle;
+    
+    
+    [SerializeField]
+    UnityEngine.UI.Toggle isCrosshair;
+    [SerializeField]
+    UnityEngine.UI.Image crosshair;
     
     
     /// <summary>
@@ -40,10 +49,10 @@ public class Temp_KeyMapper : MonoBehaviour
         //semiAutoBowAnimator.
     }
 
-    
+
     //private void Update()
     //{
-    //    if(Input.GetKeyDown(KeyCode.Backspace))
+    //    if (Input.GetKeyDown(KeyCode.Backspace))
     //    {
     //        if (currentVersion == 0)
     //            SetInputVersion(1);
@@ -60,9 +69,11 @@ public class Temp_KeyMapper : MonoBehaviour
     {
         currentVersion = v;
         SetKeys(keyCode_versions[currentVersion]);
-        foreach (var item in bows)
+        foreach (var bow in bows)
         {
-            item.SetAnimatorController( v == 0 ? autoBowAnimator : semiAutoBowAnimator);
+            bow.SetAnimatorController( v == 0 ? autoBowAnimator : semiAutoBowAnimator);
+
+
         }
     }
 
@@ -78,5 +89,20 @@ public class Temp_KeyMapper : MonoBehaviour
     public static KeyCode GetKeycodeForInputAction(InputActions inputAction)
     {
         return dict[inputAction];
+    }
+
+    public void VersionToggle()
+    {
+        SetInputVersion(isHoldToggle.isOn ? 1 : 0);
+
+        if(PlayerController.CurrentBow.gameObject.activeInHierarchy) //should check for seperate Semi/Auto Reload boolean TBD   
+        {
+            PlayerController.CurrentBow.KillLoadedArrow();
+        }
+    }
+
+    public void CrosshairToggle()
+    {
+        crosshair.gameObject.SetActive(isCrosshair.isOn);
     }
 }
