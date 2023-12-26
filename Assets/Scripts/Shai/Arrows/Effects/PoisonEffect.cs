@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class PoisonEffect : ArrowEffect
 {
-    [SerializeField] private float cycleDamage;
-    [SerializeField] private float cycleTime;
-    [SerializeField] private float effectTime;
-
-    // Start is called before the first frame update
-    void Start()
+    public PoisonEffect(LivingBody _livingBody) : base(_livingBody)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void ApplyStatusEffect()
     {
-        
+        throw new System.NotImplementedException();
     }
 }

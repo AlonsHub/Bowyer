@@ -4,19 +4,13 @@ using UnityEngine;
 
 public abstract class ArrowEffect : MonoBehaviour
 {
-    [SerializeField] private AudioClip releaseSound;
-    [SerializeField] private AudioClip hitSound;
-    [SerializeField] private AudioClip enemyHitSound;
+    protected LivingBody livingBody;
 
-    public virtual void OnHit(Collider other)
+
+    public ArrowEffect(LivingBody _livingBody)
     {
-        //if collider is enemy play enemyHitSound
-        //otherwise play hitSound
-        
+        livingBody = _livingBody;
     }
 
-    public virtual void OnShoot()
-    {
-        //play releaseSound
-    }
+    public abstract void ApplyStatusEffect();
 }

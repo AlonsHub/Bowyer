@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecialArrow : MonoBehaviour
+public class SpecialArrow : Arrow
 {
-    [SerializeField] private Arrow arrow;
-    [SerializeField] private ArrowEffect effect;
+
 }
