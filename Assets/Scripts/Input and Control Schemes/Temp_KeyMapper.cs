@@ -35,6 +35,19 @@ public class Temp_KeyMapper : MonoBehaviour
     UnityEngine.UI.Image crosshair;
     [SerializeField]
     UnityEngine.UI.Image hithair;
+    [SerializeField]
+    UnityEngine.UI.Image crithair;
+    [SerializeField]
+    UnityEngine.UI.Image killhair;
+
+
+    [SerializeField]
+    float hithairTime;
+    [SerializeField]
+    float critHairTime;
+    [SerializeField]
+    float killHairTime;
+
     
     /// <summary>
     /// True means Toggle - False means Hold
@@ -42,6 +55,14 @@ public class Temp_KeyMapper : MonoBehaviour
     public static bool ToggleOrHold => currentVersion == 1;
     private void Awake()
     {
+        if (Instance != null && Instance !=this)
+        {
+            Destroy(gameObject);
+            return;
+        }    
+
+        Instance = this;
+
         dict = new Dictionary<InputActions, KeyCode>();
         keyCode_versions = new KeyCode[2][];
         keyCode_versions[0] = keyCodes_v1;
@@ -95,5 +116,36 @@ public class Temp_KeyMapper : MonoBehaviour
         crosshair.gameObject.SetActive(isCrosshair.isOn);
     }
 
+    public void CallHithair()
+    {
+        StartCoroutine(EngageRegularHithair());
+    }
+    public void CallCrithair()
+    {
+        StartCoroutine(EngageCritHair());
+    }
+    public void CallKillhair()
+    {
+        StartCoroutine(EngageKillHair());
+    }
+
+    IEnumerator EngageRegularHithair()
+    {
+        hithair.gameObject.SetActive(true);
+        yield return new WaitForSeconds(hithairTime);
+        hithair.gameObject.SetActive(false);
+    }
+    IEnumerator EngageCritHair()
+    {
+        crithair.gameObject.SetActive(true);
+        yield return new WaitForSeconds(critHairTime);
+        crithair.gameObject.SetActive(false);
+    }
+    IEnumerator EngageKillHair()
+    {
+        killhair.gameObject.SetActive(true);
+        yield return new WaitForSeconds(killHairTime);
+        killhair.gameObject.SetActive(false);
+    }
 
 }

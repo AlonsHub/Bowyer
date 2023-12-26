@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingBody: {fileID: 8084280569233342848}
   maxHealth: 5
+  isCriticalSpot: 1
   rend: {fileID: 5342939464239601137}
   redTime: 0.5
 --- !u!1 &836697234074895229
@@ -562,6 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingBody: {fileID: 8084280569233342848}
   maxHealth: 5
+  isCriticalSpot: 1
   rend: {fileID: 7028057249706770624}
   redTime: 0.5
 --- !u!1 &3345753343886151373
@@ -684,6 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingBody: {fileID: 8084280569233342848}
   maxHealth: 150
+  isCriticalSpot: 0
   rend: {fileID: 634305347569167235}
   redTime: 0.5
 --- !u!1 &7504042317785320225

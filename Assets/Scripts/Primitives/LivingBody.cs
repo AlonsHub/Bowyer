@@ -41,27 +41,17 @@ public class LivingBody : MonoBehaviour
     {
         _currentHealth -= damage;
         OnAnyDamage?.Invoke(damage);
-        DamageFeedback();
+        //DamageFeedback();
 
 
         if (IsDead)
         {
+            Temp_KeyMapper.Instance.CallKillhair();
+
             Die();
         }
     }
 
-
-    public void DamageFeedback()
-    {
-        StartCoroutine(ColorChange());
-    }
-
-    IEnumerator ColorChange()
-    {
-        rend.material.SetColor("_BaseColor", Color.red);
-        yield return new WaitForSeconds(redTime);
-        rend.material.SetColor("_BaseColor", Color.white);
-    }
 
     public virtual void Die()
     {

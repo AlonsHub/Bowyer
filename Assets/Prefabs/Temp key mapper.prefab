@@ -51,3 +51,12 @@ MonoBehaviour:
   bows:
   - {fileID: 0}
   - {fileID: 0}
+  isHoldToggle: {fileID: 0}
+  isCrosshair: {fileID: 0}
+  crosshair: {fileID: 0}
+  hithair: {fileID: 0}
+  crithair: {fileID: 0}
+  killhair: {fileID: 0}
+  hithairTime: 0.2
+  critHairTime: 0.2
+  killHairTime: 0.2

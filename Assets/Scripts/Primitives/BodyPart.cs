@@ -11,6 +11,9 @@ public class BodyPart : MonoBehaviour
     protected float _currentHealth;
 
     [SerializeField]
+    protected bool isCriticalSpot;
+
+    [SerializeField]
     Renderer rend;
     [SerializeField]
     float redTime;
@@ -54,6 +57,10 @@ public class BodyPart : MonoBehaviour
     public void DamageFeedback()
     {
         StartCoroutine(ColorChange());
+        if(isCriticalSpot)
+        Temp_KeyMapper.Instance.CallCrithair();
+            else
+        Temp_KeyMapper.Instance.CallHithair();
     }
 
     IEnumerator ColorChange()
