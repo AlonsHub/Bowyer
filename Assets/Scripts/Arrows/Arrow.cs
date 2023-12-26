@@ -61,11 +61,11 @@ public class Arrow : MonoBehaviour
             return;
         Destroy(gameObject, 5f);
 
-        trailer.SetActive(false);
 
         if (collision.gameObject.CompareTag("Sticky"))
         {
             _hasHit = true;
+            trailer.SetActive(false);
 
             _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
             transform.position += _pushDir;
