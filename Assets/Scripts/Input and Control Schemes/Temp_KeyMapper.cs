@@ -143,6 +143,8 @@ public class Temp_KeyMapper : MonoBehaviour
     }
     IEnumerator EngageKillHair()
     {
+        hithair.gameObject.SetActive(false);
+
         killhair.gameObject.SetActive(true);
         yield return new WaitForSeconds(killHairTime);
         killhair.gameObject.SetActive(false);
