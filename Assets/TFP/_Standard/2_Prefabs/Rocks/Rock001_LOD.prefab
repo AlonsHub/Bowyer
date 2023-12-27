@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 205373229281744628}
   - component: {fileID: 64396537621801122}
   - component: {fileID: 5305392456288632341}
+  - component: {fileID: 6513974811468823091}
   m_Layer: 0
   m_Name: Rock001_LOD
   m_TagString: Untagged
@@ -218,23 +219,23 @@ LODGroup:
   m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.50117344
+  - screenRelativeHeight: 0.40334696
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23872857894424212}
-  - screenRelativeHeight: 0.30490458
+  - screenRelativeHeight: 0.20219627
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23029562273897022}
-  - screenRelativeHeight: 0.30490458
+  - screenRelativeHeight: 0.099441014
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23014588275151282}
-  - screenRelativeHeight: 0
+  - screenRelativeHeight: 0.020331675
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23307676495348990}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!64 &64396537621801122
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -278,6 +279,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.0847335, y: 3.33772, z: 3.5908897}
   m_Center: {x: -0.18250751, y: 1.4237895, z: -0.22187173}
+--- !u!208 &6513974811468823091
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531364189026198}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.0423665, y: 1.66886, z: 1.795445}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.1825075, y: 1.42379, z: -0.2218717}
+  m_TimeToStationary: 0.5
 --- !u!1 &1722688966124156
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,17 @@ public class LivingBody : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
 
+    [SerializeField]
+    Renderer rend;
+    [SerializeField]
+    float redTime;
+
     public bool IsDead => _currentHealth <= 0;
 
     public System.Action<float> OnAnyDamage;
     public System.Action OnDeath;
+
+
     //public System.Action<DeathData> OnDeath;
 
     protected virtual void Start()
@@ -34,12 +41,17 @@ public class LivingBody : MonoBehaviour
     {
         _currentHealth -= damage;
         OnAnyDamage?.Invoke(damage);
+        //DamageFeedback();
+
 
         if (IsDead)
         {
+            Temp_KeyMapper.Instance.CallKillhair();
+
             Die();
         }
     }
+
 
     public virtual void Die()
     {

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4392814894000262}
   - component: {fileID: 205683176537923966}
   - component: {fileID: 64607334575953380}
+  - component: {fileID: -6667099360195731952}
   m_Layer: 0
   m_Name: RockPileMedium02
   m_TagString: Untagged
@@ -168,6 +169,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b4c71b20d65c6bf479e57a77b5ef82f6, type: 3}
+--- !u!208 &-6667099360195731952
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472101895644302}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.565, y: 0.895, z: 3.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.58, y: 0, z: -0.4}
+  m_TimeToStationary: 0.5
 --- !u!1 &1659448328180478
 GameObject:
   m_ObjectHideFlags: 0

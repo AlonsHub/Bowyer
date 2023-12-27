@@ -1671,12 +1671,6 @@ PrefabInstance:
       objectReference: {fileID: 2063046733241882488}
     - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
         type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 7133987695372602946, guid: d2752256f8947c04ab46b315e51d5018,
-        type: 3}
-    - target: {fileID: 526907684791019587, guid: a9f0341b4ccbc204e87fa9c1a1f62cca,
-        type: 3}
       propertyPath: TEMP_reloadSpeed
       value: 2
       objectReference: {fileID: 0}
@@ -2103,12 +2097,6 @@ PrefabInstance:
       propertyPath: envCam
       value: 
       objectReference: {fileID: 2063046733241882488}
-    - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 8753720873503110092, guid: f1b4476a0afb44649a85575f8740f8d2,
-        type: 3}
     - target: {fileID: 5024355197580012444, guid: e770741da986f7044948746cd37fd4aa,
         type: 3}
       propertyPath: TEMP_reloadSpeed

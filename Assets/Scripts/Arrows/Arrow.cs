@@ -15,6 +15,8 @@ public class Arrow : MonoBehaviour
     Transform gfx;
 
     [SerializeField]
+    GameObject trailer;
+    [SerializeField]
     VelocityTrackerComponent vtc;
     [SerializeField]
     float damage;
@@ -37,6 +39,7 @@ public class Arrow : MonoBehaviour
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
         col.enabled = true;
+        trailer.SetActive(true);
     }
     //public void ForceMeFWD(float force)
     //{
@@ -58,14 +61,15 @@ public class Arrow : MonoBehaviour
             return;
         Destroy(gameObject, 5f);
 
+
         if (collision.gameObject.CompareTag("Sticky"))
         {
             _hasHit = true;
-            //gfx.Translate(Vector3.forward* arrowStickInAmount);
+            trailer.SetActive(false);
+
             _pushDir = vtc.AverageVelXFramesDelay(1) * arrowStickInAmount;
             transform.position += _pushDir;
             rb.isKinematic = true;
-            //transform.SetParent(collision.transform);
 
             BodyPart bp = collision.gameObject.GetComponent<BodyPart>();
 
@@ -86,6 +90,12 @@ public class Arrow : MonoBehaviour
                     transform.SetParent(bp.transform);
                 }
             }
+
+            //if(bp)
+            //{
+            //    /
+            //}
+
             Destroy(vtc, .3f);
             col.enabled = false;
             this.enabled = false;
@@ -93,15 +103,4 @@ public class Arrow : MonoBehaviour
             //StartCoroutine(LatePush());
         }
     }
-
-    //IEnumerator LatePush()
-    //{
-    //    yield return new WaitForSeconds(.02f);
-    //    //rb.isKinematic = false;
-    //    rb.AddForce(vtc.AverageVel(), ForceMode.Impulse);
-    //    yield return new WaitForSeconds(.01f);
-    //    rb.isKinematic = true;
-    //    col.enabled = false;
-
-    //}
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public enum InputActions{Inventory,UseConsumeable,Reload, CancelShot};
 public class Temp_KeyMapper : MonoBehaviour
 {
+    public static Temp_KeyMapper Instance;
+
     static Dictionary<InputActions, KeyCode> dict;
 
     [Header("Version 1")]
@@ -31,7 +33,21 @@ public class Temp_KeyMapper : MonoBehaviour
     UnityEngine.UI.Toggle isCrosshair;
     [SerializeField]
     UnityEngine.UI.Image crosshair;
-    
+    [SerializeField]
+    UnityEngine.UI.Image hithair;
+    [SerializeField]
+    UnityEngine.UI.Image crithair;
+    [SerializeField]
+    UnityEngine.UI.Image killhair;
+
+
+    [SerializeField]
+    float hithairTime;
+    [SerializeField]
+    float critHairTime;
+    [SerializeField]
+    float killHairTime;
+
     
     /// <summary>
     /// True means Toggle - False means Hold
@@ -39,27 +55,21 @@ public class Temp_KeyMapper : MonoBehaviour
     public static bool ToggleOrHold => currentVersion == 1;
     private void Awake()
     {
+        if (Instance != null && Instance !=this)
+        {
+            Destroy(gameObject);
+            return;
+        }    
+
+        Instance = this;
+
         dict = new Dictionary<InputActions, KeyCode>();
         keyCode_versions = new KeyCode[2][];
         keyCode_versions[0] = keyCodes_v1;
         keyCode_versions[1] = keyCodes_v2;
 
         SetInputVersion(currentVersion);
-
-        //semiAutoBowAnimator.
     }
-
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Backspace))
-    //    {
-    //        if (currentVersion == 0)
-    //            SetInputVersion(1);
-    //        else
-    //            SetInputVersion(0);
-    //    }
-    //}
 
     /// <summary>
     /// 0 - version1 ; 1 - version2
@@ -105,4 +115,37 @@ public class Temp_KeyMapper : MonoBehaviour
     {
         crosshair.gameObject.SetActive(isCrosshair.isOn);
     }
+
+    public void CallHithair()
+    {
+        StartCoroutine(EngageRegularHithair());
+    }
+    public void CallCrithair()
+    {
+        StartCoroutine(EngageCritHair());
+    }
+    public void CallKillhair()
+    {
+        StartCoroutine(EngageKillHair());
+    }
+
+    IEnumerator EngageRegularHithair()
+    {
+        hithair.gameObject.SetActive(true);
+        yield return new WaitForSeconds(hithairTime);
+        hithair.gameObject.SetActive(false);
+    }
+    IEnumerator EngageCritHair()
+    {
+        crithair.gameObject.SetActive(true);
+        yield return new WaitForSeconds(critHairTime);
+        crithair.gameObject.SetActive(false);
+    }
+    IEnumerator EngageKillHair()
+    {
+        killhair.gameObject.SetActive(true);
+        yield return new WaitForSeconds(killHairTime);
+        killhair.gameObject.SetActive(false);
+    }
+
 }
