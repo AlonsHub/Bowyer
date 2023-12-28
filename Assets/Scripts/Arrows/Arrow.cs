@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Arrow : MonoBehaviour
 {
@@ -23,32 +24,28 @@ public class Arrow : MonoBehaviour
 
     Vector3 _pushDir;
 
-    bool _hasHit = false; 
+    bool _hasHit = false;
+
+    public UnityEvent OnShoot;
+    public UnityEvent OnHit;
+    public UnityEvent<BodyPart> OnHitBodyPart;
+
     private void Awake()
     {
         rb.isKinematic = true;
     }
 
-    //public void Init(Vector3 force, float forceBasedDamageMod)
-    //{
-
-    //}
-
     public void ForceMe(Vector3 force)
     {
+
+        OnShoot.Invoke();
+
         rb.isKinematic = false;
         rb.AddForce(force, ForceMode.Impulse);
         col.enabled = true;
         trailer.SetActive(true);
     }
-    //public void ForceMeFWD(float force)
-    //{
-    //    rb.isKinematic = false;
-    //    rb.AddForce(force * transform.forward, ForceMode.Impulse);
-    //}
-
-
-    // Update is called once per frame
+  
     void Update()
     {
         if (!rb.isKinematic && rb.velocity.magnitude >= 6f)
@@ -59,8 +56,7 @@ public class Arrow : MonoBehaviour
     {
         if (_hasHit)
             return;
-        Destroy(gameObject, 5f);
-
+        //Destroy(gameObject, 5f);
 
         if (collision.gameObject.CompareTag("Sticky"))
         {
@@ -80,6 +76,8 @@ public class Arrow : MonoBehaviour
             {
                 bp.TakeDamage(damage);
                 transform.SetParent(bp.transform);
+
+                OnHitBodyPart.Invoke(bp);
             }
             else
             {
@@ -88,19 +86,16 @@ public class Arrow : MonoBehaviour
                 {
                     bp.TakeDamage(damage);
                     transform.SetParent(bp.transform);
+                    OnHitBodyPart.Invoke(bp);
                 }
             }
 
-            //if(bp)
-            //{
-            //    /
-            //}
-
+            if (!bp)
+                OnHit.Invoke();
+            
             Destroy(vtc, .3f);
             col.enabled = false;
             this.enabled = false;
-            //Some sort of Destroy with a delay
-            //StartCoroutine(LatePush());
         }
     }
 }

@@ -46,8 +46,6 @@ public class LivingBody : MonoBehaviour
 
         if (IsDead)
         {
-            Temp_KeyMapper.Instance.CallKillhair();
-
             Die();
         }
     }
@@ -65,6 +63,7 @@ public class LivingBody : MonoBehaviour
 
         //    item.Die();
         //}
+        Temp_KeyMapper.Instance.CallKillhair();
 
         OnDeath?.Invoke();
     }

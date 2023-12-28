@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingBody: {fileID: 8084280569233342848}
   maxHealth: 5
-  isCriticalSpot: 1
+  isCriticalSpot: 0
   rend: {fileID: 5342939464239601137}
   redTime: 0.5
 --- !u!1 &836697234074895229

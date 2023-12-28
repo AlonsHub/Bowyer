@@ -337,9 +337,10 @@ GameObject:
   - component: {fileID: 4000012393512826}
   - component: {fileID: 205000013903276490}
   - component: {fileID: 136757462603313412}
+  - component: {fileID: 3348499861791362069}
   m_Layer: 0
   m_Name: PapayaTree01_LOD
-  m_TagString: Untagged
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 88
@@ -417,3 +418,19 @@ CapsuleCollider:
   m_Height: 4.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.9, z: 0}
+--- !u!208 &3348499861791362069
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014197572098}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.125, y: 2.25, z: 0.125}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.9, z: 0}
+  m_TimeToStationary: 0.5
