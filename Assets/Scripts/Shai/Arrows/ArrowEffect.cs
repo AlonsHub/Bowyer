@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ArrowEffect : MonoBehaviour
 {
     protected LivingBody livingBody;
-
+    protected float timer;
 
     public ArrowEffect(LivingBody _livingBody)
     {
