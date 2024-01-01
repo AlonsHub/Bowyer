@@ -9,6 +9,7 @@ public class ToolBarUI : MonoBehaviour
     [SerializeField] private GameObject slotHighlight;
     [SerializeField] private GridLayoutGroup gridLayout;
     [SerializeField] private List<InventorySlot> slots;
+    [SerializeField] private BowsLogic bowsLogic;
     private int currentSlotIndex;
 
     private void OnEnable()
@@ -79,6 +80,7 @@ public class ToolBarUI : MonoBehaviour
 
             slotHighlight.transform.position = slots[currentSlotIndex].transform.position;
         }
+        SyncQuiverIndex(); 
     }
 
     private int GetTmpIndexWithStep(int step)
@@ -98,6 +100,7 @@ public class ToolBarUI : MonoBehaviour
         {
             currentSlotIndex = index;
             slotHighlight.transform.position = slots[currentSlotIndex].transform.position;
+            SyncQuiverIndex();
         }
     }
 
@@ -121,6 +124,11 @@ public class ToolBarUI : MonoBehaviour
         return IHD;
     }
 
+    private void SyncQuiverIndex()
+    {
+        bowsLogic.ChangeCurrentArrowIndexByindex(currentSlotIndex);
+    }
+
     [ContextMenu("Refresh")]
     private void RefreshToolbar()
     {
@@ -139,7 +147,7 @@ public class ToolBarUI : MonoBehaviour
 
         //try to fix the position and status of the highlighter,
         //seems to work but on the start of the game the highlighter isnt in the right position
-        if (!slots[currentSlotIndex].IsEmpty)
+        if (slots.Count > 0 && !slots[currentSlotIndex].IsEmpty)
         {
             slotHighlight.SetActive(true);
             slotHighlight.transform.position = slots[currentSlotIndex].transform.position;

@@ -25,10 +25,10 @@ public class Quiver : BaseInventory
             return (ArrowSO)slots[index].Item.ReturnItemSO();
         }
 
-        int newIndex = index - slots.Count - 1;
+        int newIndex = index - slots.Count;
         if (newIndex <= sArrowsSlots.Count - 1 && newIndex >= 0)
         {
-            return (ArrowSO)sArrowsSlots[index].Item.ReturnItemSO();
+            return (ArrowSO)sArrowsSlots[newIndex].Item.ReturnItemSO();
         }
 
         Debug.Log("Invalid Index");
@@ -76,9 +76,9 @@ public class Quiver : BaseInventory
                     //Alon changes end
             }
         }
-        else if (index - slots.Count - 1 <= sArrowsSlots.Count - 1 && index - slots.Count - 1 >= 0)//remove arrow from special arrows slots
+        else if (index - slots.Count <= sArrowsSlots.Count - 1 && index - slots.Count >= 0)//remove arrow from special arrows slots
         {
-            int newIndex = index - slots.Count - 1;
+            int newIndex = index - slots.Count;
             sArrowsSlots[newIndex].Item.RemoveAmount(1);
 
             if (sArrowsSlots[newIndex].IsEmpty)
@@ -114,19 +114,18 @@ public class Quiver : BaseInventory
     public ArrowSO GetCurrentArrow()
     {
         //check if empty first?
-
-        return (ArrowSO)slots[currentArrowIndex].Item.ReturnItemSO();
+        return GetArrowAt(currentArrowIndex) ;
     }
 
     public void ChangeCurrentArrowIndexByStep(int step)
     {
         int newIndex = currentArrowIndex += step;
-        currentArrowIndex = Mathf.Clamp(newIndex, 0, slots.Count);
+        currentArrowIndex = Mathf.Clamp(newIndex, 0, slots.Count + sArrowsSlots.Count - 2);
     }
 
     public void ChangeCurrentArrowIndexByNum(int newIndex)
     {
-        currentArrowIndex = Mathf.Clamp(newIndex, 0, slots.Count);
+        currentArrowIndex = Mathf.Clamp(newIndex, 0, slots.Count + sArrowsSlots.Count - 2);
     }
 
     /// <summary>
