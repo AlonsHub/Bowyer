@@ -12,9 +12,13 @@ public class Bow : MonoBehaviour, InputPanel
     PlayerController pc;
     [SerializeField]
     Camera envCam;
-
+    [SerializeField]
+    Camera bowCam;
     [SerializeField]
     Animator anim;
+    [SerializeField]
+    Animator bowCamAnim;
+
     [SerializeField]
     GameObject arrowPrefab;
     [SerializeField]
@@ -111,6 +115,11 @@ public class Bow : MonoBehaviour, InputPanel
 
         anim.SetFloat("DrawSpeed", TEMP_drawSpeed);
         anim.SetFloat("ReloadSpeed", TEMP_reloadSpeed);
+
+        bowCamAnim.SetFloat("DrawSpeed", TEMP_drawSpeed);
+        bowCamAnim.SetFloat("ReloadSpeed", TEMP_reloadSpeed);
+
+        
     }
     private void OnDisable()
     {
@@ -169,6 +178,7 @@ public class Bow : MonoBehaviour, InputPanel
                 {
                     if(Input.GetMouseButtonDown(0))
                     anim.SetTrigger("Reload");
+                    bowCamAnim.SetTrigger("Reload");
                     //LoadArrow(); //loads current arrow, assuming the correct one has been preloaded to the prefab? should pull from quiver really
                 }
                
@@ -182,6 +192,7 @@ public class Bow : MonoBehaviour, InputPanel
                     SpeedsAndSensitivities.SetPullWeight(_bowStats.PullWeight);
 
                     anim.SetTrigger("Aim");
+                    bowCamAnim.SetTrigger("Aim");
                   
                     _currentPull = 0;
                     _currentPullTime = 0;
@@ -206,9 +217,15 @@ public class Bow : MonoBehaviour, InputPanel
                     _currentPull = Mathf.Clamp(_currentPull, 0, _bowStats.MaxPull_Tension);
 
                     if (_currentPullTime >= _bowStats.armStats.shakeTime)
+                    {
                         anim.SetFloat("DrawTime", (_currentPullTime - _bowStats.armStats.shakeTime));
+                        bowCamAnim.SetFloat("DrawTime", (_currentPullTime - _bowStats.armStats.shakeTime));
+                    }
                     else
+                    {
                         anim.SetFloat("DrawTime", 0);
+                        bowCamAnim.SetFloat("DrawTime", 0);
+                    }
 
 
                     if (_currentPullTime >= _bowStats.armStats.releaseTime)
@@ -216,6 +233,7 @@ public class Bow : MonoBehaviour, InputPanel
                         _currentBowState = BowState.Empty; //Just fired
 
                         anim.SetTrigger("Release");
+                        bowCamAnim.SetTrigger("Release");
 
                         Release();
 
@@ -240,6 +258,7 @@ public class Bow : MonoBehaviour, InputPanel
                         //arrowNotchTransform.localPosition = ogArrowNotchLocalPos;
 
                         anim.SetTrigger("Release");
+                        bowCamAnim.SetTrigger("Release");
 
                         Release();
 
@@ -272,6 +291,7 @@ public class Bow : MonoBehaviour, InputPanel
                         _currentPullTime = 0;
 
                         anim.SetTrigger("ToIdle");
+                        bowCamAnim.SetTrigger("ToIdle");
                         _canShoot = true;
 
                     }
@@ -291,6 +311,7 @@ public class Bow : MonoBehaviour, InputPanel
             float current = anim.GetFloat("MoveSpeed");
             float smoothed = Mathf.Lerp(current, noFallVel.magnitude / 5f, .05f);
             anim.SetFloat("MoveSpeed", smoothed);
+            bowCamAnim.SetFloat("MoveSpeed", smoothed);
         }
         else
         {
@@ -300,11 +321,13 @@ public class Bow : MonoBehaviour, InputPanel
             {
                 float smoothed = Mathf.Lerp(current, -1, .08f);
                 anim.SetFloat("MoveSpeed", smoothed);
+                bowCamAnim.SetFloat("MoveSpeed", smoothed);
             }
             else
             {
                 float smoothed = Mathf.Lerp(current, -2, .04f);
                 anim.SetFloat("MoveSpeed", smoothed);
+                bowCamAnim.SetFloat("MoveSpeed", smoothed);
             }
         }
     }
@@ -394,6 +417,7 @@ public class Bow : MonoBehaviour, InputPanel
             return;
 
         anim.SetTrigger("Jump");
+        bowCamAnim.SetTrigger("Jump");
     }
     public void Holster()
     {
@@ -401,6 +425,7 @@ public class Bow : MonoBehaviour, InputPanel
             return;
 
         anim.SetTrigger("Holster");
+        //Tihs is the only irrelevant one
     }
 
     public void SetAnimInAir(bool isInAir)
@@ -409,6 +434,7 @@ public class Bow : MonoBehaviour, InputPanel
             return;
 
         anim.SetBool("InAir", isInAir);
+        bowCamAnim.SetBool("InAir", isInAir);
     }
     public void ReportLanded()
     {
@@ -420,6 +446,9 @@ public class Bow : MonoBehaviour, InputPanel
         anim.runtimeAnimatorController = runtimeAnimatorController;
         anim.SetFloat("DrawSpeed", TEMP_drawSpeed);
         anim.SetFloat("ReloadSpeed", TEMP_reloadSpeed);
+
+        bowCamAnim.SetFloat("DrawSpeed", TEMP_drawSpeed);
+        bowCamAnim.SetFloat("ReloadSpeed", TEMP_reloadSpeed);
     }
 
     /// <summary>
