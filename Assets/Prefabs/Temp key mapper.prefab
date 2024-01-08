@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4267689451783771569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6718973381352693613}
+  - component: {fileID: 4273513688245963583}
+  m_Layer: 0
+  m_Name: Temp key mapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6718973381352693613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267689451783771569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.494548, y: 5.952536, z: 0.0463965}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4273513688245963583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267689451783771569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e9e5bfa33a89048b48ebbadb86e5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyCodes_v1: 69000000710000000000000072000000
+  keyCodes_v2: 09000000660000003c01000072000000
+  semiAutoBowAnimator: {fileID: 9100000, guid: 57a0bc296e3adda44b006518d19465d5, type: 2}
+  autoBowAnimator: {fileID: 9100000, guid: 08972908eb7408949ad2d899e648bbb4, type: 2}
+  bows:
+  - {fileID: 0}
+  - {fileID: 0}
+  isHoldToggle: {fileID: 0}
+  isCrosshair: {fileID: 0}
+  crosshair: {fileID: 0}
+  hithair: {fileID: 0}
+  crithair: {fileID: 0}
+  killhair: {fileID: 0}
+  hithairTime: 0.2
+  critHairTime: 0.2
+  killHairTime: 0.2

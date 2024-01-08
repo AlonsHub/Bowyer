@@ -11,10 +11,9 @@ public class LegPart : BodyPart
     float speedToLose;
     [SerializeField]
     Animator anim;
-    public override void Die()
+    public override void Stop()
     {
         agent.speed -= speedToLose;
         anim.enabled = false;
-        base.Die();
     }
 }

@@ -6,6 +6,10 @@ public class HeadPart : BodyPart
 {
     public override void Die()
     {
+        if(livingBody.IsDead)   
+            return;
+        
+        _currentHealth = 0;
         livingBody.Die();
     }
 }

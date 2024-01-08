@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1deabe8fe23801448237a093f06849a, type: 3}
+  m_Name: Quiver1
+  m_EditorClassIdentifier: 
+  _type: 64
+  _name: 
+  _id: quiv1
+  _itemPrefab: {fileID: 298607577464845297, guid: 99a55e91f1d1e6648ab30d21b838fefa,
+    type: 3}
+  _icon: {fileID: 21300000, guid: eae6de4a2b15f22428229ee1fbbaf0fc, type: 3}
+  _isStackable: 0
+  _isEquipable: 1
+  _isCollectible: 0
+  _stackMax: 1
+  quiverType: 0
+  startCapacity: 5
+  maxCapacity: 6

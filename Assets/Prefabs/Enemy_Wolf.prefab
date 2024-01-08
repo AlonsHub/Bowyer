@@ -123,6 +123,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingBody: {fileID: 8084280569233342848}
   maxHealth: 5
+  isCriticalSpot: 0
+  rend: {fileID: 5342939464239601137}
+  redTime: 0.5
 --- !u!1 &836697234074895229
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +453,7 @@ GameObject:
   - component: {fileID: 12644365028012292}
   - component: {fileID: 7028057249706770624}
   - component: {fileID: 7635589306028972337}
+  - component: {fileID: 1832033305661472321}
   m_Layer: 8
   m_Name: Tail
   m_TagString: Sticky
@@ -545,6 +549,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1832033305661472321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2535018795293032540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1939f801251fd9049b627ad73bfad7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livingBody: {fileID: 8084280569233342848}
+  maxHealth: 5
+  isCriticalSpot: 1
+  rend: {fileID: 7028057249706770624}
+  redTime: 0.5
 --- !u!1 &3345753343886151373
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livingBody: {fileID: 8084280569233342848}
-  maxHealth: 30
+  maxHealth: 150
+  isCriticalSpot: 0
+  rend: {fileID: 634305347569167235}
+  redTime: 0.5
 --- !u!1 &7504042317785320225
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,8 +718,8 @@ Transform:
   m_GameObject: {fileID: 7504042317785320225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 146.25362, y: -31.077152, z: 91.3454}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6042894219870355051}
   - {fileID: 6743476273047374878}
@@ -786,6 +810,8 @@ MonoBehaviour:
   - {fileID: 5090238733605145675}
   - {fileID: 3403935272672087703}
   rb: {fileID: 0}
+  rend: {fileID: 634305347569167235}
+  redTime: 0.4
 --- !u!1001 &1771135762754353804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1138,11 +1164,6 @@ PrefabInstance:
       propertyPath: agent
       value: 
       objectReference: {fileID: 2393782751297841754}
-    - target: {fileID: 1641192784320587573, guid: d5292304250823c4e85eb919c4648374,
-        type: 3}
-      propertyPath: maxHealth
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1641192784320587573, guid: d5292304250823c4e85eb919c4648374,
         type: 3}
       propertyPath: livingBody

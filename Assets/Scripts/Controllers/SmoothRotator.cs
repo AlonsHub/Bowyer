@@ -1,104 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum AxisDirection {Up, Down, Left, Right};
+public enum AxisDirection {X, Y, Z};
 public class SmoothRotator : MonoBehaviour
 {
     //Rotator Data
     [SerializeField]
-    Vector3 rotAxis;
-    [SerializeField]
-    string inputAxis;
+    public AxisDirection axisDirection;
+    string inputAxis()
+    {
+        switch (axisDirection)
+        {
+            case AxisDirection.X:
+                return "Mouse Y";
+            case AxisDirection.Y:
+                return "Mouse X";
+            case AxisDirection.Z:
+                return "The Fuck?";
+            default:
+                break;
+        }
+        return "again, the fuck?";
+    }
+
+    //[SerializeField, Tooltip("No need to use Minus on X axis, code sorts that out!")]
+    //float rotSpeed;
 
     [SerializeField]
-    float rotSpeed;
-    [SerializeField]
     bool doLimit;
-    [SerializeField]
-    bool localRotation;
     [SerializeField]
     float minRot;
     [SerializeField]
     float maxRot;
-    
 
     [SerializeField]
     float _currentRot;
-    float _targetRot;
 
-    float _currentT;
     [SerializeField]
-    float _maxT = 1f;
-
+    float _currentInput;
+  
 
     Vector3 _targetRotVector;
-    Vector3 _targetTargetRotVector;
-    Vector3 _vel1;
-    Vector3 _vel2;
-    [SerializeField]
-    private float lerpStep;
-    [SerializeField]
-    private float noInputDrag;
 
     private void Awake()
     {
-        _currentRot = 0;
-        _targetRot = 0;
-        _vel1 = Vector3.zero;
+        switch (axisDirection)
+        {
+            case AxisDirection.X:
+        _currentRot = transform.localEulerAngles.x; 
+                break;
+            case AxisDirection.Y:
+        _currentRot = transform.localEulerAngles.y; 
+                break;
+            case AxisDirection.Z:
+        _currentRot = transform.localEulerAngles.z; 
+                break;
+            default:
+                break;
+        }
+        _currentInput = 0;
     }
 
     public void GetInput(float delta)
     {
-        _currentT = 0;
+        //_currentRot += delta * rotSpeed * Time.deltaTime;
+        _currentRot += delta * SpeedsAndSensitivities.GetLookSpeed(axisDirection) * Time.deltaTime;
+
+
         if (doLimit)
-        {
-            _currentRot += delta * rotSpeed * Time.deltaTime;
             _currentRot = Mathf.Clamp(_currentRot, minRot, maxRot);
-            _targetRotVector = new Vector3(rotAxis.x == 0 ? transform.localEulerAngles.x : _currentRot * rotAxis.x, rotAxis.y == 0 ? transform.localEulerAngles.y : _currentRot * rotAxis.y, rotAxis.z == 0 ? transform.localEulerAngles.z : _currentRot * rotAxis.z);
-        }
-        else
+
+        //_targetRotVector = new Vector3(rotAxis.x == 0 ? transform.localEulerAngles.x : _currentRot * rotAxis.x, rotAxis.y == 0 ? transform.localEulerAngles.y : _currentRot * rotAxis.y, rotAxis.z == 0 ? transform.localEulerAngles.z : _currentRot * rotAxis.z);
+        switch (axisDirection)
         {
-            //_targetTargetRotVector = new Vector3(rotAxis.x * delta * rotSpeed , rotAxis.y * delta * rotSpeed , rotAxis.z * delta * rotSpeed);
-            _targetTargetRotVector = new Vector3(rotAxis.x == 0 ? _targetRotVector.x : rotAxis.x * delta * rotSpeed , rotAxis.y == 0 ? _targetRotVector.y : rotAxis.y * delta * rotSpeed , rotAxis.z == 0 ? _targetRotVector.z : rotAxis.z * delta * rotSpeed);
-            _targetRotVector = Vector3.Lerp(_targetRotVector, _targetTargetRotVector, lerpStep);
-        }
-        
-    }
-
-    //TEMP INPUT
-    private void Update()
-    {
-        if(Input.GetAxis(inputAxis) != 0)
-        {
-            GetInput(Input.GetAxis(inputAxis));
-        //_currentT += Time.deltaTime;
-        //if (_currentT < _maxT)
-        //    transform.localRotation = Quaternion.Euler(Vector3.Lerp(transform.localEulerAngles, _targetRotVector, _currentT / _maxT));
-        }
-        SmoothToTarget();
-
-    }
-
-    void SmoothToTarget()
-    {
-        //transform.localRotation = Quaternion.Euler(Vector3.Lerp(transform.localEulerAngles, _targetRotVector, _currentT / _maxT));
-        //Vector3 a = Vector3.zero;
-        //transform.localRotation = Quaternion.Euler(Vector3.SmoothDamp(transform.localEulerAngles, _targetRotVector, ref _vel, _maxT));
-        if (doLimit)
-        {
-
-
-            //_targetTargetRotVector.x =(_targetTargetRotVector.x >= maxRot || _targetTargetRotVector.x <= minRot) ? 
-            transform.localEulerAngles = _targetRotVector;
-            //_vel2 *= noInputDrag;
-
-        }
-        else
-        {
-            //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(_targetRotVector + transform.localEulerAngles), _maxT * Time.deltaTime);
-            transform.localRotation = Quaternion.Euler(Vector3.SmoothDamp(transform.localEulerAngles, _targetRotVector + transform.localEulerAngles,ref _vel1,_maxT * Time.deltaTime));
-            _targetRotVector *= noInputDrag;
+            case AxisDirection.X:
+        _targetRotVector = new Vector3(-_currentRot, transform.localEulerAngles.y ,transform.localEulerAngles.z);
+                break;
+            case AxisDirection.Y:
+        _targetRotVector = new Vector3(transform.localEulerAngles.x, _currentRot, transform.localEulerAngles.z);
+                break;
+            case AxisDirection.Z:
+        _targetRotVector = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, _currentRot);
+                break;
+            default:
+                break;
         }
 
+        transform.localEulerAngles = _targetRotVector;
     }
 }

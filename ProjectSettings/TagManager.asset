@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Ground
   - Sticky
+  - Arrow
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Sticky

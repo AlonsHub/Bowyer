@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4808301955798467890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4403508973042444641}
+  - component: {fileID: 7601185168143274688}
+  m_Layer: 0
+  m_Name: FMOD Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4403508973042444641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4808301955798467890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.576933, y: 6.7287965, z: 3.9317715}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7601185168143274688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4808301955798467890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82636045165cb7d4aaf93d44ba2fd00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <itemCollected>k__BackingField:
+    Guid:
+      Data1: 1889142733
+      Data2: 1190538030
+      Data3: -409599870
+      Data4: 2023012316
+    Path: event:/SFX/Items/ItemCollected
+  <itemIdle>k__BackingField:
+    Guid:
+      Data1: 1772611690
+      Data2: 1137752042
+      Data3: 1014639291
+      Data4: -594556444
+    Path: event:/SFX/Items/Item Pickup Idle
+  <playerFootsteps>k__BackingField:
+    Guid:
+      Data1: -994402863
+      Data2: 1216308164
+      Data3: -998675794
+      Data4: 258643255
+    Path: event:/SFX/Player/Player Footsetps
+  <playerFootstepsSprint>k__BackingField:
+    Guid:
+      Data1: 204390008
+      Data2: 1308518463
+      Data3: -510291050
+      Data4: -474206387
+    Path: event:/SFX/Player/Player FootsetpsSprint
+  <monsterHunterAmbience>k__BackingField:
+    Guid:
+      Data1: -443273721
+      Data2: 1298160339
+      Data3: -248819265
+      Data4: 651727691
+    Path: event:/Ambience/Monster Hunter Ambient
+  <worldMusic>k__BackingField:
+    Guid:
+      Data1: -903368987
+      Data2: 1281908696
+      Data3: -297162861
+      Data4: -1362637246
+    Path: event:/Music/World Music
